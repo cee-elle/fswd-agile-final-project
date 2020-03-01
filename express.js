@@ -1,28 +1,19 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const indexPage = __dirname + "/layout/index.html";
 const app = express();
-
-const indexPage = __dirname + "/index.html";
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use("/Src/index.js", express.static("./Src/index.js"));
 
-
-app.post("/", (req, res) => {
-  // ajax request body
-  const body = req.body;
-
-
-  // res.sendFile(indexPage);
-  res.status(200).send("Post request OK");
-});
-
+const api_route = require("./Routes/api_route")();
+app.use("/api", api_route);
 
 app.get("/", (req, res) => {
-  // res.sendFile(indexPage);
-  res.status(200).send("Get request OK")
+  res.status(200).sendFile(indexPage);
 });
 
 module.exports = { app };
