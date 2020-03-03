@@ -13,7 +13,12 @@ module.exports = () => {
         "x-rapidapi-key": process.env.API_KEY
       })
       .then(elm => {
-        if (elm.body.hits.length != 0) {
+        // length of undefined
+        hits = 0;
+        try {
+          hits = elm.body.hits.length
+        } catch { }
+        if (hits != 0) {
           const tag = elm.body.hits;
           res.send(tag);
         } else {
