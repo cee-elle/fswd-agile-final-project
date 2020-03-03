@@ -35,4 +35,4 @@ The plan of action document is a document you create with your team using markdo
 
 ### **Your Short Term Goal for the current sprint**
 
-- Basic HTML for user to input data to return a json data from an API
+- Basic HTML for user to input data (calorie) to return a json data from an API
