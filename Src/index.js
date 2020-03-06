@@ -18,7 +18,6 @@ $(function () {
       })
       .serialize();
     console.log(str);
-   
 
     $.ajax({
       url: url,
