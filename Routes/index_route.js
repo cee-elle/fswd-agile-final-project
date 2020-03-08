@@ -1,8 +1,6 @@
 const express = require("express");
 const urirest = require("unirest");
 const fetch = require("node-fetch");
-
-require("dotenv").config();
 const router = express.Router();
 
 module.exports = () => {
@@ -13,10 +11,10 @@ module.exports = () => {
     .get((req, res) => {
       urirest
         .get(SHEET_BEST)
-        .then((elem) => {
+        .then(elem => {
           res.render("index", { elem });
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     })
@@ -30,11 +28,11 @@ module.exports = () => {
         },
         body: JSON.stringify(data)
       })
-        .then((r) => r.json())
-        .then((data) => {
+        .then(r => r.json())
+        .then(data => {
           res.send(data);
         })
-        .catch((error) => {
+        .catch(error => {
           res.status(500).send(`${error.message}🤦🏻`);
         });
     });
