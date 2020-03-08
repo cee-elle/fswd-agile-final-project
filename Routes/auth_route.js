@@ -11,6 +11,11 @@ module.exports = () => {
     return res.render("login");
   });
 
+  router.get("/logout", (res, req) => {
+    res.clearCookie("jwt");
+    res.status(204).redirect("/");
+  });
+
   // login
   router.post("/gNQu5jGgxPL42r8g5zm6", async (req, res) => {
     passport.authenticate("local", { session: true }, (err, user, info) => {
@@ -25,7 +30,7 @@ module.exports = () => {
         }
         const payload = JSON.stringify(user);
         const token = jwt.sign(payload, process.env.JWT);
-        res.cookie("jwt", token).send("SUCCESS");
+        res.cookie("jwt", token).render("protected", { msg: "Success" });
         // return res.json({ user, token });
       });
     })(req, res);
