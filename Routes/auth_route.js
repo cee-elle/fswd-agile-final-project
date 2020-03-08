@@ -11,11 +11,6 @@ module.exports = () => {
     return res.render("login");
   });
 
-  router.get("/logout", (res, req) => {
-    res.clearCookie("jwt");
-    res.status(204).redirect("/");
-  });
-
   // login
   router.post("/gNQu5jGgxPL42r8g5zm6", async (req, res) => {
     passport.authenticate("local", { session: true }, (err, user, info) => {
@@ -56,5 +51,11 @@ module.exports = () => {
       res.render("login", { status: "user exists" });
     }
   });
+
+  router.get("/logout", (req, res) => {
+    res.clearCookie("jwt");
+    res.status(204).redirect("/");
+  });
+
   return router;
 };
