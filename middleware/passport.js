@@ -1,19 +1,45 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const JwtStrategy = require("passport-jwt").Strategy;
+const ExtractJWT = require("passport-jwt").ExtractJwt;
+const bcrypt = require('bcrypt');
+const { checkUsername } = require("../controller/userController");
+require("dotenv").config();
 
 const login = new LocalStrategy(
+  { usernameField: "loginUser", passwordField: "loginPw", session: false },
   function (username, password, done) {
-    if (username === "Test" && password === "Test") {
-      const testUser = { username: username }
-      return testUser
+    const user = checkUsername(username)
+    if (!user) {
+      return done(null, false, { message: "username" });
     }
-    // User.findOne({ username: username }, function (err, user) {
-    //   if (err) { return done(err); }
-    //   if (!user) { return done(null, false); }
-    //   if (!user.verifyPassword(password)) { return done(null, false); }
-    //   return done(null, user);
-    // });
+
+    try {
+      const match = bcrypt.compare(password, user.password)
+        .then(function () {
+          if (match) {
+            return done(null, user);
+          } else {
+            return done(null, false, { message: "pw" });
+          }
+        }).catch(err => Error("bcrypt"));
+    } catch (error) {
+      return done(error);
+    }
   }
 )
 
-module.exports = passport.use(login)
+const jwtLogin = new JwtStrategy(
+  { jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(), secretOrKey: process.env.JWT },
+  function (payload, done) {
+    const user = checkUsername(payload.username);
+    console.log(user);
+    return user
+      ? done(null, user)
+      : done(null, false, {
+        error: "Not valid"
+      });
+  }
+);
+
+module.exports = passport.use(login).use(jwtLogin);

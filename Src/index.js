@@ -32,7 +32,7 @@ $(function () {
                       <h5 class="card-title">${x.recipe.label}</h5>
                       <p>Cal: ${Math.trunc(x.recipe.calories)}</p>
                       <p>Portion: ${x.recipe.yield}</p>
-                      <p>Cal/Serving: ${Math.trunc(x.recipe.calories/x.recipe.yield)}</p>
+                      <p>Cal/Serving: ${Math.trunc(x.recipe.calories / x.recipe.yield)}</p>
                       <p class="card-text">${get_all(x.recipe.healthLabels)}</p>
                       </div>
                   </div>`
@@ -59,5 +59,3 @@ $(function () {
   }
 
 });
-
-
