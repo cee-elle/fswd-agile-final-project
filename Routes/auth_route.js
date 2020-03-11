@@ -12,7 +12,7 @@ module.exports = () => {
   });
 
   // login
-  router.post("/gNQu5jGgxPL42r8g5zm6", async (req, res) => {
+  router.post("/gNQu5jGgxPL42r8g5zm6", (req, res) => {
     passport.authenticate("local", { session: true }, (err, user, info) => {
       if (err || !user) {
         return res.status(400).json({
@@ -26,7 +26,6 @@ module.exports = () => {
         const payload = JSON.stringify(user);
         const token = jwt.sign(payload, process.env.JWT);
         res.cookie("jwt", token).render("protected", { msg: "Success" });
-        // return res.json({ user, token });
       });
     })(req, res);
   });

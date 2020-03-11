@@ -8,6 +8,7 @@ require("dotenv").config();
 const login = new LocalStrategy(
   { usernameField: "loginUser", passwordField: "loginPw", session: false },
   function(username, password, done) {
+    // console.log(username, passport, session);
     const user = checkUsername(username);
     if (!user) {
       return done(null, false, { message: "username" });
@@ -16,8 +17,8 @@ const login = new LocalStrategy(
     try {
       const match = bcrypt
         .compare(password, user.password)
-        .then(function() {
-          if (match) {
+        .then(function(result) {
+          if (result === true) {
             return done(null, user);
           } else {
             return done(null, false, { message: "pw" });
@@ -45,7 +46,7 @@ const jwtLogin = new JwtStrategy(
   },
   function(payload, done) {
     const user = checkUsername(payload.username);
-    console.log(user);
+    // console.log(user);
     return user
       ? done(null, user)
       : done(null, false, {

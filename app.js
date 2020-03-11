@@ -22,11 +22,10 @@ module.exports = () => {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(bodyParser.urlencoded({ extended: false }));
-
   app.use(bodyParser.json());
-
   app.use(cookieParser());
 
+  // home
   app.get("/", (req, res) => {
     res.status(200).sendFile(indexPage);
   });
