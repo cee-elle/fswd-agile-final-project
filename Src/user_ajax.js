@@ -1,9 +1,9 @@
 const frm = $("#searchForm");
-frm.submit(function(e) {
+frm.submit(function (e) {
 	e.preventDefault();
 	const url = "/user/a";
 	var str = $("#searchForm :input")
-		.filter(function(index, element) {
+		.filter(function (index, element) {
 			return $(element).val() != "";
 		})
 		.serialize();
@@ -11,7 +11,7 @@ frm.submit(function(e) {
 		url: url,
 		type: "post",
 		data: str,
-		success: function(data) {
+		success: function (data) {
 			const user = data[0];
 			$("#user_list").append(
 				`<li>
@@ -25,7 +25,7 @@ frm.submit(function(e) {
             </li>`
 			);
 		},
-		error: function(data) {
+		error: function (data) {
 			console.log(`error`);
 		}
 	});
