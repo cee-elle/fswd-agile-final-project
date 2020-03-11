@@ -38,11 +38,11 @@ module.exports = db => {
   app.use("/admin", index_route);
 
   // login
-  const auth_route = require("./Routes/auth_route")();
+  const auth_route = require("./Routes/auth_route")(db);
   app.use("/user", auth_route);
 
   // secure
-  const secure_route = require("./Routes/secure_route")(db);
+  const secure_route = require("./Routes/secure_route")();
   app.use(
     "/secure",
     passport.authenticate("jwt", { session: false }),

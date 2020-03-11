@@ -31,7 +31,7 @@ module.exports = db => {
 
   // signup
   router.post("/JKp7DeJXgaFtxaJ7FTXb", async (req, res) => {
-    const exist = db.checkUsername(req.body.signupUser);
+    const exist = await db.checkUsername(req.body.signupUser);
     if (!exist) {
       try {
         const pwHash = await bcrypt.hash(req.body.signupPw, 5);
@@ -40,7 +40,7 @@ module.exports = db => {
           username: req.body.signupUser,
           password: pwHash
         });
-        console.log(db.users);
+        // console.log(db.users); debug only
         res.send("signed up");
       } catch (error) {
         res.render("login", { status: "login error" });
