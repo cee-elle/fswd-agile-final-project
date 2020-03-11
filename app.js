@@ -7,9 +7,8 @@ const express = require("express"),
   passport = require("./middleware/passport"),
   app = express();
 
-module.exports = () => {
-  app.use("/Src/index.js", express.static("./Src/index.js"));
-  app.use("/Src/user_ajax.js", express.static("./Src/user_ajax.js"));
+module.exports = db => {
+  app.use(express.static("Src"));
   app.set("view engine", "ejs");
 
   app.use(
@@ -43,7 +42,7 @@ module.exports = () => {
   app.use("/user", auth_route);
 
   // secure
-  const secure_route = require("./Routes/secure_route")();
+  const secure_route = require("./Routes/secure_route")(db);
   app.use(
     "/secure",
     passport.authenticate("jwt", { session: false }),

@@ -1,5 +1,6 @@
 require("dotenv").config();
-const express = require("./app")();
+const db = require("./controller/userController");
+const express = require("./app")(db);
 const PORT = process.env.PORT || 8888;
 
 express.listen(PORT, () => {

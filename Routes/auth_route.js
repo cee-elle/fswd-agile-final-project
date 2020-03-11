@@ -2,11 +2,10 @@ const express = require("express");
 const passport = require("../middleware/passport");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const { users, checkUsername } = require("../controller/userController");
 
 const router = express.Router();
 
-module.exports = () => {
+module.exports = db => {
   router.get("/", (req, res) => {
     return res.render("login");
   });
@@ -32,16 +31,16 @@ module.exports = () => {
 
   // signup
   router.post("/JKp7DeJXgaFtxaJ7FTXb", async (req, res) => {
-    const exist = checkUsername(req.body.signupUser);
+    const exist = db.checkUsername(req.body.signupUser);
     if (!exist) {
       try {
         const pwHash = await bcrypt.hash(req.body.signupPw, 5);
-        users.push({
-          id: users.length + 1,
+        db.users.push({
+          id: db.users.length + 1,
           username: req.body.signupUser,
           password: pwHash
         });
-        console.log(users);
+        console.log(db.users);
         res.send("signed up");
       } catch (error) {
         res.render("login", { status: "login error" });
