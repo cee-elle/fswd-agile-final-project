@@ -7,7 +7,7 @@ const express = require("express"),
   passport = require("./middleware/passport"),
   app = express();
 
-module.exports = db => {
+module.exports = (db, users) => {
   app.use(express.static("Src"));
   app.set("view engine", "ejs");
 
@@ -38,7 +38,7 @@ module.exports = db => {
   app.use("/admin", index_route);
 
   // login
-  const auth_route = require("./Routes/auth_route")(db);
+  const auth_route = require("./Routes/auth_route")(db, users);
   app.use("/user", auth_route);
 
   // secure
