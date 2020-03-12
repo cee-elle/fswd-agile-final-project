@@ -7,10 +7,6 @@ const authController = require("../controller/authController");
 const router = express.Router();
 
 module.exports = (db, users) => {
-  router.get("/", (req, res) => {
-    return res.render("login");
-  });
-
   // login
   router.post("/gNQu5jGgxPL42r8g5zm6", (req, res, next) => {
     //req.body.loginUser
@@ -44,31 +40,41 @@ module.exports = (db, users) => {
 
   // signup
   router.post("/JKp7DeJXgaFtxaJ7FTXb", async (req, res) => {
-    users.findOne({ email: req.body.signupUser }, async (err, user) => {
-      if (!user) {
-        try {
-          const pwHash = await bcrypt.hash(req.body.signupPw, 5);
-          await users
-            .create({
-              name: null,
-              email: req.body.signupUser,
-              password: pwHash
-            })
-            .then(async user => {
-              delete user._doc.password;
-              const token = await authController.generateToken(
-                JSON.stringify(user)
-              );
-              res.cookie("jwt", token).render("protected", { msg: "Success" });
-            });
-        } catch (error) {
-          console.log(error);
+    const { nickname, signupUser, signupPw, confirm_signupPw } = req.body;
+    if (signupPw == confirm_signupPw) {
+      users.findOne({ email: req.body.signupUser }, async (err, user) => {
+        if (!user) {
+          try {
+            const pwHash = await bcrypt.hash(req.body.signupPw, 5);
+            await users
+              .create({
+                name: null,
+                email: req.body.signupUser,
+                password: pwHash
+              })
+              .then(async user => {
+                delete user._doc.password;
+                const token = await authController.generateToken(
+                  JSON.stringify(user)
+                );
+                res
+                  .cookie("jwt", token)
+                  .render("protected", { msg: "Success" });
+              });
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          console.log(2, user);
+          res.render("login", { status: "user exists" });
         }
-      } else {
-        console.log(2, user);
-        res.render("login", { status: "user exists" });
-      }
-    });
+      });
+    } else {
+      res.render("signup", {
+        msg: "password not match",
+        msgClass: "alert-danger"
+      });
+    }
   });
 
   router.get("/logout", (req, res) => {

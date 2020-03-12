@@ -9,6 +9,9 @@ const express = require("express"),
 
 module.exports = (db, users) => {
   app.use(express.static("Src"));
+  app.use(express.static("Public"));
+  app.use("/user", express.static("Public"));
+
   app.set("view engine", "ejs");
 
   app.use(
@@ -25,17 +28,16 @@ module.exports = (db, users) => {
   app.use(cookieParser());
 
   // home
-  app.get("/", (req, res) => {
-    res.status(200).sendFile(indexPage);
-  });
+  const index_route = require("./Routes/index_route.js")();
+  app.use("/", index_route);
 
   // edamam
   const api_route = require("./Routes/api_route")();
   app.use("/api", api_route);
 
   // sheet.best
-  const index_route = require("./Routes/index_route")();
-  app.use("/admin", index_route);
+  const admin_route = require("./Routes/admin_route")();
+  app.use("/admin", admin_route);
 
   // login
   const auth_route = require("./Routes/auth_route")(db, users);
