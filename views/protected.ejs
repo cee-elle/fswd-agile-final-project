@@ -1,18 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <title>protected</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-  <title>Document</title>
-</head>
+  <body class="container">
+    <br />
+    <div class="d-flex justify-content-center justify-content-md-center">
+      <div class="col-md-6">
+        <a href="/user/logout" class="btn btn-outline-primary"> logout</a>
+        <%if (locals.msg) { %>
+        <div class="alert <%=msgClass %>" role="alert">
+          <%=msg %>
+        </div>
+        <% } else { %>
+        <h1></h1>
+        <% } %>
+        <form class="form-inline" id="searchForm">
+          <div class="form-group">
+            <label for="inputText">Enter Type of Food: </label>
+            <input
+              type="text"
+              name="q"
+              id="food"
+              class="form-control mx-sm-3"
+              aria-describedby="passwordHelpInline"
+              placeholder="E.g: Chicken"
+              value=""
+            />
+          </div>
 
-<body>
-  <h1><%=msg%></h1>
-  <br />
-  <a href="/user/logout" class="btn btn-outline-primary"> cookie destroy</a>
-</body>
+          <div class="form-group">
+            <label for="inputText">Enter Health notice: </label>
+            <input
+              type="text"
+              id="health"
+              name="health"
+              class="form-control mx-sm-3"
+              aria-describedby="passwordHelpInline"
+              placeholder="peanut-free"
+              value=""
+            />
+          </div>
 
+          <div class="form-group">
+            <label for="inputText">Enter Amount of Calories: </label>
+            <input
+              type="text"
+              id="calories"
+              name="calories"
+              class="form-control mx-sm-3"
+              aria-describedby="passwordHelpInline"
+              placeholder="E.g: 500"
+              value=""
+              autocomplete="off"
+            />
+          </div>
+
+          <button type="submit" id="submit" class="btn btn-outline-primary">
+            Check for Recipes
+          </button>
+        </form>
+        <br /><br /><br />
+        <div id="q"></div>
+      </div>
+    </div>
+  </body>
+  <%- include('./parts/jq'); -%>
+  <script type="text/javascript" src="/Src/index.js"></script>
 </html>

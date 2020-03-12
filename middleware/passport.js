@@ -38,7 +38,7 @@ const login = new LocalStrategy(
 const cookieExtractor = function(req) {
   let token = null;
   if (req && req.cookies) {
-    token = req.cookies["jwt"];
+    token = req.cookies["jwt"]["token"];
   }
   return token;
 };
