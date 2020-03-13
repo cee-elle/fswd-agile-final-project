@@ -3,14 +3,13 @@ $(function() {
 	frm.submit(function(e) {
 		e.preventDefault();
 		const url = "/api/getinfo";
-		$("#q").html("");
+		$("#recipe_card").html("");
 		var str = $("#searchForm :input")
-			.filter(function(index, element) {
+			.filter((index, element) => {
 				return $(element).val() != "";
 			})
 			.serialize();
 		console.log(str);
-
 		$.ajax({
 			url: url,
 			type: "POST",
@@ -18,18 +17,43 @@ $(function() {
 			success: function(data) {
 				data.forEach((x) => {
 					console.log(x);
-					$("#q").append(
-						`<div class="card" style="margin-top:30px">
-                    <div class="card-body">
-                      <h5 class="card-title">${x.recipe.label}</h5>
-                      <p>Cal: ${Math.trunc(x.recipe.calories)}</p>
-                      <p>Portion: ${x.recipe.yield}</p>
-                      <p>Cal/Serving: ${Math.trunc(
-												x.recipe.calories / x.recipe.yield
-											)}</p>
-                      <p class="card-text">${get_all(x.recipe.healthLabels)}</p>
-                      </div>
-                  </div>`
+					$("#recipe_card").append(
+						`<div class="col-sm-4">
+				  <div class="card">
+					  <img
+						  class="card-img"
+						  src="${x.recipe.image}"
+						  alt=""
+					  />
+					  <div class="card-img-overlay">
+						  <a href="#" class="btn btn-light btn-sm">Cooking</a>
+					  </div>
+					  <div class="card-body">
+						  <h4 class="card-title">${x.recipe.label}</h4>
+						  <small class="text-muted cat">
+							  <i class="far fa-clock text-info"></i> 30 minutes
+							  <i class="fas fa-users text-info"></i> 4 portions
+						  </small>
+						  <p class="card-text">Portion: ${x.recipe.yield}</p>
+						  <p class="card-text">Cal/Serving: ${Math.trunc(
+								x.recipe.calories / x.recipe.yield
+							)}</p>
+						  <p class="card-text overflow-auto">
+						  ${get_all(x.recipe.healthLabels)}
+						  </p>
+						  <a href="#" class="btn btn-info">Read Recipe</a>
+					  </div>
+					  <div
+						  class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0"
+					  >
+						  <div class="views">Oct 20, 12:45PM</div>
+						  <div class="stats">
+							  <i class="far fa-eye"></i> 1347 <i class="far fa-comment"></i> 12
+						  </div>
+					  </div>
+				  </div>
+			  </div>
+			  `
 					);
 				});
 			},
