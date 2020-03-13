@@ -54,3 +54,9 @@ footer {
 .header {
 	justify-content: center;
 }
+
+.hL {
+	width: auto;
+	height: 80px;
+	overflow-y: scroll;
+}

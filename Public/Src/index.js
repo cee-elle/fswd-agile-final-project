@@ -25,9 +25,6 @@ $(function() {
 						  src="${x.recipe.image}"
 						  alt=""
 					  />
-					  <div class="card-img-overlay">
-						  <a href="#" class="btn btn-light btn-sm">Cooking</a>
-					  </div>
 					  <div class="card-body">
 						  <h4 class="card-title">${x.recipe.label}</h4>
 						  <small class="text-muted cat">
@@ -38,11 +35,9 @@ $(function() {
 						  <p class="card-text">Cal/Serving: ${Math.trunc(
 								x.recipe.calories / x.recipe.yield
 							)}</p>
-						  <p class="card-text overflow-auto">
-						  ${get_all(x.recipe.healthLabels)}
-						  </p>
-						  <a href="#" class="btn btn-info">Read Recipe</a>
+							<div class="hL">${get_all(x.recipe.healthLabels)}</div>
 					  </div>
+					  <a href="#" class="btn btn-info">Read Recipe</a>
 					  <div
 						  class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0"
 					  >
@@ -66,7 +61,7 @@ $(function() {
 	function get_all(arr) {
 		let text = "";
 		arr.forEach((x) => {
-			text += `<p class="card-text">${x}</p>`;
+			text += `<p>${x}</p>`;
 		});
 		return text;
 	}
