@@ -1,7 +1,7 @@
 const frm = $("#searchForm");
 frm.submit(function (e) {
 	e.preventDefault();
-	const url = "/user/a";
+	const url = "/admin/a";
 	var str = $("#searchForm :input")
 		.filter(function (index, element) {
 			return $(element).val() != "";

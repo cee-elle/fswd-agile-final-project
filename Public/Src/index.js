@@ -1,6 +1,6 @@
-$(function() {
+$(function () {
 	const frm = $("#searchForm");
-	frm.submit(function(e) {
+	frm.submit(function (e) {
 		e.preventDefault();
 		const url = "/api/getinfo";
 		$("#recipe_card").html("");
@@ -14,9 +14,9 @@ $(function() {
 			url: url,
 			type: "POST",
 			data: str,
-			success: function(data) {
+			success: function (data) {
 				data.forEach((x) => {
-					console.log(x);
+					// console.log(x);
 					$("#recipe_card").append(
 						`<div class="col-sm-4">
 				  <div class="card">
@@ -33,8 +33,8 @@ $(function() {
 						  </small>
 						  <p class="card-text">Portion: ${x.recipe.yield}</p>
 						  <p class="card-text">Cal/Serving: ${Math.trunc(
-								x.recipe.calories / x.recipe.yield
-							)}</p>
+							x.recipe.calories / x.recipe.yield
+						)}</p>
 							<div class="hL">${get_all(x.recipe.healthLabels)}</div>
 					  </div>
 					  <a href="#" class="btn btn-info">Read Recipe</a>
@@ -52,7 +52,7 @@ $(function() {
 					);
 				});
 			},
-			error: function(data) {
+			error: function (data) {
 				console.log(`error`);
 			}
 		});
