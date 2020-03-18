@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+		rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+		crossorigin="anonymous"
+	>
+	<link rel="stylesheet" href="../Public/css/admin-style.css">
+    <title>Admin Page</title>
+
+</head>
+<body>
+    <div class="background">
+        <img
+            src="../Public/images/background-front.jpeg"
+            class="img-fluid"
+            id="bg"
+            alt="Responsive image"
+        />
+    </div>
+
+<!-- Sidebar -->
+    <div id="sidebar">
+        <header>
+            <h3>Admin<h3>
+        </header>
+
+        <ul class="nav">
+            <li>
+                <a href="#">Logo Manage</a>
+            </li>
+            <li>
+                <a href="#">Users Info</a>
+            </li>
+            <!-- <li>
+                <a href="#">Users Info</a>
+            </li> -->
+        </ul>
+    </div>
+
+    <%- include('./parts/navbar'); -%>
+    
+    <footer class="footer">
+        <nav class="navbar footer fixed-bottom navbar-light bg-light">
+            FSWD Agile Project © 2020
+        </nav>
+    </footer>
+</body>
+</html>
