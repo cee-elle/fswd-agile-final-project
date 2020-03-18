@@ -25,10 +25,8 @@ frm.submit(function (e) {
             </li>`
 			);
 		},
-		error: function (data) {
+		error: function () {
 			console.log(`error`);
 		}
 	});
 });
-
-

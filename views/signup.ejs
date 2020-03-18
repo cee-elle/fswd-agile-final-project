@@ -1,67 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/css/login-styles.css" />
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
+		<title>Sign up</title>
+	</head>
+	<body class="container">
+		<img src="/images/background-front.jpeg" id="bg" alt="" />
+		<div class="login">
+			<h1 style="background-color: #71B340; font-size:x-large">App_Name</h1>
+			<div class="d-flex justify-content-center">
+				<form method="post" action="/user/JKp7DeJXgaFtxaJ7FTXb">
+					<%if (locals.msg) { %>
+					<div class="alert <%=msgClass %>" role="alert">
+						<%=msg %>
+					</div>
+					<% } else { %>
+					<h1></h1>
+					<% } %>
+					<p>
+						<input
+							type="text"
+							name="nickname"
+							id="sign-up-nickname"
+							placeholder="nickname"
+							required
+						/>
+					</p>
+					<p>
+						<input
+							type="text"
+							name="signupUser"
+							id="sign-up-username"
+							placeholder="email"
+							required
+						/>
+					</p>
+					<p>
+						<input
+							type="password"
+							name="signupPw"
+							id="sign-up-password"
+							placeholder="password"
+							required
+						/>
+					</p>
+					<p>
+						<input
+							type="password"
+							name="confirm_signupPw"
+							id="sign-up-password"
+							placeholder="confirm password"
+							required
+						/>
+					</p>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="/css/login-styles.css" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-	<title>Sign up</title>
-</head>
+					<br />
+					<hr />
+					<div class="d-flex justify-content-center">
+						<button type="submit" id="submit" class="btn btn-outline-success">
+							Sign up
+						</button>
+					</div>
+				</form>
+			</div>
+			<br />
+		</div>
 
-<body class="container">
-	<img src="/images/background-front.jpeg" id="bg" alt="" />
-	<div class="login">
-		<h1 style="background-color: #71B340; font-size:x-large">App_Name</h1>
-		<div class="d-flex justify-content-center">
-			<form method="post" action="/user/JKp7DeJXgaFtxaJ7FTXb">
-				<%if (locals.msg) { %>
-				<div class="alert <%=msgClass %>" role="alert">
-					<%=msg %>
-				</div>
-				<% } else { %>
-				<h1></h1>
-				<% } %>
-				<p>
-					<input type="text" name="nickname" id="sign-up-nickname" placeholder="nickname" required />
-				</p>
-				<p>
-					<input type="text" name="signupUser" id="sign-up-username" placeholder="email" required />
-				</p>
-				<p>
-					<input type="password" name="signupPw" id="sign-up-password" placeholder="password" required />
-				</p>
-				<p>
-					<input type="password" name="confirm_signupPw" id="sign-up-password" placeholder="confirm password"
-						required />
-				</p>
-
-				<br />
+		<div class="login">
+			<div class="login-help">
 				<hr />
-				<div class="d-flex justify-content-center">
-					<button type="submit" id="submit" class="btn btn-outline-success">
-						Sign up
-					</button>
-				</div>
-			</form>
+				<p>
+					Already have an account?
+					<a style="color: green;" href="/login">Click here to login</a>.
+				</p>
+
+				<hr />
+			</div>
+
+			<br />
 		</div>
-		<br />
-	</div>
-
-	<div class="login">
-		<div class="login-help">
-			<hr />
-			<p>
-				Already have an account?
-				<a style="color: green;" href="/login">Click here to login</a>.
-			</p>
-
-			<hr />
-		</div>
-
-		<br />
-	</div>
-</body>
-
+	</body>
 </html>

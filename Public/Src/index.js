@@ -1,6 +1,6 @@
-$(function () {
+$(function() {
 	const frm = $("#searchForm");
-	frm.submit(function (e) {
+	frm.submit(function(e) {
 		e.preventDefault();
 		const url = "/api/getinfo";
 		$("#recipe_card").html("");
@@ -52,8 +52,8 @@ $(function () {
 					);
 				});
 			},
-			error: function (data) {
-				console.log(data);
+			error: function() {
+				console.log(`error`);
 			}
 		});
 	});
@@ -66,5 +66,3 @@ $(function () {
 		return text;
 	}
 });
-
-
