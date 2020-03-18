@@ -27,7 +27,7 @@ module.exports = () => {
       })
       .then(elm => {
         // length of undefined
-        hits = 0;
+        let hits = 0;
         try {
           hits = elm.body.hits.length;
           if (hits != 0) {

@@ -5,9 +5,9 @@ $(function () {
     e.preventDefault();
     const url = "/api/getinfo";
 
-    const food = $("#food").val();
-    const health = $("#health").val();
-    const cal = $("#calSearch").val();
+    // const food = $("#food").val();
+    // const health = $("#health").val();
+    // const cal = $("#calSearch").val();
 
     console.log($("#searchForm :input"))
 
@@ -45,7 +45,7 @@ $(function () {
         });
       },
       error: function (data) {
-        console.log(`error`);
+        console.log(data);
       }
     });
   });

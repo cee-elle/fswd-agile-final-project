@@ -1,6 +1,5 @@
 const express = require("express");
 const passport = require("../middleware/passport");
-const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const authController = require("../controller/authController");
 

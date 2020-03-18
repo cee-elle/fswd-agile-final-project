@@ -26,7 +26,7 @@ frm.submit(function (e) {
 			);
 		},
 		error: function (data) {
-			console.log(`error`);
+			console.log(data);
 		}
 	});
 });

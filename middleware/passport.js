@@ -14,7 +14,7 @@ const login = new LocalStrategy(
         return done(null, false, { message: "username not found" });
       } else {
         try {
-          const match = bcrypt
+          bcrypt
             .compare(password, user.password)
             .then(function(result) {
               if (result === true) {
@@ -26,7 +26,7 @@ const login = new LocalStrategy(
                 });
               }
             })
-            .catch(err => Error("bcrypt"));
+            .catch(err => Error("bcrypt:" +err));
         } catch (error) {
           return done(error);
         }
