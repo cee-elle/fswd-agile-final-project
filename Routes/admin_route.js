@@ -11,7 +11,7 @@ module.exports = () => { //users
     urirest
       .get(SHEET_BEST)
       .then(elem => {
-        res.render("index", { elem });
+        res.render("admin", { elem });
       })
       .catch(err => {
         console.log(err);

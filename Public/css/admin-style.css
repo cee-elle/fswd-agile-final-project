@@ -52,11 +52,11 @@
     color: #ECEFF1;
 }
 
-#content {
+#top-right {
     width: 100%;
     position: relative;
     margin-right: 0;
-    padding-left: 1600px;
+    padding-left: 90vw;
 }
 
 footer {
@@ -70,4 +70,8 @@ footer {
     justify-content: center;
 }
 
-
+.content {
+    margin-top: 10vh;
+    margin-left: 20vw;
+    width: 70vw;
+}
