@@ -30,7 +30,12 @@ module.exports = (db, users) => {
               }
               const payload = JSON.stringify(user);
               const token = authController.generateToken(payload);
-              res.cookie("jwt", token).render("protected", { msg: "Success" });
+              res
+                .cookie("jwt", { user: user, token: token })
+                .render("protected", {
+                  msg: `Welcome user: ${user.name}`,
+                  msgClass: "alert-success"
+                });
             });
           }
         )(req, res, next);
@@ -42,14 +47,14 @@ module.exports = (db, users) => {
   router.post("/JKp7DeJXgaFtxaJ7FTXb", async (req, res) => {
     const { nickname, signupUser, signupPw, confirm_signupPw } = req.body;
     if (signupPw == confirm_signupPw) {
-      users.findOne({ email: req.body.signupUser }, async (err, user) => {
+      users.findOne({ email: signupUser }, async (err, user) => {
         if (!user) {
           try {
-            const pwHash = await bcrypt.hash(req.body.signupPw, 5);
+            const pwHash = await bcrypt.hash(signupPw, 5);
             await users
               .create({
                 name: null,
-                email: req.body.signupUser,
+                email: signupUser,
                 password: pwHash
               })
               .then(async user => {
@@ -57,9 +62,10 @@ module.exports = (db, users) => {
                 const token = await authController.generateToken(
                   JSON.stringify(user)
                 );
-                res
-                  .cookie("jwt", token)
-                  .render("protected", { msg: "Success" });
+                res.cookie("jwt", token).render("protected", {
+                  msg: `Welcome user: ${nickname}`,
+                  msgClass: "alert-success"
+                });
               });
           } catch (error) {
             console.log(error);
