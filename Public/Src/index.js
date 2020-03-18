@@ -53,7 +53,7 @@ $(function () {
 				});
 			},
 			error: function (data) {
-				console.log(`error`);
+				console.log(data);
 			}
 		});
 	});
@@ -66,3 +66,5 @@ $(function () {
 		return text;
 	}
 });
+
+
