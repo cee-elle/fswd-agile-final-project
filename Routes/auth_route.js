@@ -5,7 +5,7 @@ const authController = require("../controller/authController");
 
 const router = express.Router();
 
-module.exports = (db, users) => {
+module.exports = (users) => {
   // login
   router.post("/gNQu5jGgxPL42r8g5zm6", (req, res, next) => {
     //req.body.loginUser
@@ -27,6 +27,7 @@ module.exports = (db, users) => {
               if (err) {
                 res.send(err.message);
               }
+              delete user.password; // del pw from token
               const payload = JSON.stringify(user);
               const token = authController.generateToken(payload);
               res
@@ -52,7 +53,7 @@ module.exports = (db, users) => {
             const pwHash = await bcrypt.hash(signupPw, 5);
             await users
               .create({
-                name: null,
+                name: nickname,
                 email: signupUser,
                 password: pwHash
               })

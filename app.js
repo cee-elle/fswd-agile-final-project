@@ -1,5 +1,3 @@
-const indexPage = __dirname + "/layout/index.html";
-
 const express = require("express"),
 	session = require("express-session"),
 	bodyParser = require("body-parser"),
@@ -34,11 +32,11 @@ module.exports = (db, users) => {
 	app.use("/api", api_route);
 
 	// sheet.best
-	const admin_route = require("./Routes/admin_route")();
+	const admin_route = require("./Routes/admin_route")(users);
 	app.use("/admin", admin_route);
 
 	// login
-	const auth_route = require("./Routes/auth_route")(db, users);
+	const auth_route = require("./Routes/auth_route")(users);
 	app.use("/user", auth_route);
 
 	// secure
