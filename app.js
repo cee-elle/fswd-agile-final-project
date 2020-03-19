@@ -3,6 +3,7 @@ const express = require("express"),
 	bodyParser = require("body-parser"),
 	cookieParser = require("cookie-parser"),
 	passport = require("./middleware/passport"),
+	flash = require("connect-flash"),
 	app = express();
 
 module.exports = (db, users) => {
@@ -19,6 +20,7 @@ module.exports = (db, users) => {
 	app.use(passport.session());
 	app.use(bodyParser.urlencoded({ extended: false }));
 	app.use(bodyParser.json());
+	app.use(flash());
 	app.use(cookieParser());
 
 	// home
@@ -29,9 +31,28 @@ module.exports = (db, users) => {
 	const api_route = require("./Routes/api_route")();
 	app.use("/api", api_route);
 
+	app.use("/admin", (req, res, next) => {
+		const is_admin = req.cookies["jwt"]["user"].role;
+		if (is_admin == "admin") {
+			req.is_admin = true;
+			next();
+		} else {
+			req.is_admin = false;
+			next();
+		}
+	});
+	const is_admin = (req, res, next) => {
+		if (req.is_admin) {
+			next();
+		} else {
+			req.flash("msg", "you are not an admin user");
+			res.redirect("/");
+		}
+	};
+
 	// sheet.best
 	const admin_route = require("./Routes/admin_route")(users);
-	app.use("/admin", admin_route);
+	app.use("/admin", is_admin, admin_route);
 
 	// login
 	const auth_route = require("./Routes/auth_route")(users);
