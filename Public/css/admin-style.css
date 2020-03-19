@@ -75,3 +75,13 @@ footer {
     margin-left: 20vw;
     width: 70vw;
 }
+
+.card-field {
+    margin-right: 1rem;
+    width: 90%;
+}
+
+.label-input {
+    display: flex;
+    justify-content: space-between;
+}

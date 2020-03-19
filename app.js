@@ -7,9 +7,7 @@ const express = require("express"),
 
 module.exports = (db, users) => {
 	app.use(express.static("Public"));
-
 	app.set("view engine", "ejs");
-
 	app.use(
 		session({
 			secret: process.env.SESSION_SECRET,

@@ -7,4 +7,15 @@ function generateToken(user) {
   return token;
 }
 
-module.exports = { generateToken };
+function verifyToken(token) {
+  const state = jwt.verify(token, process.env.JWT, function (err) {
+    if (err) {
+      console.log(err);
+      return false;
+    }
+    return true
+  });
+  return state
+}
+
+module.exports = { generateToken, verifyToken };
