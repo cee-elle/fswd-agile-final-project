@@ -1,11 +1,11 @@
 .header {
-    background-color: #75b79e;
+	background-color: #75b79e;
 }
 
 #logout {
-    position: relative;
-    left: 10px;
-    color: #6a8caf;
+	position: relative;
+	left: 10px;
+	color: #6a8caf;
 }
 
 #bg {
@@ -18,70 +18,76 @@
 }
 
 #sidebar {
-    /* z-index: 1000; */
-    position: fixed;
-    left: 250px;
-    width: 250px;
-    height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
-    background: #6a8caf;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-  
-#sidebar header {
-    background-color: #CFD8DC;
-    font-size: 30px;
-    text-align: center;
-    height: 60px;
+	/* z-index: 1000; */
+	position: fixed;
+	left: 250px;
+	width: 250px;
+	height: 100%;
+	margin-left: -250px;
+	overflow-y: auto;
+	background: #6a8caf;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
 }
 
-#sidebar .nav a{
-    background: none;
-    line-height: 4;
-    color: #CFD8DC;
-    font-size: 20px;
-    padding: 40px 30px;
+#sidebar header {
+	background-color: #cfd8dc;
+	font-size: 30px;
+	text-align: center;
+	height: 60px;
 }
-  
-#sidebar .nav a:hover{
-    background: none;
-    color: #ECEFF1;
+
+#sidebar .nav a {
+	background: none;
+	line-height: 4;
+	color: #cfd8dc;
+	font-size: 20px;
+	padding: 40px 30px;
+}
+
+#sidebar .nav a:hover {
+	background: none;
+	color: #eceff1;
 }
 
 #top-right {
-    width: 100%;
-    position: relative;
-    margin-right: 0;
-    padding-left: 90vw;
+	width: 100%;
+	position: relative;
+	margin-right: 0;
+	padding-left: 90vw;
 }
 
 footer {
 	height: 2rem;
 	position: absolute;
 	bottom: 0;
-    color: black;
-    text-align: center;
+	color: black;
+	text-align: center;
 }
 .footer {
-    justify-content: center;
+	justify-content: center;
 }
 
 .content {
-    margin-top: 10vh;
-    margin-left: 20vw;
-    width: 70vw;
+	margin-top: 10vh;
+	margin-left: 20vw;
+	width: 70vw;
+	margin-bottom: 20vh;
 }
 
 .card-field {
-    margin-right: 1rem;
-    width: 90%;
+	margin-right: 1rem;
+	width: 90%;
 }
 
 .label-input {
-    display: flex;
-    justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
+}
+
+input {
+	box-sizing: border-box;
+	padding-left: 5px;
 }
