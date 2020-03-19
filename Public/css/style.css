@@ -1,0 +1,62 @@
+.form-row > .col,
+.form-row > [class*="col-"] {
+	padding-right: 1rem;
+	padding-left: 1rem;
+}
+
+button {
+	margin: 0 2rem;
+}
+
+#bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	opacity: 0.3;
+	min-width: 100%;
+	min-height: 100%;
+}
+
+footer {
+	height: 2rem;
+	position: absolute;
+	bottom: 0;
+	z-index: 3;
+	color: black;
+}
+
+.card-img {
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.card-title {
+	margin-bottom: 0.3rem;
+}
+
+.cat {
+	display: inline-block;
+	margin-bottom: 1rem;
+}
+
+.fa-users {
+	margin-left: 1rem;
+}
+
+.card-footer {
+	font-size: 0.8rem;
+}
+
+.footer {
+	justify-content: center;
+}
+
+.header {
+	justify-content: center;
+}
+
+.hL {
+	width: auto;
+	height: 80px;
+	overflow-y: scroll;
+}
