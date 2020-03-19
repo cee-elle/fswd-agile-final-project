@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link
-			rel="stylesheet"
-			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-			crossorigin="anonymous"
-		/>
-		<title>Document</title>
-	</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script src="https://developer.edamam.com/attribution/badge.js"></script>
+    <title>Document</title>
+  </head>
 
-	<body class="container">
-		<h1>Dash</h1>
-		<a href="/login" class="btn btn-outline-primary">Go to login page</a>
-		<br />
-		<a href="/signup" class="btn btn-outline-primary">Go to signup page</a>
-		<%if (locals.msg) { %>
-		<h1>
-			<%=msg %>
-		</h1>
-		<% } else { %>
-		<h1>hello</h1>
-		<% } %>
-	</body>
+  <body class="container">
+    <h1>Dash</h1>
+    <a href="/login" class="btn btn-outline-primary">Go to login page</a>
+    <br />
+    <a href="/signup" class="btn btn-outline-primary">Go to signup page</a>
+    <%if (locals.msg) { %>
+    <h1>
+      <%=msg %>
+    </h1>
+    <% } else { %>
+    <h1>hello</h1>
+    <% } %>
+    <div id="edamam-badge" data-color="white"></div>
+  </body>
 </html>

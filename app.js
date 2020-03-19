@@ -1,6 +1,5 @@
 const express = require("express"),
 	session = require("express-session"),
-	bodyParser = require("body-parser"),
 	cookieParser = require("cookie-parser"),
 	passport = require("./middleware/passport"),
 	flash = require("connect-flash"),
@@ -13,13 +12,13 @@ module.exports = (db, users) => {
 		session({
 			secret: process.env.SESSION_SECRET,
 			resave: false,
-			saveUninitialized: false
+			saveUninitialized: false,
 		})
 	);
 	app.use(passport.initialize());
 	app.use(passport.session());
-	app.use(bodyParser.urlencoded({ extended: false }));
-	app.use(bodyParser.json());
+	app.use(express.urlencoded({ extended: false }));
+	app.use(express.json());
 	app.use(flash());
 	app.use(cookieParser());
 
@@ -32,7 +31,7 @@ module.exports = (db, users) => {
 	app.use("/api", api_route);
 
 	app.use("/admin", (req, res, next) => {
-		const is_admin = req.cookies["jwt"]["user"].role;
+		const is_admin = req.cookies.jwt.user.role;
 		if (is_admin == "admin") {
 			req.is_admin = true;
 			next();
@@ -41,6 +40,8 @@ module.exports = (db, users) => {
 			next();
 		}
 	});
+
+	//admin privileges
 	const is_admin = (req, res, next) => {
 		if (req.is_admin) {
 			next();
@@ -65,5 +66,6 @@ module.exports = (db, users) => {
 		passport.authenticate("jwt", { session: false }),
 		secure_route
 	);
+
 	return app;
 };

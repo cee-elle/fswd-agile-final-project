@@ -46,103 +46,98 @@
 		<div class="content">
 			SOME DATA <%- include('./parts/user_form'); -%>
 			<div class="col-md-12">
-				<ul id="user_list">
+				<div id="user_list">
 					<% elem.forEach( x => { %>
-					<div class="card" style="margin-top:30px">
-						<form id="user_info" class="user_info">
-							<div class="card-body">
-								<div class="form-group label-input">
-									<label for=" <%=x._id %>">id: </label>
-									<input
-										readonly
-										name="id"
-										style="border: none;"
-										class="card-field id_name"
-										type="text"
-										id="<%=x._id
+					<form id="user_info" class="card user_info" style="margin-top:30px">
+						<div class="card-body">
+							<div class="form-group label-input">
+								<label for="<%=x._id %>">id: </label>
+								<input
+									readonly
+									name="id"
+									style="border: none;"
+									class="card-field id_name"
+									type="text"
+									id="<%=x._id
 									%>"
-										value=" <%=x.id %>"
-									/>
-								</div>
-								<div class="form-group label-input">
-									<label for="<%=x.role%>">role: </label>
-									<input
-										readonly
-										name="role"
-										class="card-field"
-										type="text"
-										id="<%=x.role %>"
-										value=" <%=x.role %>"
-									/>
-								</div>
-								<div class="form-group label-input">
-									<label for="<%=x.name %>">name: </label>
-									<input
-										name="name"
-										class="card-field"
-										type="text"
-										id="<%=x.name %>"
-										value=" <%=x.name %>"
-									/>
-								</div>
-								<div class="form-group label-input">
-									<label for="<%=x.email %>">email: </label>
-									<input
-										name="email"
-										class="card-field"
-										type="text"
-										id="<%=x.email %>"
-										value=" <%=x.email %>"
-									/>
-								</div>
+									value="<%=x.id %>"
+								/>
+							</div>
+							<div class="form-group label-input">
+								<label for="<%=x.role%>">role: </label>
+								<input
+									readonly
+									name="role"
+									class="card-field"
+									type="text"
+									id="<%=x.role %>"
+									value="<%=x.role %>"
+								/>
+							</div>
+							<div class="form-group label-input">
+								<label for="<%=x.name %>">name: </label>
+								<input
+									name="name"
+									class="card-field"
+									type="text"
+									id="<%=x.name %>"
+									value="<%=x.name %>"
+								/>
+							</div>
+							<div class="form-group label-input">
+								<label for="<%=x.email %>">email: </label>
+								<input
+									name="email"
+									class="card-field"
+									type="text"
+									id="<%=x.email %>"
+									value="<%=x.email %>"
+								/>
+							</div>
 
-								<div class="form-group label-input">
-									<label for="<%=x.dietary%>">dietary: </label>
-									<input
-										name="dietary"
-										class="card-field"
-										type="text"
-										id="<%=x.dietary %>"
-										value=" <%=x.dietary %>"
-									/>
-								</div>
-								<div class="form-group label-input">
-									<label for="<%=x.prefer_food%>">prefer_food: </label>
-									<input
-										name="prefer"
-										class="card-field"
-										type="text"
-										id="<%=x.prefer_food %>"
-										value=" <%=x.prefer_food %>"
-									/>
-								</div>
-								<!-- <input type="submit" value="Update" form="user_info"> -->
+							<div class="form-group label-input">
+								<label for="<%=x.dietary%>">dietary: </label>
+								<input
+									name="dietary"
+									class="card-field"
+									type="text"
+									id="<%=x.dietary %>"
+									value="<%=x.dietary %>"
+								/>
 							</div>
-							<div class="d-flex flex-row-reverse">
-								<div style="margin-right: 30px;">
-									<button
-										type="submit"
-										class="btn btn-info update"
-										name="update"
-									>
-										Update account
-									</button>
-								</div>
-								<div style="margin-right: 30px;">
-									<button
-										type="submit"
-										class="btn btn-danger delete"
-										name="delete"
-									>
-										Delete account
-									</button>
-								</div>
+							<div class="form-group label-input">
+								<label for="<%=x.prefer_food%>">prefer_food: </label>
+								<input
+									name="prefer"
+									class="card-field"
+									type="text"
+									id="<%=x.prefer_food %>"
+									value="<%=x.prefer_food %>"
+								/>
 							</div>
-						</form>
+							<!-- <input type="submit" value="Update" form="user_info"> -->
+						</div>
+						<div class="d-flex flex-row-reverse">
+							<div style="margin-right: 30px;">
+								<button type="submit" class="btn btn-info update" name="update">
+									Update account
+								</button>
+							</div>
+							<div style="margin-right: 30px;">
+								<button
+									type="submit"
+									class="btn btn-danger delete"
+									name="delete"
+								>
+									Delete account
+								</button>
+							</div>
+						</div>
 						<br />
-					</div>
+					</form>
+
 					<% }) ; %>
-				</ul>
+				</div>
 			</div>
 		</div>
 

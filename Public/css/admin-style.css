@@ -86,3 +86,8 @@ footer {
 	display: flex;
 	justify-content: space-between;
 }
+
+input {
+	box-sizing: border-box;
+	padding-left: 5px;
+}

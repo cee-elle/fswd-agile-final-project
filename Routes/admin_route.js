@@ -5,7 +5,6 @@ const router = express.Router();
 
 module.exports = (users) => {
 	//users
-
 	router.get("/a", (req, res) => {
 		users.find().then((elem) => {
 			res.render("admin", { elem });
@@ -20,9 +19,9 @@ module.exports = (users) => {
 			method: "POST",
 			mode: "cors",
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(data)
+			body: JSON.stringify(data),
 		})
 			.then((r) => r.json())
 			.then((data) => {
@@ -31,6 +30,44 @@ module.exports = (users) => {
 			.catch((error) => {
 				res.status(500).send(`${error.message}🤦🏻`);
 			});
+	});
+
+	//test endpoint
+
+	//update
+	router.post("/update", async (req, res) => {
+		const { id, role, name, email, dietary, prefer } = req.body;
+		console.log(id);
+		await users.findOneAndUpdate(
+			{ _id: id },
+			{
+				$set: {
+					role: role,
+					name: name,
+					email: email,
+					dietary: dietary,
+					prefer_food: prefer,
+				},
+			},
+			{ upsert: true },
+			function(err, user) {
+				if (err) return console.error(err);
+				console.log("Profile Update!");
+				res.status(200).send("Profile Update!");
+			}
+		);
+	});
+
+	//delete
+	router.post("/delete", (req, res) => {
+		const { id, role, name, email, dietary, prefer } = req.body;
+		// console.log(req.body);
+		// res.send("Account deleted");
+		users.deleteOne({ _id: id }, (err, user) => {
+			if (err) return console.error(err);
+			console.log("User successfully removed from polls collection!");
+			res.status(200).send("User successfully removed from polls collection!");
+		});
 	});
 
 	return router;
