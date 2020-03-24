@@ -23,7 +23,7 @@
 			/>
 		</div>
 
-		<!-- Sidebar -->
+<!-- Left sidebar -->
 		<div id="sidebar">
 			<header>
 				<h3>Admin</h3>
@@ -31,113 +31,107 @@
 
 			<ul class="nav">
 				<li>
-					<a href="#">Logo Manage</a>
-				</li>
-				<li>
-					<a href="#">Users Info</a>
-				</li>
-				<li>
 					<a href="#">Users Info</a>
 				</li>
 			</ul>
 		</div>
 
-		<%- include('./parts/navbar'); -%>
-		<div class="content">
-			SOME DATA <%- include('./parts/user_form'); -%>
-			<div class="col-md-12">
-				<div id="user_list">
-					<% elem.forEach( x => { %>
-					<form id="user_info" class="card user_info" style="margin-top:30px">
-						<div class="card-body">
-							<div class="form-group label-input">
-								<label for="<%=x._id %>">id: </label>
-								<input
-									readonly
-									name="id"
-									style="border: none;"
-									class="card-field id_name"
-									type="text"
-									id="<%=x._id
-									%>"
-									value="<%=x.id %>"
-								/>
-							</div>
-							<div class="form-group label-input">
-								<label for="<%=x.role%>">role: </label>
-								<input
-									readonly
-									name="role"
-									class="card-field"
-									type="text"
-									id="<%=x.role %>"
-									value="<%=x.role %>"
-								/>
-							</div>
-							<div class="form-group label-input">
-								<label for="<%=x.name %>">name: </label>
-								<input
-									name="name"
-									class="card-field"
-									type="text"
-									id="<%=x.name %>"
-									value="<%=x.name %>"
-								/>
-							</div>
-							<div class="form-group label-input">
-								<label for="<%=x.email %>">email: </label>
-								<input
-									name="email"
-									class="card-field"
-									type="text"
-									id="<%=x.email %>"
-									value="<%=x.email %>"
-								/>
-							</div>
+        <%- include('./parts/navbar'); -%>
 
-							<div class="form-group label-input">
-								<label for="<%=x.dietary%>">dietary: </label>
-								<input
-									name="dietary"
-									class="card-field"
-									type="text"
-									id="<%=x.dietary %>"
-									value="<%=x.dietary %>"
-								/>
-							</div>
-							<div class="form-group label-input">
-								<label for="<%=x.prefer_food%>">prefer_food: </label>
-								<input
-									name="prefer"
-									class="card-field"
-									type="text"
-									id="<%=x.prefer_food %>"
-									value="<%=x.prefer_food %>"
-								/>
-							</div>
-							<!-- <input type="submit" value="Update" form="user_info"> -->
+<!-- Main content -->
+		<div class="content col-md-12">
+            <h2>Users Info</h2>
+
+			<div id="user_list">
+				
+				<form id="user_info" class="card user_info">
+                
+					<div class="card-body">
+                        <% elem.forEach( x => { %>
+						<div class="form-group label-input">
+							<label for="<%=x._id %>">ID: </label>
+							<input readonly
+								name="id"
+								style="border: none;"
+								class="card-field id_name"
+								type="text"
+								id="<%=x._id%>"
+								value="<%=x.id %>"
+							>
+                        </div>
+                            
+						<div class="form-group label-input">
+							<label for="<%=x.role%>">Role: </label>
+							<input readonly
+								name="role"
+								class="card-field"
+								type="text"
+								id="<%=x.role %>"
+								value="<%=x.role %>"
+							>
+                        </div>
+                            
+						<div class="form-group label-input">
+							<label for="<%=x.name %>">Name: </label>
+							<input
+								name="name"
+								class="card-field"
+								type="text"
+								id="<%=x.name %>"
+								value="<%=x.name %>"
+							>
+                        </div>
+                            
+						<div class="form-group label-input">
+							<label for="<%=x.email %>">Email: </label>
+							<input
+								name="email"
+								class="card-field"
+								type="text"
+								id="<%=x.email %>"
+								value="<%=x.email %>"
+							/>
 						</div>
-						<div class="d-flex flex-row-reverse">
-							<div style="margin-right: 30px;">
-								<button type="submit" class="btn btn-info update" name="update">
-									Update account
+
+						<div class="form-group label-input">
+							<label for="<%=x.dietary%>">Dietary: </label>
+							<input
+								name="dietary"
+								class="card-field"
+								type="text"
+								id="<%=x.dietary %>"
+								value="<%=x.dietary %>"
+							>
+                        </div>
+                            
+						<div class="form-group label-input">
+							<label for="<%=x.prefer_food%>">Preference: </label>
+							<input
+								name="prefer"
+								class="card-field"
+								type="text"
+								id="<%=x.prefer_food %>"
+								value="<%=x.prefer_food %>"
+							>
+                        </div>
+                    
+                        <div class="d-flex flex-row-reverse">
+                            <div class="button">
+								<button type="submit" class="btn btn-danger delete" name="delete">
+									Delete this account
+                                </button>
+                                    
+							<div class="button">
+								<button type="submit" class="btn btn-default" name="update">
+									Update this account
 								</button>
 							</div>
-							<div style="margin-right: 30px;">
-								<button
-									type="submit"
-									class="btn btn-danger delete"
-									name="delete"
-								>
-									Delete account
-								</button>
-							</div>
-						</div>
-						<br />
-					</form>
-
-					<% }) ; %>
-				</div>
+                        </div>
+                        
+                    </div>
+                    <br>
+                </form>
+				<% }) ; %>
 			</div>
 		</div>
 
