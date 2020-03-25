@@ -39,9 +39,9 @@
 		<%- include('./parts/navbar'); -%>
 
 		<!-- Main content -->
-		<div class="content">
+		<div class="content col-md-12">
 			<h2>Users Info</h2>
-			<div class="col-md-12">
+			
 				<div id="user_list">
 					<% elem.forEach( x => { %>
 					<form id="user_info" class="card user_info">
@@ -62,7 +62,6 @@
 							<div class="form-group label-input">
 								<label for="<%=x.role%>">Role: </label>
 								<input
-									readonly
 									name="role"
 									class="card-field"
 									type="text"
@@ -138,7 +137,7 @@
 					<br />
 					<% }) ; %>
 				</div>
-			</div>
+			
 		</div>
 
 		<footer class="footer">
