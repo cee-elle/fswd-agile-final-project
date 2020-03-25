@@ -23,7 +23,7 @@
 			/>
 		</div>
 
-<!-- Left sidebar -->
+		<!-- Left sidebar -->
 		<div id="sidebar">
 			<header>
 				<h3>Admin</h3>
@@ -36,40 +36,41 @@
 			</ul>
 		</div>
 
-        <%- include('./parts/navbar'); -%>
+		<%- include('./parts/navbar'); -%>
 
-<!-- Main content -->
+		<!-- Main content -->
 		<div class="content">
-            <h2>Users Info</h2>
+			<h2>Users Info</h2>
 			<div class="col-md-12">
 				<div id="user_list">
 					<% elem.forEach( x => { %>
 					<form id="user_info" class="card user_info">
-
-						<div class="card-body">	
+						<div class="card-body">
 							<div class="form-group label-input">
 								<label for="<%=x._id %>">ID: </label>
-								<input readonly
+								<input
+									readonly
 									name="id"
 									style="border: none;"
 									class="card-field id_name"
 									type="text"
 									id="<%=x._id%>"
 									value="<%=x.id %>"
-								>
+								/>
 							</div>
-								
+
 							<div class="form-group label-input">
 								<label for="<%=x.role%>">Role: </label>
-								<input readonly
+								<input
+									readonly
 									name="role"
 									class="card-field"
 									type="text"
 									id="<%=x.role %>"
 									value="<%=x.role %>"
-								>
+								/>
 							</div>
-								
+
 							<div class="form-group label-input">
 								<label for="<%=x.name %>">Name: </label>
 								<input
@@ -78,9 +79,9 @@
 									type="text"
 									id="<%=x.name %>"
 									value="<%=x.name %>"
-								>
+								/>
 							</div>
-								
+
 							<div class="form-group label-input">
 								<label for="<%=x.email %>">Email: </label>
 								<input
@@ -100,9 +101,9 @@
 									type="text"
 									id="<%=x.dietary %>"
 									value="<%=x.dietary %>"
-								>
+								/>
 							</div>
-								
+
 							<div class="form-group label-input">
 								<label for="<%=x.prefer_food%>">Preference: </label>
 								<input
@@ -111,25 +112,30 @@
 									type="text"
 									id="<%=x.prefer_food %>"
 									value="<%=x.prefer_food %>"
-								>
+								/>
 							</div>
-						
+
 							<div class="d-flex flex-row-reverse">
 								<div class="button">
-									<button type="submit" class="btn btn-danger delete" name="delete">
+									<button
+										type="submit"
+										class="btn btn-danger delete"
+										name="delete"
+									>
 										Delete this account
 									</button>
-										
+								</div>
+
 								<div class="button">
 									<button type="submit" class="btn btn-default" name="update">
 										Update this account
 									</button>
 								</div>
 							</div>
-							
+							<br />
 						</div>
-						<br>
 					</form>
+					<br />
 					<% }) ; %>
 				</div>
 			</div>
