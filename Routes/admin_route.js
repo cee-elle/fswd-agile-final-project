@@ -62,12 +62,19 @@ module.exports = (users) => {
 	router.post("/delete", (req, res) => {
 		const { id, role, name, email, dietary, prefer } = req.body;
 		// console.log(req.body);
-		// res.send("Account deleted");
 		users.deleteOne({ _id: id }, (err, user) => {
 			if (err) return console.error(err);
 			console.log("User successfully removed from polls collection!");
 			res.status(200).send("User successfully removed from polls collection!");
 		});
+	});
+
+	router.get("/normal", (req, res) => {
+		res.render("noraml");
+	});
+
+	router.get("/premium", (req, res) => {
+		res.render("premium");
 	});
 
 	return router;
