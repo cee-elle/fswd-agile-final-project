@@ -11,9 +11,9 @@ module.exports = (users) => {
 		//req.body.loginUser
 		users.findOne({ email: req.body.loginUser }, async (err, user) => {
 			if (!user) {
-				res.render("login", {
+				res.render("login_and_signup", {
 					msg: "You are not a user",
-					msgClass: "alert-danger",
+					msgClass: "is-danger",
 				});
 			} else {
 				passport.authenticate(
@@ -75,7 +75,7 @@ module.exports = (users) => {
 					}
 				} else {
 					console.log(2, user);
-					res.render("login", { status: "user exists" });
+					res.render("login_and_signup", { status: "user exists" });
 				}
 			});
 		} else {
