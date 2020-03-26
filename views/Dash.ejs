@@ -1,37 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<%- include('./parts/head'); -%>
+		<title>Dashboard</title>
+	</head>
 
-<head>
-    <%- include('./parts/head'); -%>
-        <title>Dashboard</title>
-
-</head>
-
-<body>
-    <section class="hero is-primary is-fullheight is-bold">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">
-                    Dashboard
-                </h1>
-                <div class="buttons are-medium">
-                    <a href="/login_and_signup" class="button is-rounded">Login Page</a>
-
-                </div>
-                <%if (locals.msg) { %>
-                    <h1>
-                        <%=msg %>
-                    </h1>
-                    <% } else { %>
-                        <!-- This needs to be cleaned up -->
-                        <h1>hello</h1>
-                        <% } %>
-                            <div id="edamam-badge" data-color="white"></div>
-
-
-            </div>
-        </div>
-    </section>
-</body>
-
+	<body>
+		<section class="hero is-primary is-fullheight is-bold">
+			<div class="hero-body">
+				<div class="container">
+					<h1 class="title">
+						Dashboard
+					</h1>
+					<div class="buttons are-medium">
+						<a href="/login_and_signup" class="button is-rounded">
+							<span>Login Page</span>
+						</a>
+					</div>
+					<%if (locals.msg) { %>
+					<h1>
+						<%=msg %>
+					</h1>
+					<% } else { %>
+					<!-- This needs to be cleaned up -->
+					<h1>hello</h1>
+					<% } %>
+					<div id="edamam-badge" data-color="white"></div>
+				</div>
+			</div>
+		</section>
+	</body>
 </html>

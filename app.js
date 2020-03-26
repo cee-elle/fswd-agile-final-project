@@ -3,6 +3,7 @@ const express = require("express"),
 	cookieParser = require("cookie-parser"),
 	passport = require("./middleware/passport"),
 	flash = require("connect-flash"),
+	sassMiddleware = require("node-sass-middleware"),
 	app = express();
 
 module.exports = (db, users) => {
@@ -21,6 +22,14 @@ module.exports = (db, users) => {
 	app.use(express.json());
 	app.use(flash());
 	app.use(cookieParser());
+
+	app.use(
+		sassMiddleware({
+			src: `${__dirname}/public/sass`,
+			dest: __dirname + "/public",
+			debug: true,
+		})
+	);
 
 	// home
 	const index_route = require("./Routes/index_route.js")();
