@@ -22,7 +22,7 @@
 	"dependencies": {
 		"axios": "^0.19.2",
 		"bcryptjs": "^2.4.3",
-		"body-parser": "^1.19.0",
+		"bulma": "^0.8.1",
 		"cookie-parser": "~1.4.4",
 		"ejs": "^3.0.1",
 		"express": "^4.17.1",
@@ -35,10 +35,12 @@
 		"unirest": "^0.6.0"
 	},
 	"devDependencies": {
+		"connect-flash": "^0.1.1",
 		"dotenv": "^8.2.0",
 		"eslint": "^6.8.0",
 		"husky": "^4.2.3",
 		"lint-staged": "^10.0.8",
+		"node-sass-middleware": "^0.11.0",
 		"nodemon": "^2.0.2"
 	},
 	"husky": {
