@@ -45,10 +45,10 @@ http://localhost:8888/secure
 * admin panel
 http://localhost:8888/admin/a
 
-* normal user
+* normal user for admin
 http://localhost:8888/admin/normal
 
-* premium user
+* premium user for admin
 http://localhost:8888/admin/premium
 
 * logout
