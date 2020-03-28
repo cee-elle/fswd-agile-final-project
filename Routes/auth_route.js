@@ -2,8 +2,8 @@ const express = require("express");
 const passport = require("../middleware/passport");
 const bcrypt = require("bcryptjs");
 const authController = require("../controller/authController");
-const { check, validationResult } = require('express-validator');
-const { body } = require('express-validator');
+const { check, validationResult } = require("express-validator");
+const { body } = require("express-validator");
 const router = express.Router();
 
 module.exports = (users) => {
@@ -45,74 +45,84 @@ module.exports = (users) => {
 	});
 
 	// signup
-	router.post("/JKp7DeJXgaFtxaJ7FTXb", [
-		check('email').isEmail(),
-		check('password').isLength({ min: 10 }).withMessage('must be at least 10 characters long')
-		.matches(/\d/).withMessage('must contain a number')
-	], body('email').custom(value => {
-		return value.findUserByEmail(value).then(user => {
-			if (user) {
-				return Promise.reject('E-mail already in use');
+	router.post(
+		"/JKp7DeJXgaFtxaJ7FTXb",
+		[
+			check("signupUser").isEmail(),
+			check("signupPw")
+				.isLength({ min: 6 })
+				.matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$/)
+				.withMessage(
+					"At least one Upper case and one lower case must be at least 6 characters long"
+				)
+				.matches(/\d/)
+				.withMessage("must contain a number"),
+		],
+		body("confirm_signupPw").custom((value, { req }) => {
+			if (value !== req.body.signupPw) {
+				throw new Error("Password confirmation does not match password");
 			}
-		});
-	}), body('passwordConfirmation').custom((value, { req }) => {
-		if (value !== req.body.password) {
-			throw new Error('Password confirmation does not match password');
-		}
-
-		// Indicates the success of this synchronous custom validator
-		return true;
-	}), async (req, res) => {
-		const errors = validationResult(req);
-		if (!errors.isEmpty()) {
-			return res.status(422).json({ errors: errors.array() });
-		}
-
-		const { nickname, signupUser, signupPw, confirm_signupPw } = req.body;
-		check('password').custom((signupPw, {req}) => {
-			if (signupPw !== req.body.passwordConfirmation) {
-				throw new Error('Password confirmation is incorrect');
+			// Indicates the success of this synchronous custom validator
+			return true;
+		}),
+		async (req, res) => {
+			const errors = validationResult(req);
+			if (!errors.isEmpty()) {
+				console.log(errors.array());
+				res.render("login_and_signup", {
+					msg: errors.array(),
+					msgClass: "is-danger",
+				});
+				return;
+				// return res.status(422).json({ errors: errors.array() });
 			}
-		})
-		if (signupPw == confirm_signupPw) {
-			users.findOne({ email: signupUser }, async (err, user) => {
-				console.log(user);
-				if (!user) {
-					try {
-						const pwHash = await bcrypt.hash(signupPw, 5);
-						await users
-							.create({
-								name: nickname,
-								email: signupUser,
-								password: pwHash,
-								role: "normal",
-								dietary: "none",
-								prefer_food: "none",
-							})
-							.then(async (user) => {
-								delete user._doc.password;
-								const token = await authController.generateToken(
-									JSON.stringify(user)
-								);
-								res
-									.cookie("jwt", { user: user, token: token })
-									.redirect("/secure");
-							});
-					} catch (error) {
-						console.log(error);
+			const { nickname, signupUser, signupPw, confirm_signupPw } = req.body;
+			// not necessary
+			// check("password").custom((signupPw, { req }) => {
+			// 	if (signupPw !== req.body.passwordConfirmation) {
+			// 		throw new Error("Password confirmation is incorrect");
+			// 	}
+			// });
+			if (signupPw == confirm_signupPw) {
+				users.findOne({ email: signupUser }, async (err, user) => {
+					console.log(user);
+					if (!user) {
+						try {
+							const pwHash = await bcrypt.hash(signupPw, 5);
+							await users
+								.create({
+									name: nickname,
+									email: signupUser,
+									password: pwHash,
+									role: "normal",
+									dietary: "none",
+									prefer_food: "none",
+								})
+								.then(async (user) => {
+									delete user._doc.password;
+									const token = await authController.generateToken(
+										JSON.stringify(user)
+									);
+									res
+										.cookie("jwt", { user: user, token: token })
+										.redirect("/secure");
+								});
+						} catch (error) {
+							console.log(error);
+						}
+					} else {
+						console.log(2, user);
+						res.render("login_and_signup", { status: "user exists" });
 					}
-				} else {
-					console.log(2, user);
-					res.render("login_and_signup", { status: "user exists" });
-				}
-			});
-		} else {
-			res.render("login_and_signup", {
-				msg: "password not match",
-				msgClass: "is-danger",
-			});
+				});
+			} else {
+				res.render("login_and_signup", {
+					msg: "password not match",
+					msgClass: "is-danger",
+				});
+			}
 		}
-	});
+	);
 
 	router.get("/logout", (req, res) => {
 		res.clearCookie("jwt");

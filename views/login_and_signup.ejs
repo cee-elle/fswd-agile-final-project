@@ -7,17 +7,15 @@
 	</head>
 
 	<body>
-		<%if (locals.msg) { %>
-		<div class="notification <%=msgClass %>">
-			<button class="delete"></button>
-			<%=msg %>
-		</div>
-
-		<% } else { %>
-		<h1></h1>
-		<% } %>
 		<img src="/images/background.jpg" class="bg" />
 		<!-- partial:index.partial.html -->
+		<%if (locals.msg) { %> <% for( item of msg) {%>
+		<div class="notification <%=msgClass %>">
+			<%=item.value%>: <%=item.msg %>
+		</div>
+		<%}%> <% } else { %>
+		<h1></h1>
+		<% } %>
 		<div class="container" id="container">
 			<div class="form-container sign-up-container">
 				<form method="post" action="/user/JKp7DeJXgaFtxaJ7FTXb">
@@ -41,7 +39,7 @@
 							class="input"
 							name="signupUser"
 							id="sign-up-username"
-							type="text"
+							type="email"
 							placeholder="Email"
 							required
 						/>
