@@ -74,6 +74,7 @@ module.exports = (users) => {
 				throw new Error('Password confirmation is incorrect');
 			}
 		})
+
 		if (signupPw == confirm_signupPw) {
 			users.findOne({ email: signupUser }, async (err, user) => {
 				console.log(user);

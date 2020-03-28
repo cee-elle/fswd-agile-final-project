@@ -50,6 +50,7 @@ module.exports = (users) => {
 				},
 			},
 			{ upsert: true },
+
 			function(err) {   //function(err, user) {
 				if (err) return console.error(err);
 				console.log("Profile Update!");
@@ -60,9 +61,6 @@ module.exports = (users) => {
 
 	//delete
 	router.post("/delete", (req, res) => {
-		const { id } = req.body;    //const { id, role, name, email, dietary, prefer } = req.body;
-		// console.log(req.body);
-		users.deleteOne({ _id: id }, (err) => {    //users.deleteOne({ _id: id }, (err, user) => {
 			if (err) return console.error(err);
 			console.log("User successfully removed from polls collection!");
 			res.status(200).send("User successfully removed from polls collection!");
@@ -70,7 +68,7 @@ module.exports = (users) => {
 	});
 
 	router.get("/normal", (req, res) => {
-		res.render("normal");
+
 	});
 
 	router.get("/premium", (req, res) => {
