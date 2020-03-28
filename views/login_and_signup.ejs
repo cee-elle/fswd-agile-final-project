@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('./parts/head'); -%>
+		<title>Signin</title>
+		<link rel="stylesheet" href="/css/newStyle.css" />
+	</head>
+
+	<body>
+		<%if (locals.msg) { %>
+		<div class="notification <%=msgClass %>">
+			<button class="delete"></button>
+			<%=msg %>
+		</div>
+
+		<% } else { %>
+		<h1></h1>
+		<% } %>
+		<img src="/images/background.jpg" class="bg" />
+		<!-- partial:index.partial.html -->
+		<div class="container" id="container">
+			<div class="form-container sign-up-container">
+				<form method="post" action="/user/JKp7DeJXgaFtxaJ7FTXb">
+					<h1 class="title">Create Account</h1>
+					<div class="social-container">
+						<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+						<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+						<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+					</div>
+					<h3 class="subtitle">or use your email for registration</h3>
+					<div class="field">
+						<input
+							class="input"
+							name="nickname"
+							id="sign-up-nickname"
+							type="text"
+							placeholder="Name"
+							required
+						/>
+						<input
+							class="input"
+							name="signupUser"
+							id="sign-up-username"
+							type="text"
+							placeholder="Email"
+							required
+						/>
+						<input
+							class="input"
+							name="signupPw"
+							id="sign-up-password"
+							type="password"
+							placeholder="Password"
+							required
+						/>
+						<input
+							class="input"
+							name="confirm_signupPw"
+							id="sign-up-password"
+							type="password"
+							placeholder="Confirm Password"
+							required
+						/>
+					</div>
+
+					<button type="submit" id="submit">Sign Up</button>
+				</form>
+			</div>
+			<div class="form-container sign-in-container">
+				<form id="login-form" method="post" action="/user/gNQu5jGgxPL42r8g5zm6">
+					<h1 class="title">Sign in</h1>
+					<div class="social-container">
+						<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+						<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+						<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+					</div>
+					<h3 class="subtitle">or use your account</h3>
+					<div class="field">
+						<input
+							class="input"
+							type="text"
+							name="loginUser"
+							id="username"
+							placeholder="Email"
+							required
+						/>
+						<input
+							class="input"
+							type="password"
+							name="loginPw"
+							id="password"
+							placeholder="Password"
+						/>
+					</div>
+
+					<a href="#" class="forgot-password">Forgot your password?</a>
+					<button type="submit" id="submit">Sign In</button>
+				</form>
+			</div>
+			<div class="overlay-container">
+				<div class="overlay">
+					<div class="overlay-panel overlay-left">
+						<h1 class="title">Welcome Back!</h1>
+						<h6 class="subtitle">Let's get started.</h6>
+						<button class="ghost" id="signIn">Sign In</button>
+					</div>
+					<div class="overlay-panel overlay-right">
+						<h1 class="title">Let's get started!</h1>
+						<p class="subtitle">Quick and easy sign-up</p>
+						<button class="ghost" id="signUp">Sign Up</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- partial -->
+		<script>
+			const signUpButton = document.getElementById("signUp");
+			const signInButton = document.getElementById("signIn");
+			const container = document.getElementById("container");
+
+			signUpButton.addEventListener("click", () =>
+				container.classList.add("right-panel-active")
+			);
+
+			signInButton.addEventListener("click", () =>
+				container.classList.remove("right-panel-active")
+			);
+		</script>
+	</body>
+</html>

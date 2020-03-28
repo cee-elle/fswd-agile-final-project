@@ -1,84 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="/css/admin-style.css" />
+		<title>Admin Page</title>
+	</head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/admin-style.css">
-  <title>Admin Page</title>
+	<body>
+		<div class="background">
+			<img
+				src="/images/background-front.jpeg"
+				class="img-fluid"
+				id="bg"
+				alt="Responsive image"
+			/>
+		</div>
 
-</head>
+		<!-- Left sidebar -->
+		<div id="sidebar">
+			<header>
+				<h3>Admin</h3>
+			</header>
 
-<body>
-  <div class="background">
-    <img src="/images/background-front.jpeg" class="img-fluid" id="bg" alt="Responsive image" />
-  </div>
+			<ul class="nav">
+				<li>
+					<a href="a">Users Info</a>
+				</li>
+				<li>
+					<a href="n">Users Info</a>
+				</li>
+				<li>
+					<a href="p">Users Info</a>
+				</li>
+			</ul>
+		</div>
 
-  <!-- Sidebar -->
-  <div id="sidebar">
-    <header>
-      <h3>Admin<h3>
-    </header>
+		<%- include('./parts/navbar'); -%>
 
-    <ul class="nav">
-      <li>
-        <a href="#">Logo Manage</a>
-      </li>
-      <li>
-        <a href="#">Users Info</a>
-      </li>
-      <li>
-        <a href="#">Users Info</a>
-      </li>
-    </ul>
-  </div>
+		<!-- Main content -->
+		<div class="content col-md-12">
+			<div class="d-flex justify-content">
+				<h2>Users Info</h2>
+				<a href="normal" class="btn btn-primary" style="margin: 0 20px"
+					>Normal user page</a
+				>
+				<a href="premium" class="btn btn-primary">Premium user page</a>
+			</div>
+			<br />
+			<div id="user_list">
+				<% if (elem) { %> <% elem.forEach( x => { %>
+				<form id="user_info" class="card user_info">
+					<div class="card-body">
+						<div class="form-group label-input">
+							<label for="<%=x._id %>">ID: </label>
+							<input
+								readonly
+								name="id"
+								style="border: none;"
+								class="card-field id_name"
+								type="text"
+								id="<%=x._id%>"
+								value="<%=x.id %>"
+							/>
+						</div>
 
-  <%- include('./parts/navbar'); -%>
-  <div class="content">SOME DATA
-    <%- include('./parts/user_form'); -%>
-    <div class="col-md-12">
-      <ul id="user_list">
+						<div class="form-group label-input">
+							<label for="<%=x.role%>">Role: </label>
+							<input
+								name="role"
+								class="card-field"
+								type="text"
+								id="<%=x.role %>"
+								value="<%=x.role %>"
+							/>
+						</div>
 
-        <% elem.forEach( x => { %>
-        <div class="card" style="margin-top:30px">
-          <form id="user_info">
-            <div class="card-body">
-              <div class="form-group label-input">
-                <label for=<%=x._id %>>id: </label>
-                <input class="card-field" type="text" disabled id=<%=x._id %> value=<%=x.id %>>
-              </div>
-              <div class="form-group label-input">
-                <label for=<%=x.name %>>name: </label>
-                <input class="card-field" type="text" id=<%=x.name %> value=<%=x.name %>>
-              </div>
-              <div class="form-group label-input">
-                <label for=<%=x.email %>>email: </label>
-                <input class="card-field" type="text" id=<%=x.email %> value=<%=x.email %>>
-              </div>
-              <div class="form-group label-input">
-                <label for=<%=x.password %>>password: </label>
-                <input class="card-field" type="text" id=<%=x.password %> value=<%=x.password %>>
-              </div>
-              <!-- <input type="submit" value="Update" form="user_info"> -->
-            </div>
-          </form>
-        </div>
-        <% }) ; %>
+						<div class="form-group label-input">
+							<label for="<%=x.name %>">Name: </label>
+							<input
+								name="name"
+								class="card-field"
+								type="text"
+								id="<%=x.name %>"
+								value="<%=x.name %>"
+							/>
+						</div>
 
-      </ul>
-    </div>
-  </div>
+						<div class="form-group label-input">
+							<label for="<%=x.email %>">Email: </label>
+							<input
+								name="email"
+								class="card-field"
+								type="text"
+								id="<%=x.email %>"
+								value="<%=x.email %>"
+							/>
+						</div>
 
-  <footer class="footer">
-    <nav class="navbar footer fixed-bottom navbar-light bg-light">
-      FSWD Agile Project © 2020
-    </nav>
-  </footer>
+						<div class="form-group label-input">
+							<label for="<%=x.dietary%>">Dietary: </label>
+							<input
+								name="dietary"
+								class="card-field"
+								type="text"
+								id="<%=x.dietary %>"
+								value="<%=x.dietary %>"
+							/>
+						</div>
 
-  <%- include('./parts/jq'); -%>
-  <script type="text/javascript" src="/Src/admin_ajax.js"></script>
-</body>
+						<div class="form-group label-input">
+							<label for="<%=x.prefer_food%>">Preference: </label>
+							<input
+								name="prefer"
+								class="card-field"
+								type="text"
+								id="<%=x.prefer_food %>"
+								value="<%=x.prefer_food %>"
+							/>
+						</div>
 
+						<div class="d-flex flex-row-reverse">
+							<div class="button">
+								<button
+									type="submit"
+									class="btn btn-danger delete"
+									name="delete"
+								>
+									Delete this account
+								</button>
+							</div>
+
+							<div class="button">
+								<button type="submit" class="btn btn-default" name="update">
+									Update this account
+								</button>
+							</div>
+						</div>
+						<br />
+					</div>
+				</form>
+				<br />
+				<% }) ; %> <% } %>
+			</div>
+		</div>
+
+		<footer class="footer">
+			<nav class="navbar footer fixed-bottom navbar-light bg-light">
+				FSWD Agile Project © 2020
+			</nav>
+		</footer>
+	</body>
+	<%- include('./parts/jq'); -%>
+	<script type="text/javascript" src="/Src/admin_ajax.js"></script>
 </html>

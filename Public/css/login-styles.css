@@ -9,7 +9,7 @@
 .container {
     font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
     color: #404040;
-    margin-top: 10%;
+    margin-top: 15%;
 }
 
 .image {
@@ -21,8 +21,8 @@
 .login {
     position: relative;
     margin: 30px auto;
-    padding: 20px 20px 20px;
-    width: 310px;
+    padding: 20px 20px 40px;
+    width: 500px;
     background: white;
     border-radius: 3px;
     -webkit-box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -42,7 +42,7 @@
 }
 
 .login h1 {
-    margin: -20px -20px 21px;
+    margin: -20px -20px 30px;
     line-height: 40px;
     font-size: 15px;
     font-weight: bold;
