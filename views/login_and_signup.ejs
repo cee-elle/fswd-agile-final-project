@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<%- include('./parts/head'); -%>
+		<meta charset="UTF-8" />
 		<title>Signin</title>
+
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css"
+		/>
+
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.2/css/bulma.min.css"
+		/>
 		<link rel="stylesheet" href="/css/newStyle.css" />
 	</head>
 
 	<body>
 		<img src="/images/background.jpg" class="bg" />
 		<!-- partial:index.partial.html -->
-		<%if (locals.msg) { %> <% for( item of msg) {%>
+		<%if (locals.msg) { %> <%if (typeof msg == "object") { %> <% for( item of
+		msg) {%>
 		<div class="notification <%=msgClass %>">
 			<%=item.value%>: <%=item.msg %>
+		</div>
+		<%}%> <% } else { %>
+		<div class="notification <%=msgClass %>">
+			<%=msg %>
 		</div>
 		<%}%> <% } else { %>
 		<h1></h1>
@@ -27,41 +42,17 @@
 					</div>
 					<h3 class="subtitle">or use your email for registration</h3>
 					<div class="field">
+						<input class="input" type="email" placeholder="Name" />
+						<input class="input" type="password" placeholder="Email" />
+						<input class="input" type="password" placeholder="Password" />
 						<input
 							class="input"
-							name="nickname"
-							id="sign-up-nickname"
-							type="text"
-							placeholder="Name"
-							required
-						/>
-						<input
-							class="input"
-							name="signupUser"
-							id="sign-up-username"
-							type="email"
-							placeholder="Email"
-							required
-						/>
-						<input
-							class="input"
-							name="signupPw"
-							id="sign-up-password"
-							type="password"
-							placeholder="Password"
-							required
-						/>
-						<input
-							class="input"
-							name="confirm_signupPw"
-							id="sign-up-password"
 							type="password"
 							placeholder="Confirm Password"
-							required
 						/>
 					</div>
 
-					<button type="submit" id="submit">Sign Up</button>
+					<button>Sign Up</button>
 				</form>
 			</div>
 			<div class="form-container sign-in-container">

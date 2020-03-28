@@ -23,9 +23,13 @@ module.exports = (users) => {
 					async (err, user, info) => {
 						if (err || !user) {
 							console.log(err, user);
-							return res.status(400).json({
-								message: info.message ? info.message : "Login Failed",
+							res.render("login_and_signup", {
+								msg: info.message,
+								msgClass: "is-danger",
 							});
+							// return res.status(400).json({
+							// 	message: info.message ? info.message : "Login Failed",
+							// });
 						}
 						req.login(user, { session: false }, async (err) => {
 							if (err) {
@@ -74,15 +78,8 @@ module.exports = (users) => {
 					msgClass: "is-danger",
 				});
 				return;
-				// return res.status(422).json({ errors: errors.array() });
 			}
 			const { nickname, signupUser, signupPw, confirm_signupPw } = req.body;
-			// not necessary
-			// check("password").custom((signupPw, { req }) => {
-			// 	if (signupPw !== req.body.passwordConfirmation) {
-			// 		throw new Error("Password confirmation is incorrect");
-			// 	}
-			// });
 			if (signupPw == confirm_signupPw) {
 				users.findOne({ email: signupUser }, async (err, user) => {
 					console.log(user);
