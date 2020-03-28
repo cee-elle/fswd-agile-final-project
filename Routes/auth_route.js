@@ -2,7 +2,8 @@ const express = require("express");
 const passport = require("../middleware/passport");
 const bcrypt = require("bcryptjs");
 const authController = require("../controller/authController");
-
+const { check, validationResult } = require('express-validator');
+const { body } = require('express-validator');
 const router = express.Router();
 
 module.exports = (users) => {
@@ -44,8 +45,36 @@ module.exports = (users) => {
 	});
 
 	// signup
-	router.post("/JKp7DeJXgaFtxaJ7FTXb", async (req, res) => {
+	router.post("/JKp7DeJXgaFtxaJ7FTXb", [
+		check('email').isEmail(),
+		check('password').isLength({ min: 10 }).withMessage('must be at least 10 characters long')
+		.matches(/\d/).withMessage('must contain a number')
+	], body('email').custom(value => {
+		return value.findUserByEmail(value).then(user => {
+			if (user) {
+				return Promise.reject('E-mail already in use');
+			}
+		});
+	}), body('passwordConfirmation').custom((value, { req }) => {
+		if (value !== req.body.password) {
+			throw new Error('Password confirmation does not match password');
+		}
+
+		// Indicates the success of this synchronous custom validator
+		return true;
+	}), async (req, res) => {
+		const errors = validationResult(req);
+		if (!errors.isEmpty()) {
+			return res.status(422).json({ errors: errors.array() });
+		}
+
 		const { nickname, signupUser, signupPw, confirm_signupPw } = req.body;
+		check('password').custom((signupPw, {req}) => {
+			if (signupPw !== req.body.passwordConfirmation) {
+				throw new Error('Password confirmation is incorrect');
+			}
+		})
+
 		if (signupPw == confirm_signupPw) {
 			users.findOne({ email: signupUser }, async (err, user) => {
 				console.log(user);
