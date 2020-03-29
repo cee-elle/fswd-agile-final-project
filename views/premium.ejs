@@ -40,12 +40,12 @@
 						</button>
 					</div>
 					<div class="level-item">
-						<button class="button is-primary is-rounded">
+						<a href="/user/logout" class="button is-primary is-rounded">
 							<span class="icon">
 								<i class="fas fa-sign-out-alt"></i>
 							</span>
 							<span>Logout</span>
-						</button>
+						</a>
 					</div>
 				</div>
 			</nav>
@@ -60,86 +60,119 @@
 				</div>
 				<br />
 				<div class="container ">
-					<div class="field is-horizontal ">
-						<div class="field-label is-medium ">
-							<label class="label ">Ingredient: </label>
-						</div>
-						<div class="field-body ">
-							<div class="field ">
-								<div class="control is-expanded has-icons-left ">
-									<input
-										class="input "
-										type="text "
-										placeholder="Ex. chicken "
-									/>
-									<p class="help "></p>
+					<form id="spoon" action="/api/spoonacular" method="POST">
+						<div class="field is-horizontal ">
+							<div class="field-label is-medium ">
+								<label class="label ">Ingredient: </label>
+							</div>
+							<div class="field-body ">
+								<div class="field ">
+									<div class="control is-expanded has-icons-left ">
+										<input
+											name="query"
+											class="input "
+											type="text "
+											placeholder="Ex. chicken "
+											autocomplete="off"
+										/>
+										<p class="help "></p>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="field is-horizontal ">
-						<div class="field-label is-medium ">
-							<label class="label ">Calorie: </label>
-						</div>
-						<div class="field-body ">
-							<div class="field ">
-								<div class="control is-expanded has-icons-left ">
-									<input class="input " type="text " placeholder="Ex. 400 " />
-									<p class="help "></p>
+						<div class="field is-horizontal ">
+							<div class="field-label is-medium ">
+								<label class="label ">Calorie: </label>
+							</div>
+							<div class="field-body ">
+								<div class="field ">
+									<div class="control is-expanded has-icons-left ">
+										<input
+											name="calorie"
+											class="input "
+											type="text "
+											placeholder="Ex. 400 "
+										/>
+										<p class="help "></p>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="field is-horizontal ">
-						<div class="field-label is-medium ">
-							<label class="label ">Dietary Restriction:</label>
-						</div>
-						<div class="field-body diet-checkbox ">
-							<div class="field">
-								<div class="control">
-									<label class="checkbox">
-										<input type="checkbox" />
-										Peanut-free
-									</label>
-									<label class="checkbox">
-										<input type="checkbox" />
-										Gluten-free
-									</label>
-									<label class="checkbox">
-										<input type="checkbox" />
-										Vegetarian
-									</label>
-									<label class="checkbox">
-										<input type="checkbox" />
-										Hala
-									</label>
-									<label class="checkbox">
-										<input type="checkbox" />
-										Vegan
-									</label>
-									<label class="checkbox">
-										<input type="checkbox" />
-										Kosher
-									</label>
-									<label class="checkbox">
-										<input type="checkbox" />
-										Low Carb
-									</label>
-									<label class="checkbox">
-										<input type="checkbox" />
-										No Sugar
-									</label>
+						<div class="field is-horizontal ">
+							<div class="field-label is-medium ">
+								<label class="label ">Inclue Ingredient: </label>
+							</div>
+							<div class="field-body ">
+								<div class="field ">
+									<div class="control is-expanded has-icons-left ">
+										<input
+											name="include"
+											class="input "
+											type="text "
+											placeholder="Ex. oninon "
+										/>
+										<p class="help "></p>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+
+						<div class="field is-horizontal ">
+							<div class="field-label is-medium ">
+								<label class="label ">Exclue Ingredient: </label>
+							</div>
+							<div class="field-body ">
+								<div class="field ">
+									<div class="control is-expanded has-icons-left ">
+										<input
+											name="exclude"
+											class="input "
+											type="text "
+											placeholder="Ex. oninon "
+										/>
+										<p class="help "></p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="field is-horizontal ">
+							<div class="field-label is-medium ">
+								<label class="label ">Intolerances:</label>
+							</div>
+							<div class="field-body diet-checkbox">
+								<%- include('./parts/intolerances_option'); -%>
+							</div>
+						</div>
+
+						<div class="field is-horizontal ">
+							<div class="field-label is-medium ">
+								<label class="label ">Dietary Restriction:</label>
+							</div>
+							<div class="field-body diet-checkbox">
+								<%- include('./parts/dietary_option'); -%>
+							</div>
+						</div>
+
+						<div class="field is-horizontal ">
+							<div class="field-label is-medium ">
+								<label class="label ">Dish type:</label>
+							</div>
+							<div class="field-body diet-checkbox">
+								<%- include('./parts/dish_type'); -%>
+							</div>
+						</div>
+					</form>
 				</div>
+
 				<div class="buttons is-centered ">
 					<button
+						type="submit"
 						class="button is-primary is-rounded "
 						style="text-align: center; "
+						form="spoon"
 					>
 						<span class="icon">
 							<i class="fas fa-search"></i>
@@ -159,221 +192,77 @@
 			</section>
 
 			<section class="section ">
-				<div class="columns is-multiline ">
+				<div class="columns is-multiline" id="recipe_card">
+					<%if (locals.msg ) { %> <% msg.forEach( x => { %>
+
 					<div class="column is-4 ">
-						<div class="card ">
-							<div class="card-image ">
+						<%- include('./parts/recipe_model',{x:x}); -%>
+						<div class="card">
+							<div class="card-image">
 								<figure class="image is-4by3 ">
-									<img
-										src="https://bulma.io/images/placeholders/1280x960.png "
-										alt="Placeholder image "
-									/>
+									<img src="<%=x.image%>" alt="Placeholder image " />
 								</figure>
-								<div class="card-content is-overlay ">
-									<span class="tag is-primary is-pulled-right "
-										>Cuisine Type</span
-									>
-								</div>
 							</div>
 							<div class="card-content ">
 								<div class="media ">
 									<div class="media-content ">
-										<p class="title is-4 ">Food Name</p>
+										<p class="title is-4 "><%=x.title%></p>
 										<p class="subtitle "></p>
 									</div>
 								</div>
 								<div class="tags ">
-									<span class="tag "
-										><i class="far fa-clock "></i>Cooking Time</span
-									>
-									<span class="tag "><i class="far fa-eye "></i>Views</span>
-									<span class="tag "><i class="far fa-fire "></i>Calories</span>
+									<span class="tag ">
+										<i class="fas fa-fire "></i><%=x.calories%>
+									</span>
+									<span class="tag ">
+										<i class="fas fa-utensils"></i><%=x.fat%>
+									</span>
 								</div>
 								<section class="card-body ">
 									<div class="content ">
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus nec iaculis mauris. Lorem ipsum dolor sit amet,
-										consectetur adipiscing elit. Phasellus nec iaculis mauris.
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus nec iaculis mauris. Lorem ipsum dolor sit amet,
-										consectetur adipiscing elit. Phasellus nec iaculis mauris.
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus nec iaculis mauris. Lorem ipsum dolor sit amet,
-										consectetur adipiscing elit. Phasellus nec iaculis mauris.
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus nec iaculis mauris. Lorem ipsum dolor sit amet,
-										consectetur adipiscing elit. Phasellus nec iaculis mauris.
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus nec iaculis mauris.
+										<form class="recipe_summary">
+											<input type="text" name="food_id" hidden />
+											<button
+												type="submit"
+												class="button is-rounded "
+												style="text-align: center; "
+											>
+												View Recipe summary
+											</button>
+										</form>
 									</div>
 								</section>
-								<div class="tags ">
-									<span class="tag has-text-success ">
-										<i class="far fa-check-square "></i>Vegetarian
-									</span>
-									<span class="tag has-text-success ">
-										<i class="far fa-check-square "></i>Peanut-free
-									</span>
-									<span class="tag has-text-success ">
-										<i class="far fa-check-square "></i>Gluten-free
-									</span>
-								</div>
+
+								Source from: <small> spoonacular </small>
 							</div>
+
 							<div class="buttons is-centered ">
-								<button
-									class="button is-primary is-rounded "
-									style="text-align: center; "
-								>
-									View Recipe
-								</button>
+								<form class="recipe_info">
+									<input type="text" name="food_id" value="<%=x.id%>" hidden />
+
+									<button
+										type="submit"
+										class="button is-primary is-rounded "
+										style="text-align: center; "
+										id="<%=x.id%>"
+									>
+										View Recipe
+									</button>
+								</form>
 							</div>
+
 							<br />
 						</div>
 					</div>
-					<div class="column is-4 ">
-						<div class="card ">
-							<div class="card-image ">
-								<figure class="image is-4by3 ">
-									<img
-										src="https://bulma.io/images/placeholders/1280x960.png "
-										alt="Placeholder image "
-									/>
-								</figure>
-								<div class="card-content is-overlay ">
-									<span class="tag is-primary is-pulled-right "
-										>Cuisine Type</span
-									>
-								</div>
-							</div>
-							<div class="card-content ">
-								<div class="media ">
-									<div class="media-content ">
-										<p class="title is-4 ">Food Name</p>
-										<p class="subtitle "></p>
-									</div>
-								</div>
-								<div class="tags ">
-									<span class="tag "
-										><i class="far fa-clock "></i>Cooking Time</span
-									>
-									<span class="tag "><i class="far fa-eye "></i>Views</span>
-									<span class="tag "><i class="far fa-fire "></i>Calories</span>
-								</div>
-								<section class="card-body ">
-									<div class="content ">
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus nec iaculis mauris. Lorem ipsum dolor sit amet,
-										consectetur adipiscing elit. Phasellus nec iaculis mauris.
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus nec iaculis mauris. Lorem ipsum dolor sit amet,
-										consectetur adipiscing elit. Phasellus nec iaculis mauris.
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus nec iaculis mauris. Lorem ipsum dolor sit amet,
-										consectetur adipiscing elit. Phasellus nec iaculis mauris.
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus nec iaculis mauris. Lorem ipsum dolor sit amet,
-										consectetur adipiscing elit. Phasellus nec iaculis mauris.
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus nec iaculis mauris.
-									</div>
-								</section>
-								<div class="tags ">
-									<span class="tag has-text-success ">
-										<i class="far fa-check-square "></i>Vegetarian
-									</span>
-									<span class="tag has-text-success ">
-										<i class="far fa-check-square "></i>Peanut-free
-									</span>
-									<span class="tag has-text-success ">
-										<i class="fas fa-check-square "></i>Gluten-free
-									</span>
-								</div>
-							</div>
-							<div class="buttons is-centered ">
-								<button
-									class="button is-primary is-rounded "
-									style="text-align: center; "
-								>
-									View Recipe
-								</button>
-							</div>
-							<br />
-						</div>
-					</div>
-					<div class="column is-4 ">
-						<div class="card ">
-							<div class="card-image ">
-								<figure class="image is-4by3 ">
-									<img
-										src="https://bulma.io/images/placeholders/1280x960.png "
-										alt="Placeholder image "
-									/>
-								</figure>
-								<div class="card-content is-overlay ">
-									<span class="tag is-primary is-pulled-right "
-										>Cuisine Type</span
-									>
-								</div>
-							</div>
-							<div class="card-content ">
-								<div class="media ">
-									<div class="media-content ">
-										<p class="title is-4 ">Food Name</p>
-										<p class="subtitle "></p>
-									</div>
-								</div>
-								<div class="tags ">
-									<span class="tag "
-										><i class="far fa-clock "></i>Cooking Time</span
-									>
-									<span class="tag "><i class="far fa-eye "></i>Views</span>
-									<span class="tag "><i class="fas fa-fire "></i>Calories</span>
-								</div>
-								<section class="card-body ">
-									<div class="content ">
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus nec iaculis mauris. Lorem ipsum dolor sit amet,
-										consectetur adipiscing elit. Phasellus nec iaculis mauris.
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Phasellus nec iaculis mauris. Lorem ipsum dolor
-									</div>
-								</section>
-								<div class="tags ">
-									<span class="tag has-text-success ">
-										<i class="far fa-check-square "></i>Vegetarian
-									</span>
-									<span class="tag has-text-success ">
-										<i class="far fa-check-square "></i>Peanut-free
-									</span>
-									<span class="tag has-text-success ">
-										<i class="fas fa-check-square "></i>Gluten-free
-									</span>
-								</div>
-							</div>
-							<div class="buttons is-centered ">
-								<button
-									class="button is-primary is-rounded "
-									style="text-align: center; "
-								>
-									View Recipe
-								</button>
-							</div>
-							<br />
-						</div>
-					</div>
+					<% }) ; %> <% } %>
 				</div>
 			</section>
 		</main>
 
 		<footer class="footer ">
-			<div class="content has-text-centered ">
-				<p>
-					<strong>FSWD - Final Agile Project </strong> made by Homer Li, Skyler
-					Zhao, Don Li, Jaime Deng, and Cindy Le
-				</p>
-			</div>
+			<%- include('./parts/footer'); -%>
 		</footer>
 	</body>
 	<%- include('./parts/jq'); -%>
-	<script type="text/javascript" src="/Src/index.js"></script>
+	<script type="text/javascript" src="/Src/premium.js"></script>
 </html>

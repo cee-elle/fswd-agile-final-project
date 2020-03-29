@@ -40,11 +40,16 @@ module.exports = (db, users) => {
 	app.use("/api", api_route);
 
 	app.use("/admin", (req, res, next) => {
-		const is_admin = req.cookies.jwt.user.role;
-		if (is_admin == "admin") {
-			req.is_admin = true;
-			next();
-		} else {
+		try {
+			const is_admin = req.cookies.jwt.user.role;
+			if (is_admin == "admin") {
+				req.is_admin = true;
+				next();
+			} else {
+				req.is_admin = false;
+				next();
+			}
+		} catch (err) {
 			req.is_admin = false;
 			next();
 		}
@@ -60,7 +65,7 @@ module.exports = (db, users) => {
 		}
 	};
 
-	// sheet.best
+	// admin page
 	const admin_route = require("./Routes/admin_route")(users);
 	app.use("/admin", is_admin, admin_route);
 

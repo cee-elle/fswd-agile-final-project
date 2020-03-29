@@ -11,6 +11,17 @@ module.exports = (users) => {
 		});
 	});
 
+	router.get("/p", (req, res) => {
+		users.find({ role: "premium" }).then((elem) => {
+			res.render("admin", { elem, p: "p" });
+		});
+	});
+
+	router.get("/n", (req, res) => {
+		users.find({ role: "normal" }).then((elem) => {
+			res.render("admin", { elem, n: "n" });
+		});
+	});
 	// TODO
 	router.post("/a", (req, res) => {
 		const data = [req.body];
@@ -50,7 +61,9 @@ module.exports = (users) => {
 				},
 			},
 			{ upsert: true },
-			function(err) {   //function(err, user) {
+
+			function(err) {
+				//function(err, user) {
 				if (err) return console.error(err);
 				console.log("Profile Update!");
 				res.status(200).send("Profile Update!");
@@ -60,13 +73,8 @@ module.exports = (users) => {
 
 	//delete
 	router.post("/delete", (req, res) => {
-		const { id } = req.body;    //const { id, role, name, email, dietary, prefer } = req.body;
-		// console.log(req.body);
-		users.deleteOne({ _id: id }, (err) => {    //users.deleteOne({ _id: id }, (err, user) => {
-			if (err) return console.error(err);
-			console.log("User successfully removed from polls collection!");
-			res.status(200).send("User successfully removed from polls collection!");
-		});
+		console.log("User successfully removed from polls collection!");
+		res.status(200).send("User successfully removed from polls collection!");
 	});
 
 	router.get("/normal", (req, res) => {

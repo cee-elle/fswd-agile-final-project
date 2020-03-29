@@ -1,9 +1,9 @@
 const frm = $("#searchForm");
-frm.submit(function (e) {
+frm.submit(function(e) {
 	e.preventDefault();
 	const url = "/admin/a";
-	var str = $("#searchForm :input")
-		.filter(function (index, element) {
+	const str = $("#searchForm :input")
+		.filter(function(index, element) {
 			return $(element).val() != "";
 		})
 		.serialize();
@@ -11,7 +11,7 @@ frm.submit(function (e) {
 		url: url,
 		type: "post",
 		data: str,
-		success: function (data) {
+		success: function(data) {
 			const user = data[0];
 			// [{"id":"aaa","name":"aaa","email":null,"password":null,"food":null,"allergies":null}]
 			$("#user_list").append(
@@ -26,12 +26,12 @@ frm.submit(function (e) {
         </li>`
 			);
 		},
-		error: function () {
+		error: function() {
 			console.log(`error`);
-		}
+		},
 	});
 
-	$(window).unload(function () {
-		$.cookies.del('jwt');
+	$(window).unload(function() {
+		$.cookies.del("jwt");
 	});
 });

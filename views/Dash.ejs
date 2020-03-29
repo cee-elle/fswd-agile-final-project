@@ -6,19 +6,19 @@
 	</head>
 
 	<body style="margin: 0;">
-		<%if (locals.msg != '') { %>
-		<div class="notification is-danger">
-			<h1>
-				<%=msg %>
-			</h1>
-		</div>
-		<% } else { %> <% } %>
 		<section class="hero is-primary is-fullheight is-bold">
 			<div class="hero-body">
 				<div class="container">
 					<h1 class="title">
 						Dashboard
 					</h1>
+					<%if (locals.msg != '') { %>
+					<div class="notification is-danger">
+						<h1>
+							<%=msg %>
+						</h1>
+					</div>
+					<% } else { %> <% } %>
 					<div class="buttons are-medium">
 						<a
 							href="/login_and_signup"
