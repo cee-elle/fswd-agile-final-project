@@ -75,11 +75,19 @@ module.exports = (db, users) => {
 
 	// secure
 	const secure_route = require("./Routes/secure_route")();
-	app.use(
-		"/secure",
-		passport.authenticate("jwt", { session: false }),
-		secure_route
-	);
+
+	const is_login = (req, res, next) => {
+		passport.authenticate("jwt", { session: false }, (err, user, info) => {
+			if (err) res.render("error");
+			if (!user) {
+				console.log(info);
+				res.render("error");
+			}
+			next();
+		})(req, res, next);
+	};
+
+	app.use("/secure", is_login, secure_route);
 
 	return app;
 };
