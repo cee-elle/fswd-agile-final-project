@@ -1,0 +1,28 @@
+@charset "utf-8";
+@import "../../../node_modules/bulma/bulma.sass";
+// Import a Google Font
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+// Bulma variables
+$footer-padding: 1rem 1.5rem;
+
+@import "../../../node_modules/bulma/sass/layout/footer.sass";
+* {
+    font-family: "Montserrat", sans-serif;
+}
+
+html, body {
+	height: 100%;
+	background-color:#eff0eb;
+}
+
+
+.footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+#title {
+    color: black;
+}

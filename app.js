@@ -53,33 +53,49 @@ module.exports = (db, users) => {
     }
   });
 
-  // checks for admin
-  const is_admin = (req, res, next) => {
-    if (req.is_admin) {
-      next();
-    } else {
-      req.flash("msg", "you are not an admin user");
-      res.redirect("/");
-    }
-  };
+	app.use("/admin", (req, res, next) => {
+		try {
+			const is_admin = req.cookies.jwt.user.role;
+			if (is_admin == "admin") {
+				req.is_admin = true;
+				next();
+			} else {
+				req.is_admin = false;
+				next();
+			}
+		} catch (err) {
+			req.is_admin = false;
+			next();
+		}
+	});
 
   // admin route
-  const admin_route = require("./Routes/admin_route")(users);
-  app.use("/admin", is_admin, admin_route);
+  // const admin_route = require("./Routes/admin_route")(users);
+  // app.use("/admin", is_admin, admin_route);
 
-  // TODO auto login if jwt is in header (still redirects to login page even with cookie)
+	// admin page
+	const admin_route = require("./Routes/admin_route")(users);
+	app.use("/admin", is_admin, admin_route);
 
   // auth route
   const auth_route = require("./Routes/auth_route")(users);
   app.use("/user", auth_route);
 
-  // secure route
-  const secure_route = require("./Routes/secure_route")();
-  app.use(
-    "/secure",
-    passport.authenticate("jwt", { session: false }),
-    secure_route
-  );
+	// secure
+	const secure_route = require("./Routes/secure_route")();
+
+	const is_login = (req, res, next) => {
+		passport.authenticate("jwt", { session: false }, (err, user, info) => {
+			if (err) res.render("error");
+			if (!user) {
+				console.log(info);
+				res.render("error");
+			}
+			next();
+		})(req, res, next);
+	};
+
+	app.use("/secure", is_login, secure_route);
 
   return app;
 };

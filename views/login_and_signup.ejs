@@ -1,18 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Signin</title>
 
-<head>
-	<%- include('./parts/head'); -%>
-	<title>Sign-in</title>
-	<link rel="stylesheet" href="/css/newStyle.css" />
-</head>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css"
+		/>
 
-<body>
-	<%if (locals.msg) { %>
-	<div class="notification <%=msgClass %>">
-		<button class="delete"></button>
-		<%=msg %>
-	</div>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.2/css/bulma.min.css"
+		/>
+		<link rel="stylesheet" href="/css/newStyle.css" />
+	</head>
+
+	<body>
+		<img src="/images/background.jpg" class="bg" />
+		<!-- partial:index.partial.html -->
+		<%if (locals.msg) { %> <%if (typeof msg == "object") { %> <% for( item of
+		msg) {%>
+		<div class="notification <%=msgClass %>">
+			<%=item.value%>: <%=item.msg %>
+		</div>
+		<%}%> <% } else { %>
+		<div class="notification <%=msgClass %>">
+			<%=msg %>
+		</div>
+		<%}%> <% } else { %>
+		<h1></h1>
+		<% } %>
+		<div class="container" id="container">
+			<div class="form-container sign-up-container">
+				<form method="post" action="/user/JKp7DeJXgaFtxaJ7FTXb">
+					<h1 class="title">Create Account</h1>
+					<div class="social-container">
+						<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+						<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+						<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+					</div>
+					<h3 class="subtitle">or use your email for registration</h3>
+					<div class="field">
+						<input
+							class="input"
+							name="nickname"
+							id="sign-up-nickname"
+							type="text"
+							placeholder="Name"
+							required
+						/>
+						<input
+							class="input"
+							name="signupUser"
+							id="sign-up-username"
+							type="text"
+							placeholder="Email"
+							required
+						/>
+						<input
+							class="input"
+							name="signupPw"
+							id="sign-up-password"
+							type="password"
+							placeholder="Password"
+							required
+						/>
+						<input
+							class="input"
+							name="confirm_signupPw"
+							id="sign-up-password"
+							type="password"
+							placeholder="Confirm Password"
+							required
+						/>
+					</div>
 
 	<% } else { %>
 	<h1></h1>
