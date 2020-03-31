@@ -2,17 +2,28 @@ const summary = document.querySelectorAll(".recipe_summary");
 summary.forEach((x) => {
 	x.addEventListener("submit", (e) => {
 		e.preventDefault();
+		let id = "";
 		$.ajax({
 			type: "post",
 			url: "/api/spoonacular_summary",
-			data: summary.serialize(),
-			dataType: "dataType",
+			data: $(x).serialize(),
 			success: function(response) {
-				console.log(response);
+				id = response.info.id;
+				$(`#${id}space`).empty();
+				$(`#${id}space`).append(`
+				<div class="card-content" >				
+					<div class="content">
+					  ${response.info.summary}
+					</div>
+				  </div>`);
+				$(`#${id}`).addClass("is-active");
 			},
 			error: (err) => {
 				alert(err);
 			},
+		});
+		$(`.${id}delete`).click(function() {
+			$(`#${id}`).removeClass("is-active");
 		});
 	});
 });
@@ -28,8 +39,8 @@ frm.forEach((x) => {
 			data: $(x).serialize(),
 			success: function(response) {
 				const step = response.info;
-				console.log(step);
 				id = response._id;
+				$(`#${id}space`).empty();
 				step.forEach((x) => {
 					$(`#${id}space`).append(`
 					<div class="card-content" style="border:1px solid black">

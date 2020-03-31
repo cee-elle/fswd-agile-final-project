@@ -166,11 +166,15 @@ module.exports = () => {
 		console.log(req.body);
 		const id = req.body.food_id;
 		const summary_url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/summary`;
-		unirest
+		urirest
 			.get(summary_url)
+			.headers({
+				"x-rapidapi-host": process.env.SPOONACULAR_HOST,
+				"x-rapidapi-key": process.env.SPOONACULAR_API,
+			})
 			.then((data) => {
 				console.log(data.body);
-				res.send({ info: data.body.summary });
+				res.send({ info: data.body });
 			})
 			.catch((err) => {
 				console.log(err.message);
