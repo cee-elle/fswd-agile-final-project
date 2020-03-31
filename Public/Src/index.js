@@ -1,24 +1,24 @@
 $(function() {
-	const frm = $("#searchForm");
-	frm.submit(function(e) {
-		e.preventDefault();
-		const url = "/api/getinfo_normal";
-		$("#recipe_card").html("");
-		var str = $("#searchForm :input")
-			.filter((index, element) => {
-				return $(element).val() != "";
-			})
-			.serialize();
-		console.log(str);
-		$.ajax({
-			url: url,
-			type: "POST",
-			data: str,
-			success: function(data) {
-				data.forEach((x) => {
-					// console.log(x);
-					$("#recipe_card").append(
-						`<div class="column is-4 ">
+  const frm = $("#searchForm");
+  // on searchForm submit, makes AJAX request to sever
+  frm.submit(function(e) {
+    e.preventDefault();
+    const url = "/api/getinfo_normal";
+    $("#recipe_card").html("");
+    var str = $("#searchForm :input")
+      .filter((index, element) => {
+        return $(element).val() != "";
+      })
+      .serialize();
+    $.ajax({
+      url: url,
+      type: "POST",
+      data: str,
+      success: function(data) {
+        data.forEach(x => {
+          // takes data from server and builds HTML for each returned item
+          $("#recipe_card").append(
+            `<div class="column is-4 ">
 							<div class="card">
 							<div class="card-image">
 								<figure class="image is-4by3 ">
@@ -70,24 +70,24 @@ $(function() {
 							</div>
 							<br />
 						</div>
-						</div>
-			  `
-					);
-				});
-			},
-			error: function() {
-				console.log(`error`);
-			},
-		});
-	});
+						</div>`
+          );
+        });
+      },
+      error: function() {
+        console.log(`error`); // TODO error popup
+      }
+    });
+  });
 
-	function get_all(arr) {
-		let text = "";
-		arr.forEach((x) => {
-			text += `<span class="tag has-text-success ">
+	// loops through each health label
+  function get_all(arr) {
+    let text = "";
+    arr.forEach(x => {
+      text += `<span class="tag has-text-success ">
 			<i class="far fa-check-square "></i>${x}
 		</span>`;
-		});
-		return text;
-	}
+    });
+    return text;
+  }
 });

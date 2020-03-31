@@ -121,10 +121,51 @@ module.exports = (users) => {
 		}
 	);
 
-	router.get("/logout", (req, res) => {
-		res.clearCookie("jwt");
-		res.status(204).redirect("/");
-	});
+      if (signupPw == confirm_signupPw) {
+        users.findOne({ email: signupUser }, async (err, user) => {
+          if (!user) {
+            try {
+              const pwHash = await bcrypt.hash(signupPw, 5);
+              await users
+                .create({
+                  name: nickname,
+                  email: signupUser,
+                  password: pwHash,
+                  role: "normal",
+                  dietary: "none",
+                  prefer_food: "none"
+                })
+                .then(async user => {
+                  delete user._doc.password;
+                  const token = await authController.generateToken(
+                    JSON.stringify(user)
+                  );
+                  res
+                    .cookie("jwt", { user: user, token: token })
+                    .redirect("/secure");
+                });
+            } catch (error) {
+              console.log(error);
+            }
+          } else {
+            console.log(2, user);
+            res.render("login_and_signup", { status: "user exists" });
+          }
+        });
+      } else {
+        res.render("login_and_signup", {
+          msg: "password not match",
+          msgClass: "is-danger"
+        });
+      }
+    }
+  );
 
-	return router;
+  // logout
+  router.get("/logout", (req, res) => {
+    res.clearCookie("jwt");
+    res.status(204).redirect("/");
+  });
+
+  return router;
 };

@@ -1,15 +1,14 @@
 const express = require("express");
-// const urirest = require("unirest");
 const fetch = require("node-fetch");
 const router = express.Router();
 
-module.exports = (users) => {
-	//users
-	router.get("/a", (req, res) => {
-		users.find().then((elem) => {
-			res.render("admin", { elem });
-		});
-	});
+module.exports = users => {
+  // loads all user info from db for admin
+  router.get("/a", (req, res) => {
+    users.find().then(elem => {
+      res.render("admin", { elem });
+    });
+  });
 
 	router.get("/p", (req, res) => {
 		users.find({ role: "premium" }).then((elem) => {
@@ -43,7 +42,27 @@ module.exports = (users) => {
 			});
 	});
 
-	//test endpoint
+  // updates user info on db
+  router.post("/update", async (req, res) => {
+    const { id, role, name, email, dietary, prefer } = req.body;
+    await users.findOneAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          role: role,
+          name: name,
+          email: email,
+          dietary: dietary,
+          prefer_food: prefer
+        }
+      },
+      { upsert: true },
+      function(err) {
+        if (err) return console.error(err);
+        res.status(200).send("Profile Update!");
+      }
+    );
+  });
 
 	//update
 	router.post("/update", async (req, res) => {
@@ -77,13 +96,9 @@ module.exports = (users) => {
 		res.status(200).send("User successfully removed from polls collection!");
 	});
 
-	router.get("/normal", (req, res) => {
-		res.render("normal");
-	});
+  router.get("/premium", (req, res) => {
+    res.render("premium");
+  });
 
-	router.get("/premium", (req, res) => {
-		res.render("premium");
-	});
-
-	return router;
+  return router;
 };

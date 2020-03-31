@@ -1,6 +1,7 @@
 const frm = $("#searchForm");
 frm.submit(function(e) {
 	e.preventDefault();
+	// depreciated sheets best, AJAX to backend
 	const url = "/admin/a";
 	const str = $("#searchForm :input")
 		.filter(function(index, element) {
