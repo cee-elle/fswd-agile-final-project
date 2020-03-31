@@ -4,7 +4,7 @@ const ajax_request = (url, data) => {
 		type: "post",
 		data: data,
 		success: function(data) {
-			alert(`${data} i think i have the data`);
+			alert(`${data} Data Retreived.`);
 		},
 		error: function(data) {
 			console.log(data);

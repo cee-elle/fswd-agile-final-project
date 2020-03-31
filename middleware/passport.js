@@ -11,7 +11,7 @@ const login = new LocalStrategy(
 	(username, password, done) => {
 		users.findOne({ email: username }, async (err, user) => {
 			if (!user) {
-				return done(null, false, { message: "username not found" });
+				return done(null, false, { message: "Username not found" });
 			} else {
 				try {
 					bcrypt
@@ -22,7 +22,7 @@ const login = new LocalStrategy(
 								return done(null, user);
 							} else {
 								return done(null, false, {
-									message: "username or password does not match"
+									message: "Username or Password does not match"
 								});
 							}
 						})
@@ -57,7 +57,7 @@ const jwtLogin = new JwtStrategy(
 			return user
 				? done(null, user)
 				: done(null, false, {
-						error: "Not valid,please try again"
+						error: "Not valid, please try again."
 				  });
 		});
 	}
