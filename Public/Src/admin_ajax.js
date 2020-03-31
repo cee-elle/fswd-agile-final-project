@@ -9,7 +9,7 @@ const ajax_request = (url, data) => {
 		type: "post",
 		data: data,
 		success: function(data) {
-			alert(`${data} `);
+			alert(`${data} Data Retreived.`);
 		},
 		error: function(data) {
 			console.log(data);
