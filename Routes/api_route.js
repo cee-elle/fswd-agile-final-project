@@ -2,63 +2,77 @@ const express = require("express");
 const router = express.Router();
 const urirest = require("unirest");
 
+/**
+ * Generates and sends AJAX GET request to API
+ * @param {Object} apiReq API query object
+ * @param {Object} res HTTP response object
+ */
+function urirestGet(apiReq, res) {
+	urirest
+		.get(process.env.API_ADDRESS)
+		.query(apiReq)
+		.header({
+			"x-rapidapi-host": process.env.API_HOST,
+			"x-rapidapi-key": process.env.API_KEY,
+		})
+		.then((elm) => {
+			// checks for api response
+			let hits = 0;
+			try {
+				hits = elm.body.hits.length;
+				if (hits > 0) {
+					const tag = elm.body.hits;
+					res.send(tag);
+				} else {
+					res.send("No results found"); // error page?
+				}
+			} catch (err) {
+				console.error(err);
+			}
+		})
+		.catch((err) => {
+			res.status(500).send(`API ERROR ${err.message}`);
+		});
+}
+
+/**
+ * Generates calorie range and appends it to API query object
+ * @param {Object} apiReq API query object
+ * @param {Object} req HTTP request object
+ */
+function caloriesRounder(apiReq, req) {
+	// need a notification for incorrect user input
+	if (req.body.calories != undefined && !isNaN(parseInt(req.body.calories))) {
+		apiReq.calories =
+			String(Math.round(Math.abs(parseInt(req.body.calories) * 0.9))) +
+			"-" +
+			String(Math.round(Math.abs(parseInt(req.body.calories) * 1.1)));
+	}
+}
+
 module.exports = () => {
+	// premium api query
 	router.post("/getinfo", (req, res) => {
-		// req obj for passing params to api
 		const apiReq = {
 			q: req.body.q,
 			from: 0,
 			to: 30,
 		};
 
-		if (req.body.calories != undefined) {
-			apiReq.calories =
-				String(Math.round(Math.abs(parseInt(req.body.calories) * 0.9))) +
-				"-" +
-				String(Math.round(Math.abs(parseInt(req.body.calories) * 1.1)));
-		}
-
-		urirest
-			.get(process.env.API_ADDRESS)
-			.query(apiReq)
-			.header({
-				"x-rapidapi-host": process.env.API_HOST,
-				"x-rapidapi-key": process.env.API_KEY,
-			})
-			.then((elm) => {
-				// length of undefined
-				let hits = 0;
-				try {
-					hits = elm.body.hits.length;
-					if (hits != 0) {
-						const tag = elm.body.hits;
-						res.send(tag);
-					} else {
-						res.send("i am not ok");
-					}
-				} catch (err) {
-					console.log(err);
-				}
-			})
-			.catch((err) => {
-				res.status(500).send(`API ERROR ${err.message}`);
-			});
+		caloriesRounder(apiReq, req);
+		urirestGet(apiReq, res);
 	});
 
+	// free api query
 	router.post("/getinfo_normal", (req, res) => {
-		// req obj for passing params to api
 		const apiReq = {
 			q: req.body.q,
 			from: 0,
-			to: 3,
+			to: 30,
 		};
-
-		if (req.body.calories != undefined) {
-			apiReq.calories =
-				String(Math.round(Math.abs(parseInt(req.body.calories) * 0.9))) +
-				"-" +
-				String(Math.round(Math.abs(parseInt(req.body.calories) * 1.1)));
-		}
+		let num1 = Math.round(Math.random() * 30);
+		let num2 = Math.round(Math.random() * 30);
+		let num3 = Math.round(Math.random() * 30);
 
 		urirest
 			.get(process.env.API_ADDRESS)
@@ -73,7 +87,11 @@ module.exports = () => {
 				try {
 					hits = elm.body.hits.length;
 					if (hits != 0) {
-						const tag = elm.body.hits;
+						const tag = [
+							elm.body.hits[num1],
+							elm.body.hits[num2],
+							elm.body.hits[num3],
+						];
 						res.send(tag);
 					} else {
 						res.send("i am not ok");
@@ -166,11 +184,15 @@ module.exports = () => {
 		console.log(req.body);
 		const id = req.body.food_id;
 		const summary_url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/summary`;
-		unirest
+		urirest
 			.get(summary_url)
+			.headers({
+				"x-rapidapi-host": process.env.SPOONACULAR_HOST,
+				"x-rapidapi-key": process.env.SPOONACULAR_API,
+			})
 			.then((data) => {
 				console.log(data.body);
-				res.send({ info: data.body.summary });
+				res.send({ info: data.body });
 			})
 			.catch((err) => {
 				console.log(err.message);

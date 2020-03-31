@@ -1,63 +1,53 @@
-<form
-	class="form-row d-flex justify-content-between"
-	id="searchForm"
-	autocomplete="off"
->
+<form class="form-row d-flex justify-content-between" id="searchForm" autocomplete="off">
 	<div class="field is-horizontal ">
-		
-        <div class="field-label ">
-            <label class="label ">Ingredient: </label>
-        </div>
-        <div class="field-body ">
-            <div class="field ">
-                <p class="control is-expanded  ">
-                    <input class="input " type="text " name="q" placeholder="Ex. chicken ">
-                    <p class="help "></p>
-
-                </p>
-            </div>
-
-        </div>
-                             
-
+		<div class="field-label is-medium ">
+			<label class="label ">Ingredient: </label>
+		</div>
+		<div class="field-body ">
+			<div class="field ">
+				<div class="control is-expanded has-icons-left ">
+					<input class="input" type="text" name="q" placeholder="Ex. chicken" />
+					<p class="help "></p>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div class="field is-horizontal ">
-        <div class="field-label ">
-            <label class="label ">Calorie: </label>
-        </div>
-        <div class="field-body ">
-            <div class="field ">
-                <p class="control is-expanded  ">
-                    <input class="input " type="text " name="calories"  placeholder="Ex. 400 ">
-                </p>
-            </div>
-        </div>
-
+		<div class="field-label is-medium ">
+			<label class="label ">Calorie: </label>
+		</div>
+		<div class="field-body ">
+			<div class="field ">
+				<div class="control is-expanded has-icons-left ">
+					<input class="input" type="text" name="calories" placeholder="Ex. 400 " />
+					<p class="help "></p>
+				</div>
+			</div>
+		</div>
 	</div>
 
-
 	<div class="field is-horizontal ">
-                                <div class="field-label ">
-                                        <label class="label ">Dietary Restriction:</label>
-                                    </div>
-                                    <div class="field-body diet-checkbox ">
-                                        <div class="field">
-                                            <div class="control">
-                                                <label class="checkbox">
-                                                  <input name="health" type="checkbox" value="peanut-free" />
-                                                  Peanut-free
-                                                </label>
-                                                <label class="checkbox">
-                                                    <input name="health" type="checkbox" value="gluten-free" />
-                                                    Gluten-free
-                                                  </label>
-                                                <label class="checkbox">
-                                                    <input name="health" type="checkbox" value="vegetarian" />
-                                                    Vegetarian
-                                                  </label>
-                                            </div>
-                                        </div>
-                                    </div>
-    </div>
+		<div class="field-label is-medium ">
+			<label class="label ">Dietary Restriction:</label>
+		</div>
+		<div class="field-body diet-checkbox ">
+			<div class="field">
+				<div class="control">
+					<label class="checkbox">
+						<input name="health" type="checkbox" value="peanut-free" />
+						Peanut-free
+					</label>
+					<label class="checkbox">
+						<input name="health" type="checkbox" value="gluten-free" />
+						Gluten-free
+					</label>
+					<label class="checkbox">
+						<input name="health" type="checkbox" value="vegetarian" />
+						Vegetarian
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
 </form>
