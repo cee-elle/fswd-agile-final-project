@@ -1,5 +1,6 @@
 $(function() {
 	const frm = $("#searchForm");
+	// on searchForm submit, makes AJAX request to sever
 	frm.submit(function(e) {
 		e.preventDefault();
 		const url = "/api/getinfo_normal";
@@ -9,13 +10,13 @@ $(function() {
 				return $(element).val() != "";
 			})
 			.serialize();
-		console.log(str);
 		$.ajax({
 			url: url,
 			type: "POST",
 			data: str,
 			success: function(data) {
 				data.forEach((x) => {
+					// takes data from server and builds HTML for each returned item
 					$("#recipe_card").append(
 						`<div class="column is-4">
 							<div class="card">
@@ -73,17 +74,17 @@ $(function() {
 							</div>
 							<br />
 						</div>
-						</div>
-			  `
+						</div>`
 					);
 				});
 			},
 			error: function() {
-				console.log(`error`);
+				console.log(`error`); // TODO error popup
 			},
 		});
 	});
 
+	// loops through each health label
 	function get_all(arr) {
 		let text = "";
 		arr.forEach((x) => {

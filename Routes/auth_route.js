@@ -121,6 +121,7 @@ module.exports = (users) => {
 		}
 	);
 
+	// logout
 	router.get("/logout", (req, res) => {
 		res.clearCookie("jwt");
 		res.status(204).redirect("/");

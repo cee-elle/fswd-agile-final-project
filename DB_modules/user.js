@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// user document representation
 const user_schema = new mongoose.Schema({
 	name: String,
 	email: String,

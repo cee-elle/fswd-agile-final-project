@@ -10,139 +10,89 @@
 			defer
 			src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
 		></script>
-	
+		<link
+			href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 
-	<body class="basic-body">
-	 <nav class="navbar" role="navigation" style="padding-right:5%;" aria-label=" main navigation ">
-        <div class="navbar-brand ">
-            <a class="navbar-item " href="https://bulma.io ">
-                <img src="logo-color.png " height="28 ">
-            </a>
+	<body class="site">
+		<header>
+			<!-- Main container -->
+			<nav class="level">
+				<!-- Left side -->
+				<div class="level-left">
+					<div class="level-item">
+						<p class="subtitle is-5">
+							<strong>Logo</strong>
+						</p>
+					</div>
+				</div>
 
-            <a role="button " class="navbar-burger burger " aria-label="menu " aria-expanded="false " data-target="navbarBasicExample ">
-                <span aria-hidden="true "></span>
-                <span aria-hidden="true "></span>
-                <span aria-hidden="true "></span>
-            </a>
-        </div>
+				<!-- Right side -->
+				<div class="level-right">
+					<div class="level-item">
+						<button class="button is-primary is-rounded">
+							<span class="icon">
+								<i class="fas fa-user-circle"></i>
+							</span>
+							<span>Account</span>
+						</button>
+					</div>
+					<div class="level-item">
+						<a href="/user/logout" class="button is-primary is-rounded">
+							<span class="icon">
+								<i class="fas fa-sign-out-alt"></i>
+							</span>
+							<span>Logout</span>
+						</a>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<main>
+			<section class="section ">
+				<div class="container ">
+					<h1 class="title ">
+						Find Recipe
+					</h1>
+					<h2 class="subtitle "></h2>
+				</div>
+				<br />
+				<div class="container ">
+					<%- include("./parts/normal_user_form"); -%>
+				</div>
+				<div class="buttons is-centered">
+					<button
+						form="searchForm"
+						class="button is-primary is-rounded "
+						style="text-align: center; "
+					>
+						<span class="icon">
+							<i class="fas fa-search"></i>
+						</span>
+						<span>Search</span>
+					</button>
+				</div>
+			</section>
 
-        <div id="navbarBasicExample " class="navbar-menu ">
-            <div class="navbar-start ">
-                <a class="navbar-item ">
-              Home
-            </a>
-                <a class="navbar-item ">
-                Saved Recipes
-              </a>
-                <div class="navbar-item has-dropdown is-hoverable ">
-                    <a class="navbar-link ">
-                  More
-                </a>
+			<section class="hero is-medium is-primary is-bold ">
+				<div class="container">
+					<h1 class="title">
+						Results
+					</h1>
+				</div>
+				<div class="container"></div>
+			</section>
 
-                    <div class="navbar-dropdown ">
-                        <a class="navbar-item ">
-                    Meal Plan (Premium)
-                  </a>
-                        <a class="navbar-item ">
-                    Calorie Tracker (Premium)
-                  </a>
+			<section class="section">
+				<div class="columns is-multiline" id="recipe_card"></div>
+			</section>
+		</main>
 
-                        <hr class="navbar-divider ">
-                        <a class="navbar-item ">
-                    Report an issue
-                  </a>
-
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="navbar-end ">
-                <div class="navbar-item has-dropdown is-hoverable ">
-                    <a class="navbar-link ">
-                        <span class="icon ">
-                            <i class="fas fa-user-circle "></i>
-                          </span>
-                        <span>Username</span>
-                    </a>
-
-                    <div class="navbar-dropdown ">
-                        <a href="# " class="navbar-item ">
-                            Change Password
-                          </a>
-                        <a href="# " class="navbar-item ">
-                                  Account Settings
-                              </a>
-                        <hr class="dropdown-divider ">
-                        <a href="# " class="navbar-item ">
-                            <span class="icon "><i class="fas fa-star has-text-warning "></i></span>Try Premium
-                        </a>
-                        <hr class="dropdown-divider ">
-                        <a class="navbar-item ">
-                            <span class="icon ">
-                                <i class="fas fa-sign-out-alt "></i>
-                              </span> Logout
-                        </a>
-
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <section class="hero is-fullheight-with-navbar is-fluid is-bold " style="">
-        <div class="hero-body ">
-
-            <div class="container is-fluid ">
-
-                <div class="columns ">
-                    <div class="column is-4 ">
-                        <section class="section ">
-
-                            <div class="container ">
-                                <h1 class="title is-inverted">
-                                    Find Recipe
-                                </h1>
-
-                            </div>
-                            <br>
-                            <div class="container ">
-                                <%- include("./parts/normal_user_form"); -%>
-                            </div>
-                            <div class="buttons is-centered ">
-                                <button form="searchForm" class="button is-success is-rounded " style="text-align: center; "> <span class="icon ">
-                                        <i class="fas fa-search "></i>
-                                      </span>
-                                      <span>Search</span> </button>
-
-                            </div>
-                        </section>
-                    </div>
-                    <!-- cards -->
-                    <div class="column is-8">
-                        <div class="main-body container is-fluid">
-                            <section class="section ">
-                                <div class="columns " id="recipe_card">
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-		
-    </section>
-    <div class="hero-foot">
-        <nav class="tabs is-boxed is-fullwidth">
-            <%- include('./parts/footer'); -%>
-            
-        </nav>
-    </div>
-		
+		<footer class="footer">
+			<%- include('./parts/footer'); -%>
+		</footer>
 	</body>
 	<%- include('./parts/jq'); -%>
 	<script type="text/javascript" src="/Src/index.js"></script>

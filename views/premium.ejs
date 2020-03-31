@@ -16,311 +16,253 @@
 		/>
 	</head>
 
-	<body class="basic-body">
-		<nav class="navbar" role="navigation" style="padding-right:5%;" aria-label=" main navigation ">
-        <div class="navbar-brand ">
-            <a class="navbar-item " href="https://bulma.io ">
-                <img src="logo-color.png " height="28 ">
-            </a>
+	<body class="site">
+		<header>
+			<!-- Main container -->
+			<nav class="level">
+				<!-- Left side -->
+				<div class="level-left">
+					<div class="level-item">
+						<p class="subtitle is-5">
+							<strong>Logo</strong>
+						</p>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<!-- Right side -->
+		<main>
+			<section>
+				<div class="level-right">
+					<div class="level-item">
+						<%if (locals.name ) { %>
+						<form action="/secure/user_info" method="POST" id="user_info_form">
+							<input type="text" name="user_id" value="<%=id%>" hidden />
+						</form>
+						<%}%>
+						<button class="button is-primary is-rounded" form="user_info_form">
+							<span class="icon">
+								<i class="fas fa-user-circle"></i>
+							</span>
+							<span>Account</span>
+						</button>
+					</div>
+					<div class="level-item">
+						<a href="/user/logout" class="button is-primary is-rounded">
+							<span class="icon">
+								<i class="fas fa-sign-out-alt"></i>
+							</span>
+							<span>Logout</span>
+						</a>
+					</div>
+				</div>
 
-            <a role="button " class="navbar-burger burger " aria-label="menu " aria-expanded="false " data-target="navbarBasicExample ">
-                <span aria-hidden="true "></span>
-                <span aria-hidden="true "></span>
-                <span aria-hidden="true "></span>
-            </a>
-        </div>
-
-        <div id="navbarBasicExample " class="navbar-menu ">
-            <div class="navbar-start ">
-                <a class="navbar-item ">
-              Home
-            </a>
-                <a class="navbar-item ">
-                Saved Recipes
-              </a>
-                <div class="navbar-item has-dropdown is-hoverable ">
-                    <a class="navbar-link ">
-                  More
-                </a>
-
-                    <div class="navbar-dropdown ">
-                        <a class="navbar-item ">
-                    Meal Plan
-                  </a>
-                        <a class="navbar-item ">
-                    Calorie Tracker (Coming Song)
-                  </a>
-
-                        <hr class="navbar-divider ">
-                        <a class="navbar-item ">
-                    Report an issue
-                  </a>
-
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="navbar-end ">
-                <div class="navbar-item has-dropdown is-hoverable ">
-                    <a class="navbar-link ">
-                        <span class="icon ">
-                            <i class="fas fa-user-circle "></i>
-                          </span>
-                        <span>Username</span>
-                    </a>
-
-                    <div class="navbar-dropdown ">
-                        <a href="# " class="navbar-item ">
-                            Change Password
-                          </a>
-                        <a href="# " class="navbar-item ">
-                                  Account Settings
-                              </a>
-                        <hr class="dropdown-divider ">
-                        <a href="# " class="navbar-item ">
-                            <span class="icon "><i class="fas fa-star has-text-warning "></i></span>Try Premium
-                        </a>
-                        <hr class="dropdown-divider ">
-                        <a class="navbar-item ">
-                            <span class="icon ">
-                                <i class="fas fa-sign-out-alt "></i>
-                              </span> Logout
-                        </a>
-
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    	</nav>
-
-		<section class="hero is-fullheight-with-navbar is-fluid is-bold " style="">
-       		<div class="hero-body ">
-
-            	<div class="container is-fluid ">
-
-                	<div class="columns ">
-                    	<div class="column is-4 ">
-							<section class="section ">
-								<div class="container ">
-					
-									<h1 class="title is-inverted">
-                                    Find Recipe
-                                	</h1>
+				<br />
+				<div class="container ">
+					<form id="spoon" action="/api/spoonacular" method="POST">
+						<div class="field is-horizontal ">
+							<div class="field-label is-medium ">
+								<label class="label ">Ingredient: </label>
+							</div>
+							<div class="field-body ">
+								<div class="field ">
+									<div class="control is-expanded has-icons-left ">
+										<input
+											name="query"
+											class="input "
+											type="text "
+											placeholder="Ex. chicken "
+											autocomplete="off"
+										/>
+										<p class="help "></p>
+									</div>
 								</div>
-								<br />
-								<div class="container ">
-									<form id="spoon" action="/api/spoonacular" method="POST">
-										<div class="field is-horizontal ">
-											<div class="field-label ">
-												<label class="label title">Ingredient: </label>
-											</div>
-											<div class="field-body ">
-												<div class="field ">
-													<div class="control is-expanded ">
-														<input
-												name="query"
-												class="input "
-												type="text "
-												placeholder="Ex. chicken "
-												autocomplete="off"
-														/>
-
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="field is-horizontal ">
-											<div class="field-label ">
-												<label class="label ">Calorie: </label>
-											</div>
-											<div class="field-body ">
-												<div class="field ">
-													<div class="control is-expanded ">
-														<input
-															name="calorie"
-															class="input "
-															type="text "
-															placeholder="Ex. 400 "
-														/>
-
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="field is-horizontal ">
-											<div class="field-label  ">
-												<label class="label ">Include Ingredient: </label>
-											</div>
-											<div class="field-body ">
-												<div class="field ">
-													<div class="control is-expanded ">
-														<input
-															name="include"
-															class="input "
-															type="text "
-															placeholder="Ex. oninon "
-														/>
-														<p class="help "></p>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="field is-horizontal ">	
-											<div class="field-label is-medium ">
-											<label class="label ">Exclude Ingredient: </label>
-											</div>
-											<div class="field-body ">
-												<div class="field ">
-													<div class="control is-expanded ">
-														<input
-															name="exclude"
-															class="input "
-															type="text "
-															placeholder="Ex. oninon "
-														/>
-
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<div class="field is-horizontal ">
-											<div class="field-label is-medium ">
-												<label class="label ">Intolerances:</label>
-											</div>
-											<div class="field-body diet-checkbox">
-												<%- include('./parts/intolerances_option'); -%>
-											</div>
-										</div>
-
-										<div class="field is-horizontal ">
-											<div class="field-label is-medium ">
-												<label class="label ">Dietary Restriction:</label>
-											</div>
-											<div class="field-body diet-checkbox">
-												<%- include('./parts/dietary_option'); -%>
-											</div>
-										</div>
-
-										<div class="field is-horizontal ">
-											<div class="field-label is-medium ">
-												<label class="label ">Dish type:</label>
-											</div>
-											<div class="field-body diet-checkbox">
-												<%- include('./parts/dish_type'); -%>
-											</div>
-										</div>
-									</form>
-								</div>
-
-								<div class="buttons is-centered ">
-									<button
-										type="submit"
-										class="button is-success is-rounded "
-										style="text-align: center; "
-										form="spoon"
-									>
-										<span class="icon">
-											<i class="fas fa-search"></i>
-										</span>
-										<span>Search</span>
-									</button>
-								</div>
-							</section>
+							</div>
 						</div>
-						<div class="column is-8">
-                        	<div class="main-body container is-fluid">
 
-								<section class="section ">
-									<div class="columns is-multiline" id="recipe_card">
-										<%if (locals.msg ) { %> <% msg.forEach( x => { %>
-
-								<div class="column is-one-quarter">
-									<%- include('./parts/recipe_model',{x:x}); -%>
-									<div class="card">
-										<div class="card-image">
-											<figure class="image is-4by3 ">
-												<img src="<%=x.image%>" alt="Placeholder image " />
-											</figure>
-										</div>
-										<div class="card-content ">
-											<div class="media ">
-												<div class="media-content ">
-													<p class="is-size-6" style="color:black;"><strong><%=x.title%></strong></p>
-												</div>
-											</div>
-											<div class="buttons ">
-                                    			<a class="button is-small is-light " style="margin:0 3px 3px 0; padding:2px 7px ">
-                                        			<span class="icon "><i class="far fa-clock "></i></span>
-                                        			<span>Cooking Time</span>
-                                    			</a>
-                                    			<a class="button is-small is-light " style="margin:0 3px 3px 0; padding:2px 7px ">
-                                        			<span class="icon "><i class="as fa-utensils "></i></span>
-                                        			<span><%=x.fat%>
-													</span>
-                                    			</a>
-                                    			<a class="button is-small is-light " style="margin:0 3px 3px 0; padding:2px 7px ">
-                                       				<span class="icon "><i class="fas fa-fire "></i></span>
-                                        			<span><%=x.calories%> 
-													kcal</span>
-                                    			</a>
-
-
-
-                                			</div>
-											<section class="card-body ">
-												<div class="content ">
-													<form class="recipe_summary">
-														<input type="text" name="food_id" hidden />
-														<button
-												type="submit"
-												class="button is-success is-rounded "
-												style="text-align: center; "
-														>
-														View Recipe summary
-														</button>
-													</form>
-												</div>
-											</section>
-												Source from: <small> spoonacular </small>
-										</div>
-
-										<div class="buttons is-centered ">
-											<form class="recipe_info">
-												<input type="text" name="food_id" value="<%=x.id%>" hidden />
-
-												<button
-													type="submit"
-													class="button is-success is-rounded "
-													style="text-align: center; "
-													id="<%=x.id%>"
-												>
-													View Recipe
-												</button>
-											</form>
-										</div>
-									</div>						
-									<% }) ; %> <% } %>
+						<div class="field is-horizontal ">
+							<div class="field-label is-medium ">
+								<label class="label ">Calorie: </label>
+							</div>
+							<div class="field-body ">
+								<div class="field ">
+									<div class="control is-expanded has-icons-left ">
+										<input
+											name="calorie"
+											class="input "
+											type="text "
+											placeholder="Ex. 400 "
+										/>
+										<p class="help "></p>
+									</div>
 								</div>
+							</div>
+						</div>
+
+						<div class="field is-horizontal ">
+							<div class="field-label is-medium ">
+								<label class="label ">Inclue Ingredient: </label>
+							</div>
+							<div class="field-body ">
+								<div class="field ">
+									<div class="control is-expanded has-icons-left ">
+										<input
+											name="include"
+											class="input "
+											type="text "
+											placeholder="Ex. oninon "
+										/>
+										<p class="help "></p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="field is-horizontal ">
+							<div class="field-label is-medium ">
+								<label class="label ">Exclue Ingredient: </label>
+							</div>
+							<div class="field-body ">
+								<div class="field ">
+									<div class="control is-expanded has-icons-left ">
+										<input
+											name="exclude"
+											class="input "
+											type="text "
+											placeholder="Ex. oninon "
+										/>
+										<p class="help "></p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="field is-horizontal ">
+							<div class="field-label is-medium ">
+								<label class="label ">Intolerances:</label>
+							</div>
+							<div class="field-body diet-checkbox">
+								<%- include('./parts/intolerances_option'); -%>
+							</div>
+						</div>
+
+						<div class="field is-horizontal ">
+							<div class="field-label is-medium ">
+								<label class="label ">Dietary Restriction:</label>
+							</div>
+							<div class="field-body diet-checkbox">
+								<%- include('./parts/dietary_option'); -%>
+							</div>
+						</div>
+
+						<div class="field is-horizontal ">
+							<div class="field-label is-medium ">
+								<label class="label ">Dish type:</label>
+							</div>
+							<div class="field-body diet-checkbox">
+								<%- include('./parts/dish_type'); -%>
+							</div>
+						</div>
+					</form>
+				</div>
+
+				<div class="buttons is-centered ">
+					<button
+						type="submit"
+						class="button is-primary is-rounded "
+						style="text-align: center; "
+						form="spoon"
+					>
+						<span class="icon">
+							<i class="fas fa-search"></i>
+						</span>
+						<span>Search</span>
+					</button>
+				</div>
+				<br />
+			</section>
+
+			<section class="hero is-medium is-primary is-bold ">
+				<div class="container ">
+					<h1 class="title ">
+						Results
+					</h1>
+				</div>
+				<div class="container "></div>
+			</section>
+
+			<section class="section ">
+				<div class="columns is-multiline" id="recipe_card">
+					<%if (locals.msg ) { %> <% msg.forEach( x => { %>
+
+					<div class="column is-4 ">
+						<%- include('./parts/recipe_model',{x:x}); -%>
+						<div class="card">
+							<div class="card-image">
+								<figure class="image is-4by3 ">
+									<img src="<%=x.image%>" alt="Placeholder image " />
+								</figure>
+							</div>
+							<div class="card-content ">
+								<div class="media ">
+									<div class="media-content ">
+										<p class="title is-4 "><%=x.title%></p>
+										<p class="subtitle "></p>
+									</div>
+								</div>
+								<div class="tags ">
+									<span class="tag ">
+										<i class="fas fa-fire "></i><%=x.calories%>
+									</span>
+									<span class="tag ">
+										<i class="fas fa-utensils"></i><%=x.fat%>
+									</span>
+								</div>
+								<section class="card-body ">
+									<div class="content ">
+										<form class="recipe_summary">
+											<input
+												type="text"
+												name="food_id"
+												value="<%=x.id%>"
+												hidden
+											/>
+											<button
+												type="submit"
+												class="button is-rounded "
+												style="text-align: center; "
+											>
+												View Recipe summary
+											</button>
+										</form>
 									</div>
 								</section>
-		</div>
-                    </div>
 
-                </div>
+								Source from: <small> spoonacular </small>
+							</div>
 
+							<div class="buttons is-centered ">
+								<form class="recipe_info">
+									<input type="text" name="food_id" value="<%=x.id%>" hidden />
 
-            </div>
-        </div>
+									<button
+										type="submit"
+										class="button is-primary is-rounded "
+										style="text-align: center; "
+										id="<%=x.id%>"
+									>
+										View Recipe
+									</button>
+								</form>
+							</div>
 
-    </section>
+							<br />
+						</div>
+					</div>
+					<% }) ; %> <% } %>
+				</div>
+			</section>
+		</main>
 
 		<footer class="footer ">
 			<%- include('./parts/footer'); -%>

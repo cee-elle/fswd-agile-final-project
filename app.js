@@ -1,9 +1,11 @@
+require("dotenv").config();
 const express = require("express"),
 	session = require("express-session"),
 	cookieParser = require("cookie-parser"),
 	passport = require("./middleware/passport"),
 	flash = require("connect-flash"),
 	sassMiddleware = require("node-sass-middleware"),
+	helmet = require("helmet"),
 	app = express();
 
 module.exports = (db, users) => {
@@ -22,7 +24,7 @@ module.exports = (db, users) => {
 	app.use(express.json());
 	app.use(flash());
 	app.use(cookieParser());
-
+	app.use(helmet());
 	app.use(
 		sassMiddleware({
 			src: `${__dirname}/public/sass`,
@@ -35,9 +37,21 @@ module.exports = (db, users) => {
 	const index_route = require("./Routes/index_route.js")();
 	app.use("/", index_route);
 
-	// edamam
+	// edamam api route
 	const api_route = require("./Routes/api_route")();
 	app.use("/api", api_route);
+
+	// admin middleware
+	app.use("/admin", (req, res, next) => {
+		const is_admin = req.cookies.jwt.user.role;
+		if (is_admin == "admin") {
+			req.is_admin = true;
+			next();
+		} else {
+			req.is_admin = false;
+			next();
+		}
+	});
 
 	app.use("/admin", (req, res, next) => {
 		try {
@@ -55,7 +69,6 @@ module.exports = (db, users) => {
 		}
 	});
 
-	//admin privileges
 	const is_admin = (req, res, next) => {
 		if (req.is_admin) {
 			next();
@@ -65,16 +78,20 @@ module.exports = (db, users) => {
 		}
 	};
 
+	// admin route
+	// const admin_route = require("./Routes/admin_route")(users);
+	// app.use("/admin", is_admin, admin_route);
+
 	// admin page
 	const admin_route = require("./Routes/admin_route")(users);
 	app.use("/admin", is_admin, admin_route);
 
-	// login
+	// auth route
 	const auth_route = require("./Routes/auth_route")(users);
 	app.use("/user", auth_route);
 
 	// secure
-	const secure_route = require("./Routes/secure_route")();
+	const secure_route = require("./Routes/secure_route")(users);
 
 	const is_login = (req, res, next) => {
 		passport.authenticate("jwt", { session: false }, (err, user, info) => {
