@@ -54,11 +54,7 @@ const jwtLogin = new JwtStrategy(
 	},
 	function(payload, done) {
 		users.findById({ _id: payload._id }, async (err, user) => {
-			return user
-				? done(null, user)
-				: done(null, false, {
-						error: "Not valid, please try again."
-				  });
+			return user ? done(null, user) : done(null, false, { error: "Not valid, please try again."});
 		});
 	}
 );
