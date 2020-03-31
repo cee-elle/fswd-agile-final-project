@@ -68,8 +68,11 @@ module.exports = () => {
 		const apiReq = {
 			q: req.body.q,
 			from: 0,
-			to: 3,
+			to: 30,
 		};
+		let num1 = Math.round(Math.random() * 30);
+		let num2 = Math.round(Math.random() * 30);
+		let num3 = Math.round(Math.random() * 30);
 
 		urirest
 			.get(process.env.API_ADDRESS)
@@ -84,7 +87,11 @@ module.exports = () => {
 				try {
 					hits = elm.body.hits.length;
 					if (hits != 0) {
-						const tag = elm.body.hits;
+						const tag = [
+							elm.body.hits[num1],
+							elm.body.hits[num2],
+							elm.body.hits[num3],
+						];
 						res.send(tag);
 					} else {
 						res.send("i am not ok");

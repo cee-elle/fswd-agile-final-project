@@ -100,5 +100,9 @@ module.exports = (users) => {
 		res.render("premium");
 	});
 
+	router.get("/normal", (req, res) => {
+		res.render("normal");
+	});
+
 	return router;
 };
