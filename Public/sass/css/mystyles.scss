@@ -1,16 +1,15 @@
 @charset "utf-8";
-@import "../node_modules/bulma/bulma.sass";
+@import "../../../node_modules/bulma/bulma.sass";
 // Import a Google Font
-@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+@import url("https://fonts.googleapis.com/css?family=Ubuntu");
 // Set your brand colors
-$purple: #8A4D76;
-$pink: #FA7C91;
+$purple: #8a4d76;
+$pink: #fa7c91;
 $brown: #757763;
-$beige-light: #D0D1CD;
-$beige-lighter: #EFF0EB;
+$beige-light: #d0d1cd;
+$beige-lighter: #eff0eb;
 // Update Bulma global variables
-$family-sans-serif: "Montserrat",
-sans-serif;
+$family-sans-serif: "Montserrat", sans-serif;
 $grey-dark: $brown;
 $grey-light: $beige-light;
 $link: $pink;
@@ -24,107 +23,107 @@ $input-border-color: transparent;
 $input-shadow: none;
 $footer-padding: 1rem 1.5rem;
 // Import only what you need from Bulma
-@import "../node_modules/bulma/sass/utilities/_all.sass";
-@import "../node_modules/bulma/sass/base/_all.sass";
-@import "../node_modules/bulma/sass/elements/button.sass";
-@import "../node_modules/bulma/sass/elements/container.sass";
-@import "../node_modules/bulma/sass/elements/title.sass";
-@import "../node_modules/bulma/sass/form/_all.sass";
-@import "../node_modules/bulma/sass/components/navbar.sass";
-@import "../node_modules/bulma/sass/layout/hero.sass";
-@import "../node_modules/bulma/sass/layout/section.sass";
-@import "../node_modules/bulma/sass/layout/footer.sass";
-@import "../node_modules/bulma/sass/components/dropdown.sass";
+@import "../../../node_modules/bulma/sass/utilities/_all.sass";
+@import "../../../node_modules/bulma/sass/base/_all.sass";
+@import "../../../node_modules/bulma/sass/elements/button.sass";
+@import "../../../node_modules/bulma/sass/elements/container.sass";
+@import "../../../node_modules/bulma/sass/elements/title.sass";
+@import "../../../node_modules/bulma/sass/form/_all.sass";
+@import "../../../node_modules/bulma/sass/components/navbar.sass";
+@import "../../../node_modules/bulma/sass/layout/hero.sass";
+@import "../../../node_modules/bulma/sass/layout/section.sass";
+@import "../../../node_modules/bulma/sass/layout/footer.sass";
+@import "../../../node_modules/bulma/sass/components/dropdown.sass";
 .basic-body {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 body {
-    margin: 2%;
-    padding: auto;
+	margin: 2%;
+	padding: auto;
 }
 
 .checkbox {
-    margin: 0.5em;
+	margin: 0.5em;
 }
 
 .diet-checkbox {
-    padding: .5em;
+	padding: 0.5em;
 }
 
 .card-body {
-    height: 8rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	height: 8rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .main-body {
-    width: 70%;
+	width: 70%;
 }
 
 .pricing-plan {
-    border-bottom: 1px solid #e1f1ff;
-    padding: 25px;
+	border-bottom: 1px solid #e1f1ff;
+	padding: 25px;
 }
 
 .pricing-plan:last-child {
-    border-bottom: none;
+	border-bottom: none;
 }
 
 @media (min-width: 900px) {
-    .pricing-plan {
-        border-bottom: none;
-        border-right: 1px solid #e1f1ff;
-        flex-basis: 100%;
-        padding: 25px 50px;
-    }
-    .pricing-plan:last-child {
-        border-right: none;
-    }
+	.pricing-plan {
+		border-bottom: none;
+		border-right: 1px solid #e1f1ff;
+		flex-basis: 100%;
+		padding: 25px 50px;
+	}
+	.pricing-plan:last-child {
+		border-right: none;
+	}
 }
 
 .pricing-features {
-    letter-spacing: 1px;
-    margin: 50px 0 25px;
-    height: 12rem;
+	letter-spacing: 1px;
+	margin: 50px 0 25px;
+	height: 12rem;
 }
 
 .pricing-features-item {
-    border-top: 1px solid #e1f1ff;
-    font-size: 12px;
-    line-height: 1.5;
-    padding: 10px 0;
+	border-top: 1px solid #e1f1ff;
+	font-size: 12px;
+	line-height: 1.5;
+	padding: 10px 0;
 }
 
 .pricing-features-item:last-child {
-    border-bottom: 1px solid #e1f1ff;
+	border-bottom: 1px solid #e1f1ff;
 }
 
 .pricing-price {
-    display: block;
-    font-size: 32px;
-    font-weight: 700;
+	display: block;
+	font-size: 32px;
+	font-weight: 700;
 }
 
 .image--cover {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin: 20px;
-    object-fit: cover;
-    object-position: center right;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	margin: 20px;
+	object-fit: cover;
+	object-position: center right;
 }
 
 .hero-body {
-    padding: 0;
+	padding: 0;
 }
 
 .meal-plan-cards:not(:last-child) {
-    border-right: .05rem solid black;
+	border-right: 0.05rem solid black;
 }
 
 .recipe-card {
-    margin: 5% 0;
-    padding: 0 20px;
+	margin: 5% 0;
+	padding: 0 20px;
 }

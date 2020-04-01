@@ -78,10 +78,6 @@ module.exports = (db, users) => {
 		}
 	};
 
-	// admin route
-	// const admin_route = require("./Routes/admin_route")(users);
-	// app.use("/admin", is_admin, admin_route);
-
 	// admin page
 	const admin_route = require("./Routes/admin_route")(users);
 	app.use("/admin", is_admin, admin_route);
@@ -105,6 +101,22 @@ module.exports = (db, users) => {
 	};
 
 	app.use("/secure", is_login, secure_route);
+
+	app.get("/pricing", (req, res) => {
+		res.render("pricing");
+	});
+
+	app.get("/normal_hr", (req, res) => {
+		res.render("normal_hr");
+	});
+
+	app.get("/premium_hr", (req, res) => {
+		res.render("premium_hr");
+	});
+
+	app.get("/meal", (req, res) => {
+		res.render("meal_plan");
+	});
 
 	return app;
 };
