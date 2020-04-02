@@ -102,8 +102,13 @@ module.exports = (db, users) => {
 	const api_route = require("./Routes/api_route")();
 	app.use("/api", is_login, api_route);
 
+	//temp endpoint
 	app.get("/pricing", (req, res) => {
-		res.render("pricing");
+		res.render("pricing", { elem: req.cookies.jwt.user });
+	});
+
+	app.get("/payment_page", (req, res) => {
+		res.send("this the payment page <a href='/'>click here to go back</a>");
 	});
 
 	app.get("/normal_hr", (req, res) => {

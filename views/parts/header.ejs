@@ -24,11 +24,11 @@
 
 	<div id="navbarBasicExample " class="navbar-menu ">
 		<div class="navbar-start ">
-			<a class="navbar-item ">
+			<a class="navbar-item" href="/">
 				Home
 			</a>
 			<a class="navbar-item ">
-				Saved Recipes
+				Saved Recipes (Coming Song)
 			</a>
 			<div class="navbar-item has-dropdown is-hoverable ">
 				<a class="navbar-link ">
@@ -36,9 +36,19 @@
 				</a>
 
 				<div class="navbar-dropdown ">
+					<a class="navbar-item " href="/secure">
+						Recipe search
+					</a>
+					<%if (elem.role == "normal" ) { %>
+					<a class="navbar-item " href="#">
+						Meal Plan(Premium)
+					</a>
+					<%}else{%>
 					<a class="navbar-item " href="/secure/mealplan">
 						Meal Plan
 					</a>
+					<%}%>
+
 					<a class="navbar-item ">
 						Calorie Tracker (Coming Song)
 					</a>
@@ -65,9 +75,9 @@
 						Change Password
 					</a>
 
-					<%if (locals.id ) { %>
+					<%if (elem._id ) { %>
 					<form action="/secure/user_info" method="POST" id="user_info_form">
-						<input type="text" name="user_id" value="<%=id%>" hidden />
+						<input type="text" name="user_id" value="<%=elem._id%>" hidden />
 					</form>
 					<%}%>
 					<button
@@ -77,6 +87,14 @@
 					>
 						<span>Account Settings</span>
 					</button>
+
+					<%if (elem.role == "normal" ) { %>
+					<a href="/pricing" class="navbar-item ">
+						<span class="icon "
+							><i class="fas fa-star has-text-warning "></i></span
+						>Try Premium
+					</a>
+					<%}%>
 
 					<hr class="dropdown-divider " />
 					<a href="/user/logout" class="navbar-item ">

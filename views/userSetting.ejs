@@ -17,12 +17,9 @@
 	</head>
 
 	<body>
-		<!-- <header style="margin-top: 10px;">
-			<%- include('./parts/navbar'); -%>
-		</header> -->
 		<header class="nav_header">
-			<%if (locals.elem ) { %> <%-
-			include('./parts/premium_header',{id:elem.id}); -%> <%}%>
+			<%if (locals.elem ) { %> <%- include('./parts/header',{elem:elem}); -%>
+			<%}%>
 		</header>
 
 		<main class="content_page">

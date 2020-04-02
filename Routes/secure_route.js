@@ -9,12 +9,12 @@ module.exports = (user) => {
 			res.redirect("/admin/a");
 		} else if (is_admin == "premium") {
 			res.render("premium", {
-				id: req.cookies.jwt.user._id,
+				elem: req.cookies.jwt.user,
 				name: `Welcome user: ${user_name}`,
 			});
 		} else {
 			res.render("normal", {
-				id: req.cookies.jwt.user._id,
+				elem: req.cookies.jwt.user,
 				name: `Welcome user: ${user_name}`,
 			});
 		}
@@ -52,7 +52,7 @@ module.exports = (user) => {
 	});
 
 	router.get("/mealplan", (req, res) => {
-		res.render("meal_plan", { id: req.cookies.jwt.user._id });
+		res.render("meal_plan", { elem: req.cookies.jwt.user });
 	});
 
 	return router;

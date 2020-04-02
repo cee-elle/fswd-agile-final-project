@@ -17,40 +17,12 @@
 	</head>
 
 	<body class="site">
-		<header>
-			<!-- Main container -->
-			<nav class="level">
-				<!-- Left side -->
-				<div class="level-left">
-					<div class="level-item">
-						<p class="subtitle is-5">
-							<strong>Logo</strong>
-						</p>
-					</div>
-				</div>
-
-				<!-- Right side -->
-				<div class="level-right">
-					<div class="level-item">
-						<button class="button is-primary is-rounded">
-							<span class="icon">
-								<i class="fas fa-user-circle"></i>
-							</span>
-							<span>Account</span>
-						</button>
-					</div>
-					<div class="level-item">
-						<a href="/user/logout" class="button is-primary is-rounded">
-							<span class="icon">
-								<i class="fas fa-sign-out-alt"></i>
-							</span>
-							<span>Logout</span>
-						</a>
-					</div>
-				</div>
-			</nav>
+		<header class="nav_header">
+			<%if (locals.elem ) { %> <%- include('./parts/header',{elem:elem}); -%>
+			<%}%>
 		</header>
-		<main>
+
+		<main class="content_page">
 			<section class="section ">
 				<div class="container ">
 					<h1 class="title ">
@@ -96,4 +68,5 @@
 	</body>
 	<%- include('./parts/jq'); -%>
 	<script type="text/javascript" src="/Src/index.js"></script>
+	<script type="text/javascript" src="/Src/burger.js"></script>
 </html>

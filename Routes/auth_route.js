@@ -66,6 +66,7 @@ module.exports = (users) => {
 			if (value !== req.body.signupPw) {
 				throw new Error("Password confirmation does not match password");
 			}
+
 			// Indicates the success of this synchronous custom validator
 			return true;
 		}),

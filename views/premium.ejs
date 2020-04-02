@@ -18,7 +18,7 @@
 
 	<body class="site">
 		<header class="nav_header">
-			<%if (locals.id ) { %> <%- include('./parts/premium_header',{id:id}); -%>
+			<%if (locals.elem ) { %> <%- include('./parts/header',{elem:elem}); -%>
 			<%}%>
 		</header>
 		<!-- Right side -->
@@ -234,5 +234,6 @@
 		</footer>
 	</body>
 	<%- include('./parts/jq'); -%>
+	<script type="text/javascript" src="/Src/premium.js"></script>
 	<script type="text/javascript" src="/Src/burger.js"></script>
 </html>

@@ -214,5 +214,32 @@ module.exports = () => {
 			});
 	});
 
+	router
+		.route("/meal_planning")
+		.get((req, res) => {
+			res.redirect("/secure/mealplan");
+		})
+		.post((req, res) => {
+			const url =
+				"https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate";
+
+			spoonacular_request(url, {
+				timeFrame: "day",
+				targetCalories: "2000",
+				diet: "vegetarian",
+				exclude: "shellfish%2C olives",
+			})
+				.then((data) => {
+					// res.send({ info: data.body });
+					res.render("meal_plan", {
+						elem: req.cookies.jwt.user,
+						info: data.body,
+					});
+				})
+				.catch((err) => {
+					console.log(err.message);
+				});
+		});
+
 	return router;
 };
