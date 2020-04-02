@@ -16,110 +16,29 @@
 	</head>
 
 	<body class="basic-body">
-		<nav
-			class="navbar"
-			role="navigation"
-			style="padding-right:5%;"
-			aria-label=" main navigation "
-		>
-			<div class="navbar-brand ">
-				<a class="navbar-item " href="https://bulma.io ">
-					<img src="/images/logo-color.png " height="28 " />
-				</a>
-
-				<a
-					role="button "
-					class="navbar-burger burger "
-					aria-label="menu "
-					aria-expanded="false "
-					data-target="navbarBasicExample "
-				>
-					<span aria-hidden="true "></span>
-					<span aria-hidden="true "></span>
-					<span aria-hidden="true "></span>
-				</a>
-			</div>
-
-			<div id="navbarBasicExample " class="navbar-menu ">
-				<div class="navbar-start ">
-					<a class="navbar-item ">
-						Home
-					</a>
-					<a class="navbar-item ">
-						Saved Recipes
-					</a>
-					<div class="navbar-item has-dropdown is-hoverable ">
-						<a class="navbar-link ">
-							More
-						</a>
-
-						<div class="navbar-dropdown ">
-							<a class="navbar-item ">
-								Meal Plan (Premium)
-							</a>
-							<a class="navbar-item ">
-								Calorie Tracker (Premium)
-							</a>
-
-							<hr class="navbar-divider " />
-							<a class="navbar-item ">
-								Report an issue
+		<header class="nav_header">
+			<%if (locals.id ) { %> <%- include('./parts/premium_header',{id:id}); -%>
+			<%}%>
+		</header>
+		<main class="content_page">
+			<section class="level">
+				<div class="container">
+					<br />
+					<h1 class="title" style="text-align: center; ">Meal Plan</h1>
+					<div class="field has-addons  has-addons-centered">
+						<div class="control">
+							<input class="input" type="text" placeholder="Ex. 2000" />
+						</div>
+						<div class="control">
+							<a class="button is-success">
+								Search
 							</a>
 						</div>
 					</div>
 				</div>
-
-				<div class="navbar-end ">
-					<div class="navbar-item has-dropdown is-hoverable ">
-						<a class="navbar-link ">
-							<span class="icon ">
-								<i class="fas fa-user-circle "></i>
-							</span>
-							<span>Username</span>
-						</a>
-
-						<div class="navbar-dropdown ">
-							<a href="# " class="navbar-item ">
-								Change Password
-							</a>
-							<a href="# " class="navbar-item ">
-								Account Settings
-							</a>
-							<hr class="dropdown-divider " />
-							<a href="# " class="navbar-item ">
-								<span class="icon "
-									><i class="fas fa-star has-text-warning "></i></span
-								>Try Premium
-							</a>
-							<hr class="dropdown-divider " />
-							<a class="navbar-item ">
-								<span class="icon ">
-									<i class="fas fa-sign-out-alt "></i>
-								</span>
-								Logout
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</nav>
-		<section class="level">
-			<div class="container">
-				<br />
-				<h1 class="title" style="text-align: center; ">Meal Plan</h1>
-				<div class="field has-addons  has-addons-centered">
-					<div class="control">
-						<input class="input" type="text" placeholder="Ex. 2000" />
-					</div>
-					<div class="control">
-						<a class="button is-success">
-							Search
-						</a>
-					</div>
-				</div>
-			</div>
-		</section>
-		<section class="level"></section>
+			</section>
+			<section class="level"></section>
+		</main>
 
 		<section class="hero is-fluid is-bold ">
 			<div class="hero-body container is-fluid " style="width:80%; ">
@@ -166,63 +85,14 @@
 								</div>
 							</div>
 						</div>
-						<!-- Meal cards -->
-						<div class="column meal-plan-cards ">
-							<div class="container is-fluid ">
-								<h1 class="title " style="text-align: center; ">Breakfast</h1>
-								<div class="container is-fluid ">
-									<div class="card-image ">
-										<figure class="image is-4by3 ">
-											<img
-												src="https://bulma.io/images/placeholders/1280x960.png "
-												alt="Placeholder image "
-											/>
-										</figure>
-										<h1 class="is-size-4 " style="text-align: center; ">
-											Food Name
-										</h1>
-									</div>
-								</div>
-								<p class="is-size-6 recipe-card">Ready In :</p>
-
-								<p class="is-size-6 recipe-card">Servings :</p>
-								<div class="buttons is-centered ">
-									<button class="button is-success is-centered ">
-										View Recipe
-									</button>
-								</div>
-							</div>
-						</div>
-						<!-- Meal cards -->
-						<div class="column meal-plan-cards ">
-							<div class="container is-fluid ">
-								<h1 class="title " style="text-align: center; ">Breakfast</h1>
-								<div class="container is-fluid ">
-									<div class="card-image ">
-										<figure class="image is-4by3 ">
-											<img
-												src="https://bulma.io/images/placeholders/1280x960.png "
-												alt="Placeholder image "
-											/>
-										</figure>
-										<h1 class="is-size-4 " style="text-align: center; ">
-											Food Name
-										</h1>
-									</div>
-								</div>
-								<p class="is-size-6 recipe-card">Ready In :</p>
-
-								<p class="is-size-6 recipe-card">Servings :</p>
-								<div class="buttons is-centered ">
-									<button class="button is-success is-centered ">
-										View Recipe
-									</button>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
 		</section>
+		<footer class="footer ">
+			<%- include('./parts/footer'); -%>
+		</footer>
 	</body>
+	<%- include('./parts/jq'); -%>
+	<script type="text/javascript" src="/Src/burger.js"></script>
 </html>

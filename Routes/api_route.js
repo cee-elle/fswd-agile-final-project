@@ -125,44 +125,62 @@ module.exports = () => {
 			});
 	};
 
-	router.post("/spoonacular", (req, res) => {
-		const {
-			query,
-			calorie,
-			include,
-			exclude,
-			intolerances,
-			health,
-			type,
-		} = req.body;
-		const allergy = return_null(intolerances);
-		const diet = return_null(health);
-		const dish = return_null(type);
-
-		//test whether the backend have the data
-		// console.log(req.body);
-		// console.log(query, calorie, include, exclude, allergy, diet, dish);
-
-		spoonacular_request(process.env.SPOONACULAR_COMPLEX_ADDRESS, {
-			offset: "0",
-			number: "10",
-			maxCalories: calorie || "400",
-			diet: diet,
-			includeIngredients: include || "",
-			excludeIngredients: exclude || "",
-			intolerances: allergy,
-			type: dish,
-			instructionsRequired: "true",
-			query: query,
+	router
+		.route("/spoonacular")
+		.get((req, res) => {
+			res.redirect("/secure");
 		})
-			.then((data) => {
-				console.log(data.body.results[0]);
-				res.render("premium", { msg: data.body.results });
+		.post((req, res) => {
+			const {
+				query,
+				calorie,
+				include,
+				exclude,
+				intolerances,
+				health,
+				type,
+			} = req.body;
+			const allergy = return_null(intolerances);
+			const diet = return_null(health);
+			const dish = return_null(type);
+
+			//test whether the backend have the data
+			// console.log(req.body);
+			// console.log(query, calorie, include, exclude, allergy, diet, dish);
+
+			spoonacular_request(process.env.SPOONACULAR_COMPLEX_ADDRESS, {
+				offset: "0",
+				number: "50",
+				maxCalories: calorie || "400",
+				diet: diet,
+				includeIngredients: include || "",
+				excludeIngredients: exclude || "",
+				intolerances: allergy,
+				type: dish,
+				instructionsRequired: "true",
+				query: query,
 			})
-			.catch((err) => {
-				console.log(err.message);
-			});
-	});
+				.then((data) => {
+					let results = [];
+					let length = data.body.results.length;
+					console.log(length);
+					if (length > 15) {
+						length = 15;
+					} else {
+						length = length;
+					}
+					for (let i = 0; i < length; i++) {
+						results.push(data.body.results[Math.floor(Math.random() * length)]);
+					}
+					res.render("premium", {
+						id: req.cookies.jwt.user._id,
+						msg: [...new Set(results)],
+					});
+				})
+				.catch((err) => {
+					console.log(err.message);
+				});
+		});
 
 	router.post("/spoonacular_instruction", (req, res) => {
 		console.log(req.body);
@@ -172,7 +190,6 @@ module.exports = () => {
 			stepBreakdown: "True",
 		})
 			.then((data) => {
-				console.log(data.body);
 				res.send({ info: data.body[0].steps, _id: id });
 			})
 			.catch((err) => {
@@ -181,7 +198,6 @@ module.exports = () => {
 	});
 
 	router.post("/spoonacular_summary", (req, res) => {
-		console.log(req.body);
 		const id = req.body.food_id;
 		const summary_url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/summary`;
 		urirest
@@ -191,7 +207,6 @@ module.exports = () => {
 				"x-rapidapi-key": process.env.SPOONACULAR_API,
 			})
 			.then((data) => {
-				console.log(data.body);
 				res.send({ info: data.body });
 			})
 			.catch((err) => {

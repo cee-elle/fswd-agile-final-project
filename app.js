@@ -37,10 +37,6 @@ module.exports = (db, users) => {
 	const index_route = require("./Routes/index_route.js")();
 	app.use("/", index_route);
 
-	// edamam api route
-	const api_route = require("./Routes/api_route")();
-	app.use("/api", api_route);
-
 	// admin middleware
 	app.use("/admin", (req, res, next) => {
 		const is_admin = req.cookies.jwt.user.role;
@@ -102,6 +98,10 @@ module.exports = (db, users) => {
 
 	app.use("/secure", is_login, secure_route);
 
+	// edamam api route
+	const api_route = require("./Routes/api_route")();
+	app.use("/api", is_login, api_route);
+
 	app.get("/pricing", (req, res) => {
 		res.render("pricing");
 	});
@@ -112,10 +112,6 @@ module.exports = (db, users) => {
 
 	app.get("/premium_hr", (req, res) => {
 		res.render("premium_hr");
-	});
-
-	app.get("/meal", (req, res) => {
-		res.render("meal_plan");
 	});
 
 	return app;

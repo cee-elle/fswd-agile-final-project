@@ -1,119 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-        defer
-        src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
-    ></script>
-    
-    <link rel="stylesheet" href="/css/admin.css" />
-    <link
-        href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
-        rel="stylesheet"
-    />
-    <title>Admin Page</title>
-</head>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script
+			defer
+			src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+		></script>
 
 		<link rel="stylesheet" href="/css/admin.css" />
 		<link
 			href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
 			rel="stylesheet"
 		/>
-		<title>Admin Page</title>
+		<title>User Page</title>
 	</head>
 
 	<body>
-		<header style="margin-top: 10px;">
+		<!-- <header style="margin-top: 10px;">
 			<%- include('./parts/navbar'); -%>
+		</header> -->
+		<header class="nav_header">
+			<%if (locals.elem ) { %> <%-
+			include('./parts/premium_header',{id:elem.id}); -%> <%}%>
 		</header>
 
-		<h1 class="has-text-centered">My Account Info</h1>
+		<main class="content_page">
+			<h1 class="has-text-centered" style="font-size: 2em;">My Account Info</h1>
 
-		<!-- User info cards -->
-		<div id="user_list" class="column is-centered">
-			<form id="user_info" class="card user_info">
-				<%if (locals.elem) { %>
-				<div class="card">
-					<div class="hero is-medium is-primary is-bold card-content">
-						<div class="field">
-							<label>ID: </label>
+			<!-- User info cards -->
+			<div id="user_list" class="column is-centered">
+				<form id="user_info" class="card user_info">
+					<%if (locals.elem) { %>
+					<div class="card">
+						<div class="hero is-medium is-primary is-bold card-content">
+							<div class="field">
+								<label>ID: </label>
+								<input
+									readonly
+									name="id"
+									class="input is-static"
+									type="text"
+									id=""
+									value="<%=elem._id%>"
+								/>
+							</div>
+						</div>
+						<div class="card-content">
+							<label class="content">Role: </label>
 							<input
-								readonly
-								name="id"
-								class="input is-static"
+								disabled
+								name="role"
+								class="input is-rounded"
 								type="text"
 								id=""
-								value="<%=elem._id%>"
+								value="<%=elem.role%>"
 							/>
 						</div>
+						<div class="card-content">
+							<label>Name: </label>
+							<input
+								name="name"
+								class="input is-rounded"
+								type="text"
+								id=""
+								value="<%=elem.name%>"
+							/>
+						</div>
+						<div class="card-content">
+							<label>Email: </label>
+							<input
+								disabled
+								name="email"
+								class="input is-rounded"
+								type="text"
+								id=""
+								value="<%=elem.email%>"
+							/>
+						</div>
+						<div class="card-content">
+							<label>Dietary: </label>
+							<input
+								name="dietary"
+								class="input is-rounded"
+								type="text"
+								id=""
+								value="<%=elem.dietary%>"
+							/>
+						</div>
+						<div class="card-content">
+							<label>Preference: </label>
+							<input
+								name="prefer"
+								class="input is-rounded"
+								type="text"
+								id=""
+								value="<%=elem.prefer_food%>"
+							/>
+						</div>
+						<!-- Buttons -->
+						<div class="card-content">
+							<div class="columns is-multiline is-centered">
+								<button type="submit" class="button is-primary" name="update">
+									Update my account
+								</button>
+							</div>
+						</div>
+						<br />
 					</div>
-					<div class="card-content">
-						<label class="content">Role: </label>
-						<input
-							disabled
-							name="role"
-							class="input is-rounded"
-							type="text"
-							id=""
-							value="<%=elem.role%>"
-						/>
-					</div>
-					<div class="card-content">
-						<label>Name: </label>
-						<input
-							name="name"
-							class="input is-rounded"
-							type="text"
-							id=""
-							value="<%=elem.name%>"
-						/>
-					</div>
-					<div class="card-content">
-						<label>Email: </label>
-						<input
-							disabled
-							name="email"
-							class="input is-rounded"
-							type="text"
-							id=""
-							value="<%=elem.email%>"
-						/>
-					</div>
-					<div class="card-content">
-						<label>Dietary: </label>
-						<input
-							name="dietary"
-							class="input is-rounded"
-							type="text"
-							id=""
-							value="<%=elem.dietary%>"
-						/>
-					</div>
-					<div class="card-content">
-						<label>Preference: </label>
-						<input
-							name="prefer"
-							class="input is-rounded"
-							type="text"
-							id=""
-							value="<%=elem.prefer_food%>"
-						/>
-					</div>
-					<!-- Buttons -->
-					<div class="columns is-multiline is-centered">
-						<button type="submit" class="button is-primary" name="update">
-							Update my account
-						</button>
-					</div>
-					<br />
-				</div>
-				<%}%>
-			</form>
-			<br />
-		</div>
-
+					<%}%>
+				</form>
+				<br />
+			</div>
+		</main>
 		<%- include('./parts/jq'); -%>
+		<script type="text/javascript" src="/Src/user_setting.js"></script>
+		<script type="text/javascript" src="/Src/burger.js"></script>
 	</body>
 </html>

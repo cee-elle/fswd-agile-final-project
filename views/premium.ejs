@@ -17,46 +17,13 @@
 	</head>
 
 	<body class="site">
-		<header>
-			<!-- Main container -->
-			<nav class="level">
-				<!-- Left side -->
-				<div class="level-left">
-					<div class="level-item">
-						<p class="subtitle is-5">
-							<strong>Logo</strong>
-						</p>
-					</div>
-				</div>
-			</nav>
+		<header class="nav_header">
+			<%if (locals.id ) { %> <%- include('./parts/premium_header',{id:id}); -%>
+			<%}%>
 		</header>
 		<!-- Right side -->
-		<main>
+		<main class="content_page">
 			<section>
-				<div class="level-right">
-					<div class="level-item">
-						<%if (locals.name ) { %>
-						<form action="/secure/user_info" method="POST" id="user_info_form">
-							<input type="text" name="user_id" value="<%=id%>" hidden />
-						</form>
-						<%}%>
-						<button class="button is-primary is-rounded" form="user_info_form">
-							<span class="icon">
-								<i class="fas fa-user-circle"></i>
-							</span>
-							<span>Account</span>
-						</button>
-					</div>
-					<div class="level-item">
-						<a href="/user/logout" class="button is-primary is-rounded">
-							<span class="icon">
-								<i class="fas fa-sign-out-alt"></i>
-							</span>
-							<span>Logout</span>
-						</a>
-					</div>
-				</div>
-
 				<br />
 				<div class="container ">
 					<form id="spoon" action="/api/spoonacular" method="POST">
@@ -194,7 +161,6 @@
 			<section class="section ">
 				<div class="columns is-multiline" id="recipe_card">
 					<%if (locals.msg ) { %> <% msg.forEach( x => { %>
-
 					<div class="column is-4 ">
 						<%- include('./parts/recipe_model',{x:x}); -%>
 						<div class="card">
@@ -255,7 +221,6 @@
 									</button>
 								</form>
 							</div>
-
 							<br />
 						</div>
 					</div>
@@ -269,5 +234,5 @@
 		</footer>
 	</body>
 	<%- include('./parts/jq'); -%>
-	<script type="text/javascript" src="/Src/premium.js"></script>
+	<script type="text/javascript" src="/Src/burger.js"></script>
 </html>
