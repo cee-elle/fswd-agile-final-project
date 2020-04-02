@@ -5,7 +5,7 @@
 	aria-label=" main navigation "
 >
 	<div class="navbar-brand ">
-		<a class="navbar-item " href="/">
+		<a class="navbar-item" href="/">
 			<img src="/images/logo-color.png " height="28 " />
 		</a>
 
@@ -36,10 +36,21 @@
 				</a>
 
 				<div class="navbar-dropdown ">
+					<%if (elem.role == "admin" ) { %>
+					<a class="navbar-item " href="/secure">
+						admin panel
+					</a>
+					<a class="navbar-item " href="/admin/normal">
+						normal page
+					</a>
+					<a class="navbar-item " href="/admin/premium">
+						premium page
+					</a>
+					<%}else{%>
 					<a class="navbar-item " href="/secure">
 						Recipe search
 					</a>
-					<%if (elem.role == "normal" ) { %>
+					<%}%> <%if (elem.role == "normal" ) { %>
 					<a class="navbar-item " href="#">
 						Meal Plan(Premium)
 					</a>

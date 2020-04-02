@@ -4,20 +4,20 @@ const router = express.Router();
 module.exports = (users) => {
 	// loads all user info from db for admin
 	router.get("/a", (req, res) => {
-		users.find().then((elem) => {
-			res.render("admin", { elem });
+		users.find().then((elm) => {
+			res.render("admin", { elm, elem: req.cookies.jwt.user });
 		});
 	});
 
 	router.get("/p", (req, res) => {
-		users.find({ role: "premium" }).then((elem) => {
-			res.render("admin", { elem, p: "p" });
+		users.find({ role: "premium" }).then((elm) => {
+			res.render("admin", { elm, p: "p" });
 		});
 	});
 
 	router.get("/n", (req, res) => {
-		users.find({ role: "normal" }).then((elem) => {
-			res.render("admin", { elem, n: "n" });
+		users.find({ role: "normal" }).then((elm) => {
+			res.render("admin", { elm, n: "n" });
 		});
 	});
 
@@ -76,11 +76,11 @@ module.exports = (users) => {
 	});
 
 	router.get("/premium", (req, res) => {
-		res.render("premium");
+		res.render("premium", { elem: req.cookies.jwt.user });
 	});
 
 	router.get("/normal", (req, res) => {
-		res.render("normal");
+		res.render("normal", { elem: req.cookies.jwt.user });
 	});
 
 	return router;
