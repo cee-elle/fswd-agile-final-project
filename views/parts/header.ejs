@@ -1,0 +1,121 @@
+<nav
+	class="navbar"
+	role="navigation"
+	style="padding-right:5%;"
+	aria-label=" main navigation "
+>
+	<div class="navbar-brand ">
+		<a class="navbar-item" href="/">
+			<img src="/images/logo-color.png " height="28 " />
+		</a>
+
+		<a
+			role="button "
+			class="navbar-burger burger "
+			aria-label="menu "
+			aria-expanded="false "
+			data-target="navbarBasicExample "
+		>
+			<span aria-hidden="true "></span>
+			<span aria-hidden="true "></span>
+			<span aria-hidden="true "></span>
+		</a>
+	</div>
+
+	<div id="navbarBasicExample " class="navbar-menu ">
+		<div class="navbar-start ">
+			<a class="navbar-item" href="/">
+				Home
+			</a>
+			<a class="navbar-item ">
+				Saved Recipes (Coming Soon)
+			</a>
+			<div class="navbar-item has-dropdown is-hoverable ">
+				<a class="navbar-link ">
+					More
+				</a>
+
+				<div class="navbar-dropdown ">
+					<%if (elem.role == "admin" ) { %>
+					<a class="navbar-item " href="/secure">
+						Admin panel
+					</a>
+					<a class="navbar-item " href="/admin/normal">
+						Normal page
+					</a>
+					<a class="navbar-item " href="/admin/premium">
+						Premium page
+					</a>
+					<%}else{%>
+					<a class="navbar-item " href="/secure">
+						Recipe search
+					</a>
+					<%}%> <%if (elem.role == "normal" ) { %>
+					<a class="navbar-item " href="#">
+						Meal Plan(Premium)
+					</a>
+					<%}else{%>
+					<a class="navbar-item " href="/secure/mealplan">
+						Meal Plan
+					</a>
+					<%}%>
+
+					<a class="navbar-item ">
+						Calorie Tracker (Coming Soon)
+					</a>
+
+					<hr class="navbar-divider " />
+					<a class="navbar-item ">
+						Report an issue
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="navbar-end ">
+			<div class="navbar-item has-dropdown is-hoverable ">
+				<a class="navbar-link ">
+					<span class="icon ">
+						<i class="fas fa-user-circle "></i>
+					</span>
+					<span>Username</span>
+				</a>
+
+				<div class="navbar-dropdown">
+					<a href="# " class="navbar-item">
+						&nbsp&nbsp⌨️Change Password
+					</a>
+
+					<%if (elem._id ) { %>
+					<form action="/secure/user_info" method="POST" id="user_info_form">
+						<input type="text" name="user_id" value="<%=elem._id%>" hidden />	
+					</form>
+					<%}%>
+					<a class="navbar-item">	
+					<button
+							form="user_info_form"
+							style="background: none; border: none;outline: none;cursor: pointer; font-size: 14px"
+					>
+						⚙️Account Settings		
+					</button>
+					</a>
+						
+					
+					<%if (elem.role == "normal" ) { %>
+					<a href="/pricing" class="navbar-item ">
+						&nbsp ⭐️Try Premium
+					</a>
+					<%}%>
+
+					<hr class="dropdown-divider " />
+					<a href="/user/logout" class="navbar-item ">
+						<span class="icon ">
+							<i class="fas fa-sign-out-alt "></i>
+						</span>
+						Logout
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>

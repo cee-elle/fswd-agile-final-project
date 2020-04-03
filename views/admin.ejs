@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<script
-		defer
-		src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
-	></script>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script
+			defer
+			src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+		></script>
 
-	<link rel="stylesheet" href="/css/admin.css" />
-	<link
-		href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
-		rel="stylesheet"
-	/>
-	<title>Admin Page</title>
-</head>
+		<link rel="stylesheet" href="/css/admin.css" />
+		<link
+			href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Admin Page</title>
+	</head>
 
 	<body>
-		<header style="margin-top: 10px;">
-			<%- include('./parts/navbar'); -%>
+		<header class="nav_header">
+			<%if (locals.elem ) { %> <%- include('./parts/header',{elem:elem}); -%>
+			<%}%>
 		</header>
 
 		<section class="main-content columns is-fullheight">
@@ -97,7 +98,7 @@
 				<br />
 				<!-- User info cards -->
 				<div id="user_list">
-					<% if (elem) { %> <% elem.forEach( x => { %>
+					<% if (elm) { %> <% elm.forEach( x => { %>
 					<form id="user_info" class="card user_info">
 						<div class="card">
 							<div class="hero is-medium is-primary is-bold card-content">
@@ -189,4 +190,5 @@
 
 	<%- include('./parts/jq'); -%>
 	<script type="text/javascript" src="/Src/admin_ajax.js"></script>
+	<script type="text/javascript" src="/Src/burger.js"></script>
 </html>
