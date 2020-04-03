@@ -4,7 +4,7 @@ require("dotenv").config();
 // generate jwt
 function generateToken(user) {
 	let token = jwt.sign(JSON.parse(user), process.env.JWT, {
-		expiresIn: "1hr"
+		expiresIn: "1hr",
 	});
 	return token;
 }

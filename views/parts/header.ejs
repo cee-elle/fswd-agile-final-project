@@ -28,7 +28,7 @@
 				Home
 			</a>
 			<a class="navbar-item ">
-				Saved Recipes (Coming Song)
+				Saved Recipes (Coming Soon)
 			</a>
 			<div class="navbar-item has-dropdown is-hoverable ">
 				<a class="navbar-link ">
@@ -38,13 +38,13 @@
 				<div class="navbar-dropdown ">
 					<%if (elem.role == "admin" ) { %>
 					<a class="navbar-item " href="/secure">
-						admin panel
+						Admin panel
 					</a>
 					<a class="navbar-item " href="/admin/normal">
-						normal page
+						Normal page
 					</a>
 					<a class="navbar-item " href="/admin/premium">
-						premium page
+						Premium page
 					</a>
 					<%}else{%>
 					<a class="navbar-item " href="/secure">
@@ -61,7 +61,7 @@
 					<%}%>
 
 					<a class="navbar-item ">
-						Calorie Tracker (Coming Song)
+						Calorie Tracker (Coming Soon)
 					</a>
 
 					<hr class="navbar-divider " />
@@ -81,9 +81,9 @@
 					<span>Username</span>
 				</a>
 
-				<div class="navbar-dropdown ">
-					<a href="# " class="navbar-item ">
-						Change Password
+				<div class="navbar-dropdown">
+					<a href="# " class="navbar-item">
+						&nbsp&nbsp⌨️Change Password
 					</a>
 
 					<%if (elem._id ) { %>
@@ -91,19 +91,18 @@
 						<input type="text" name="user_id" value="<%=elem._id%>" hidden />
 					</form>
 					<%}%>
-					<button
-						class="navbar-item"
-						form="user_info_form"
-						style="background: none; border: none;outline: none;cursor: pointer;"
-					>
-						<span>Account Settings</span>
-					</button>
+					<a class="navbar-item">
+						<button
+							form="user_info_form"
+							style="background: none; border: none;outline: none;cursor: pointer; font-size: 14px; font-family: 'Montserrat', sans-serif"
+						>
+							⚙️Account Settings
+						</button>
+					</a>
 
 					<%if (elem.role == "normal" ) { %>
 					<a href="/pricing" class="navbar-item ">
-						<span class="icon "
-							><i class="fas fa-star has-text-warning "></i></span
-						>Try Premium
+						&nbsp ⭐️Try Premium
 					</a>
 					<%}%>
 

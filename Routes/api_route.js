@@ -13,7 +13,7 @@ function urirestGet(apiReq, res) {
 		.query(apiReq)
 		.header({
 			"x-rapidapi-host": process.env.API_HOST,
-			"x-rapidapi-key": process.env.API_KEY
+			"x-rapidapi-key": process.env.API_KEY,
 		})
 		.then((elm) => {
 			// checks for api response
@@ -56,7 +56,7 @@ module.exports = () => {
 		const apiReq = {
 			q: req.body.q,
 			from: 0,
-			to: 30
+			to: 30,
 		};
 
 		caloriesRounder(apiReq, req);
@@ -68,7 +68,7 @@ module.exports = () => {
 		const apiReq = {
 			q: req.body.q,
 			from: 0,
-			to: 30
+			to: 30,
 		};
 		let num1 = Math.round(Math.random() * 30);
 		let num2 = Math.round(Math.random() * 30);
@@ -79,7 +79,7 @@ module.exports = () => {
 			.query(apiReq)
 			.header({
 				"x-rapidapi-host": process.env.API_HOST,
-				"x-rapidapi-key": process.env.API_KEY
+				"x-rapidapi-key": process.env.API_KEY,
 			})
 			.then((elm) => {
 				// length of undefined
@@ -90,7 +90,7 @@ module.exports = () => {
 						const tag = [
 							elm.body.hits[num1],
 							elm.body.hits[num2],
-							elm.body.hits[num3]
+							elm.body.hits[num3],
 						];
 						res.send(tag);
 					} else {
@@ -121,7 +121,7 @@ module.exports = () => {
 			.query(query)
 			.headers({
 				"x-rapidapi-host": process.env.SPOONACULAR_HOST,
-				"x-rapidapi-key": process.env.SPOONACULAR_API
+				"x-rapidapi-key": process.env.SPOONACULAR_API,
 			});
 	};
 
@@ -138,7 +138,7 @@ module.exports = () => {
 				exclude,
 				intolerances,
 				health,
-				type
+				type,
 			} = req.body;
 			const allergy = return_null(intolerances);
 			const diet = return_null(health);
@@ -158,7 +158,7 @@ module.exports = () => {
 				intolerances: allergy,
 				type: dish,
 				instructionsRequired: "true",
-				query: query
+				query: query,
 			})
 				.then((data) => {
 					let results = [];
@@ -175,7 +175,7 @@ module.exports = () => {
 					res.render("premium", {
 						id: req.cookies.jwt.user._id,
 						elem: req.cookies.jwt.user,
-						msg: [...new Set(results)]
+						msg: [...new Set(results)],
 					});
 				})
 				.catch((err) => {
@@ -188,7 +188,7 @@ module.exports = () => {
 		const id = req.body.food_id;
 		const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/analyzedInstructions`;
 		spoonacular_request(url, {
-			stepBreakdown: "True"
+			stepBreakdown: "True",
 		})
 			.then((data) => {
 				res.send({ info: data.body[0].steps, _id: id });
@@ -205,7 +205,7 @@ module.exports = () => {
 			.get(summary_url)
 			.headers({
 				"x-rapidapi-host": process.env.SPOONACULAR_HOST,
-				"x-rapidapi-key": process.env.SPOONACULAR_API
+				"x-rapidapi-key": process.env.SPOONACULAR_API,
 			})
 			.then((data) => {
 				res.send({ info: data.body });
@@ -228,13 +228,13 @@ module.exports = () => {
 				timeFrame: "day",
 				targetCalories: "2000",
 				diet: "vegetarian",
-				exclude: "shellfish%2C olives"
+				exclude: "shellfish%2C olives",
 			})
 				.then((data) => {
 					// res.send({ info: data.body });
 					res.render("meal_plan", {
 						elem: req.cookies.jwt.user,
-						info: data.body
+						info: data.body,
 					});
 				})
 				.catch((err) => {

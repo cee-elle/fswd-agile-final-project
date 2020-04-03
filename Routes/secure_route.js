@@ -10,12 +10,12 @@ module.exports = (user) => {
 		} else if (is_admin == "premium") {
 			res.render("premium", {
 				elem: req.cookies.jwt.user,
-				name: `Welcome user: ${user_name}`
+				name: `Welcome user: ${user_name}`,
 			});
 		} else {
 			res.render("normal", {
 				elem: req.cookies.jwt.user,
-				name: `Welcome user: ${user_name}`
+				name: `Welcome user: ${user_name}`,
 			});
 		}
 	});
@@ -40,8 +40,8 @@ module.exports = (user) => {
 				$set: {
 					name: name,
 					dietary: dietary,
-					prefer_food: prefer
-				}
+					prefer_food: prefer,
+				},
 			},
 			{ upsert: true },
 			function(err) {
@@ -58,7 +58,7 @@ module.exports = (user) => {
 	router.get("/view_recipe", (req, res) => {
 		res.render("pricing", {
 			elem: req.cookies.jwt.user,
-			ero: "oops it seems like you are not a premium user"
+			ero: "oops it seems like you are not a premium user",
 		});
 	});
 

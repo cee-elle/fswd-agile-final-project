@@ -87,7 +87,7 @@ $(function() {
 			},
 			error: function() {
 				console.log(`error`); // TODO error popup
-			}
+			},
 		});
 	});
 

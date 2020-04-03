@@ -34,6 +34,10 @@ $footer-padding: 1rem 1.5rem;
 @import "../../../node_modules/bulma/sass/layout/section.sass";
 @import "../../../node_modules/bulma/sass/layout/footer.sass";
 @import "../../../node_modules/bulma/sass/components/dropdown.sass";
+* {
+	font-family: "Montserrat", sans-serif;
+}
+
 .basic-body {
 	margin: 0;
 	padding: 0;
