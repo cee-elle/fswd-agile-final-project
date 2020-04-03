@@ -1,0 +1,24 @@
+<%if (locals.x ) { %>
+<div class="modal" id="<%=x.id%>">
+	<div class="modal-background"></div>
+	<div class="modal-card">
+		<header class="modal-card-head">
+			<p class="modal-card-title"><%=x.title%></p>
+			<button
+				class="delete <%=x.id%>delete"
+				id="<%=x.id%>delete"
+				aria-label="close"
+			></button>
+		</header>
+		<section class="modal-card-body" id="<%=x.id%>space"></section>
+		<footer class="modal-card-foot">
+			<button
+				class="button"
+				onclick="document.getElementById('<%=x.id%>delete').click()"
+			>
+				Exit
+			</button>
+		</footer>
+	</div>
+</div>
+<%}%>

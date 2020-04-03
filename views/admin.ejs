@@ -1,74 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script
+		defer
+		src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+	></script>
 
-		<script
-			defer
-			src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
-		></script>
-
-		<link rel="stylesheet" href="/css/admin.css" />
-		<link
-			href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
-			rel="stylesheet"
-		/>
-		<title>Admin Page</title>
-	</head>
+	<link rel="stylesheet" href="/css/admin.css" />
+	<link
+		href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
+		rel="stylesheet"
+	/>
+	<title>Admin Page</title>
+</head>
 
 	<body>
-		<header>
-			<%- include('./parts/navbar'); -%>			
+		<header style="margin-top: 10px;">
+			<%- include('./parts/navbar'); -%>
 		</header>
-		
-		<section class="main-content columns is-fullheight">
-  			<!-- left side bar -->
-			<aside class="column is-2 is-narrow-mobile is-fullheight section is-hidden-mobile">
-				<p class="menu-label has-text-centered"><strong>Administration</strong></p>
-				<ul class="menu-list">
-				<li>
-					User Management
-					<ul>
-						<li>
-							<a href="#" class="has-background-primary">
-							<span class="icon">
-								<i class="fa fa-user"></i>
-							</span>
-							<span>User Info</span>
-							</a>
-						</li>
-					</ul>
-				</li>
 
-				<li>
-					View Pages
-					<ul>
-						<li>
-							<a href="normal">
-							<span class="icon is-small">
-								<i class="fa fa-link"></i>
-							</span>
-							<span>Normal user page</span>
-							</a>
-						</li>
-						<li>
-							<a href="premium">
-							<span class="icon is-small">
-								<i class="fa fa-link"></i>
-							</span>
-							<span>Premium user page</span>
-							</a>
-						</li>
-					</ul>
-				</li>
+		<section class="main-content columns is-fullheight">
+			<!-- left side bar -->
+			<aside
+				class="column is-2 is-narrow-mobile is-fullheight section is-hidden-mobile"
+			>
+				<p class="menu-label has-text-centered">
+					<strong>Administration</strong>
+				</p>
+				<ul class="menu-list">
+					<li>
+						User Management
+						<ul>
+							<li>
+								<a href="a" class="has-background-primary">
+									<span class="icon">
+										<i class="fa fa-user"></i>
+									</span>
+									<span>User Info</span>
+								</a>
+							</li>
+							<li>
+								<a href="p">
+									<span class="icon">
+										<i class="fa fa-user"></i>
+									</span>
+									<span>Premium user</span>
+								</a>
+							</li>
+							<li>
+								<a href="n">
+									<span class="icon">
+										<i class="fa fa-user"></i>
+									</span>
+									<span>Normal user</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+
+					<li>
+						View Pages
+						<ul>
+							<li>
+								<a href="normal">
+									<span class="icon is-small">
+										<i class="fa fa-link"></i>
+									</span>
+									<span>Normal user page</span>
+								</a>
+							</li>
+							<li>
+								<a href="premium">
+									<span class="icon is-small">
+										<i class="fa fa-link"></i>
+									</span>
+									<span>Premium user page</span>
+								</a>
+							</li>
+						</ul>
+					</li>
 				</ul>
 			</aside>
 
 			<!-- Main content -->
 			<div class="container column is-10">
 				<!-- Page heading -->
+				<%if (locals.n) { %>
+				<h1 class="has-text-centered">Normal users Info</h1>
+				<% } else if (locals.p) { %>
+				<h1 class="has-text-centered">Premium users Info</h1>
+				<% } else { %>
 				<h1 class="has-text-centered">Users Info</h1>
+				<%}%>
 				<br />
 				<!-- User info cards -->
 				<div id="user_list">
@@ -78,7 +103,8 @@
 							<div class="hero is-medium is-primary is-bold card-content">
 								<div class="field">
 									<label for="<%=x._id %>">ID: </label>
-									<input readonly
+									<input
+										readonly
 										name="id"
 										class="input is-static"
 										type="text"
@@ -116,7 +142,7 @@
 									id="<%=x.email %>"
 									value="<%=x.email %>"
 								/>
-							</div>	
+							</div>
 							<div class="card-content">
 								<label for="<%=x.dietary%>">Dietary: </label>
 								<input
@@ -137,29 +163,23 @@
 									value="<%=x.prefer_food %>"
 								/>
 							</div>
-						<!-- Buttons -->
+							<!-- Buttons -->
 							<div class="columns is-multiline is-centered">
-								<button
-									type="submit"
-									class="button is-danger"
-									name="delete">
+								<button type="submit" class="button is-danger" name="delete">
 									Delete account
 								</button>
 
-								<button 
-									type="submit" 
-									class="button is-primary" 
-									name="update">
+								<button type="submit" class="button is-primary" name="update">
 									Update account
 								</button>
 							</div>
 							<br />
-				  		</div>
+						</div>
 					</form>
 					<br />
 					<% }) ; %> <% } %>
 				</div>
-			</div> 
+			</div>
 		</section>
 
 		<footer class="footer">
@@ -168,6 +188,5 @@
 	</body>
 
 	<%- include('./parts/jq'); -%>
-  
 	<script type="text/javascript" src="/Src/admin_ajax.js"></script>
 </html>

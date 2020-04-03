@@ -7123,8 +7123,15 @@ label.panel-block {
 * {
   font-family: "Montserrat", sans-serif; }
 
+html, body {
+  height: 100%;
+  background-color: #eff0eb; }
+
 .footer {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0; }
+
+#title {
+  color: black; }

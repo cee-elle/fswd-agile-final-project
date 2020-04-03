@@ -5,27 +5,35 @@
 		<title>Dashboard</title>
 	</head>
 
-	<body>
-		<%if (locals.msg) { %>
-		<h1>
-			<%=msg %>
-		</h1>
-
-		<% } else { %>
-		<!-- This needs to be cleaned up -->
-		<h1>hello</h1>
-		<% } %>
+	<body style="margin: 0;">
 		<section class="hero is-primary is-fullheight is-bold">
 			<div class="hero-body">
 				<div class="container">
 					<h1 class="title">
 						Dashboard
 					</h1>
+					<%if (locals.msg != '') { %>
+					<div class="notification is-danger">
+						<h1>
+							<%=msg %>
+						</h1>
+					</div>
+					<% } else { %> <% } %>
 					<div class="buttons are-medium">
-						<a href="/login_and_signup" style="color:black;" class="button is-rounded">
+						<a
+							href="/login_and_signup"
+							class="button is-rounded has-text-black	"
+						>
 							<span>Login Page</span>
 						</a>
 					</div>
+
+					<div style="width: 100px;">
+						<a href="https://spoonacular.com/food-api"
+							><img src="https://spoonacular.com/images/spoonacular-logo-b.svg"
+						/></a>
+					</div>
+					<br />
 					<div id="edamam-badge" data-color="white"></div>
 				</div>
 			</div>
