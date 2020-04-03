@@ -5,6 +5,10 @@
     padding-left: 1rem;
 }
 
+* {
+    font-family: "Montserrat", sans-serif;
+}
+
 button {
     margin: 0 2rem;
 }
