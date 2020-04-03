@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Basic Account</title>
-		<link rel="stylesheet" href="css/mystyles.css" />
+		<link rel="stylesheet" href="/css/mystyles.css" />
 		<script
 			defer
 			src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
@@ -23,6 +23,11 @@
 		<section
 			class="hero is-fullheight-with-navbar is-fluid is-bold is-primary content_page"
 		>
+			<%if (locals.ero ) { %>
+			<div class="notification is-danger">
+				<%=ero%>
+			</div>
+			<%}%>
 			<div
 				class="container"
 				style="height: 80%; margin-top:2% ;margin-bottom: 120px;"

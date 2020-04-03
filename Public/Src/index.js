@@ -38,15 +38,22 @@ $(function() {
 								<div class="buttons ">
                                                     <a class="button is-small is-light " style="margin:0 3px 3px 0; padding:2px 7px ">
                                                         <span class="icon "><i class="far fa-clock "></i></span>
-                                                        <span>${x.recipe.totalTime} mins</span>
+                                                        <span>${
+																													x.recipe.totalTime
+																												} mins</span>
                                                     </a>
                                                     <a class="button is-small is-light " style="margin:0 3px 3px 0; padding:2px 7px ">
                                                         <span class="icon "><i class="fas fa-utensils "></i></span>
-                                                        <span>${x.recipe.yield}</span>
+                                                        <span>${
+																													x.recipe.yield
+																												}</span>
                                                     </a>
                                                     <a class="button is-small is-light " style="margin:0 3px 3px 0; padding:2px 7px ">
                                                         <span class="icon "><i class="fas fa-fire "></i></span>
-                                                        <span>${Math.trunc(x.recipe.calories / x.recipe.yield)} kcal</span>
+                                                        <span>${Math.trunc(
+																													x.recipe.calories /
+																														x.recipe.yield
+																												)} kcal</span>
                                                     </a>
 
 
@@ -65,7 +72,7 @@ $(function() {
 							</div>
 							<div class="buttons is-centered ">
 								<a
-									href="/view_recipe"
+									href="/secure/view_recipe"
 									class="button is-success is-rounded "
 									style="text-align: center; "
 								>
@@ -80,7 +87,7 @@ $(function() {
 			},
 			error: function() {
 				console.log(`error`); // TODO error popup
-			},
+			}
 		});
 	});
 
