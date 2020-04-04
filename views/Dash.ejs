@@ -15,19 +15,62 @@
 		<!-- This needs to be cleaned up -->
 		<h1>hello</h1>
 		<% } %>
-		<section class="hero is-primary is-fullheight is-bold">
-			<div class="hero-body">
-				<div class="container">
-					<h1 class="title">
-						Landing Page
-					</h1>
-					<div class="buttons are-medium"><!-- button text is white -->
-						<a href="/login_and_signup" class="button is-rounded">
-							<span>Login Page</span>
-						</a>
+		<section class="hero is-primary is-fullheight is-bold is-medium">
+			<div class="hero-head">
+				<div class="navbar">
+					<div class="container">
+						<div class="navbar-brand">
+							<a class="navbar-item">
+								<img src="/images/logo.png" alt="Logo" />
+								<h1 class="title">App</h1>
+							</a>
+						</div>
+						<div id="navbarMenuHeroA" class="navbar-menu">
+							<div class="navbar-end">
+								<span class="navbar-item">
+									<a
+										href="/login_and_signup"
+										class="button is-primary is-inverted"
+									>
+										<span>Login here</span>
+									</a>
+								</span>
+							</div>
+						</div>
 					</div>
-					<div id="edamam-badge" data-color="white"></div>
 				</div>
+			</div>
+
+			<div class="hero-body">
+				<div class="container has-text-centered">
+					<h1 class="title">
+						Lettuce help find you recipes.
+					</h1>
+					<br />
+					<h2 class="subtitle">
+						"App" provides you with a simple way to find numerous different
+						recipes.
+						<br />
+						Browse through a variety of recipes based on your preferences.
+						<br />
+						Track your calories, without fear of your allergies.
+					</h2>
+					<a
+						href="/login_and_signup"
+						class="button is-primary is-inverted is-medium"
+					>
+						<span>Start searching!</span>
+					</a>
+				</div>
+			</div>
+
+			<div class="hero-foot has-text-centered">
+				<a href="https://spoonacular.com/food-api"
+					><img
+						src="https://spoonacular.com/images/spoonacular-logo-b.svg"
+						style="width: 150px;"
+				/></a>
+				<div id="edamam-badge" data-color="white"></div>
 			</div>
 		</section>
 	</body>

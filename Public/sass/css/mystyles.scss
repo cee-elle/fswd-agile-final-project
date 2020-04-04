@@ -1,7 +1,7 @@
 @charset "utf-8";
 @import "../../../node_modules/bulma/bulma.sass";
 // Import a Google Font
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Ubuntu");
 // Set your brand colors
 $purple: #8a4d76;
 $pink: #fa7c91;
@@ -12,10 +12,10 @@ $beige-lighter: #eff0eb;
 $family-sans-serif: "Montserrat", sans-serif;
 $grey-dark: $brown;
 $grey-light: $beige-light;
-$primary: $purple;
 $link: $pink;
 $widescreen-enabled: false;
 $fullhd-enabled: false;
+$divider-background-color: black;
 // Update some of Bulma component variables
 $body-background-color: $beige-lighter;
 $control-border-width: 2px;
@@ -23,7 +23,6 @@ $input-border-color: transparent;
 $input-shadow: none;
 $footer-padding: 1rem 1.5rem;
 // Import only what you need from Bulma
-// ../node_modules/bulma/sass/utilities/_all.sass
 @import "../../../node_modules/bulma/sass/utilities/_all.sass";
 @import "../../../node_modules/bulma/sass/base/_all.sass";
 @import "../../../node_modules/bulma/sass/elements/button.sass";
@@ -34,6 +33,16 @@ $footer-padding: 1rem 1.5rem;
 @import "../../../node_modules/bulma/sass/layout/hero.sass";
 @import "../../../node_modules/bulma/sass/layout/section.sass";
 @import "../../../node_modules/bulma/sass/layout/footer.sass";
+@import "../../../node_modules/bulma/sass/components/dropdown.sass";
+* {
+	font-family: "Montserrat", sans-serif;
+}
+
+.basic-body {
+	margin: 0;
+	padding: 0;
+}
+
 body {
 	margin: 2%;
 	padding: auto;
@@ -48,13 +57,79 @@ body {
 }
 
 .card-body {
-	height: 15rem;
+	height: 8rem;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
-main {
-	padding: 0 10%;
+.main-body {
+	width: 70%;
+}
+
+.pricing-plan {
+	border-bottom: 1px solid #e1f1ff;
+	padding: 25px;
+}
+
+.pricing-plan:last-child {
+	border-bottom: none;
+}
+
+@media (min-width: 900px) {
+	.pricing-plan {
+		border-bottom: none;
+		border-right: 1px solid #e1f1ff;
+		flex-basis: 100%;
+		padding: 25px 50px;
+	}
+	.pricing-plan:last-child {
+		border-right: none;
+	}
+}
+
+.pricing-features {
+	letter-spacing: 1px;
+	margin: 50px 0 25px;
+	height: 12rem;
+}
+
+.pricing-features-item {
+	border-top: 1px solid #e1f1ff;
+	font-size: 12px;
+	line-height: 1.5;
+	padding: 10px 0;
+}
+
+.pricing-features-item:last-child {
+	border-bottom: 1px solid #e1f1ff;
+}
+
+.pricing-price {
+	display: block;
+	font-size: 32px;
+	font-weight: 700;
+}
+
+.image--cover {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	margin: 20px;
+	object-fit: cover;
+	object-position: center right;
+}
+
+.hero-body {
+	padding: 0;
+}
+
+.meal-plan-cards:not(:last-child) {
+	border-right: 0.05rem solid black;
+}
+
+.recipe-card {
+	margin: 5% 0;
+	padding: 0 20px;
 }
 
 .footer {
@@ -62,4 +137,17 @@ main {
 	bottom: 0;
 	left: 0;
 	right: 0;
+	z-index: 1;
+}
+
+.nav_header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
+}
+
+.content_page {
+	margin-top: 50px;
 }

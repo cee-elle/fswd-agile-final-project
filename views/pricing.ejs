@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Basic Account</title>
+		<link rel="stylesheet" href="/css/mystyles.css" />
+		<script
+			defer
+			src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+		></script>
+		<link
+			href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+
+	<body class="basic-body">
+		<header class="nav_header">
+			<%if (locals.elem ) { %> <%- include('./parts/header',{elem:elem}); -%>
+			<%}%>
+		</header>
+		<section
+			class="hero is-fullheight-with-navbar is-fluid is-bold is-primary content_page"
+		>
+			<%if (locals.ero ) { %>
+			<div class="notification is-danger">
+				<%=ero%>
+			</div>
+			<%}%>
+			<div
+				class="container"
+				style="height: 80%; margin-top:2% ;margin-bottom: 120px;"
+			>
+				<div class="tile is-ancestor">
+					<div class="tile is-parent">
+						<article
+							class="tile is-child box has-text-centered"
+							style="padding: 5% 15%;"
+						>
+							<img
+								src="https://images.unsplash.com/photo-1546548970-71785318a17b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
+								alt=""
+								class="image--cover"
+							/>
+							<p
+								class="title has-text-centered is-size-1 "
+								style="color:black;"
+							>
+								Basic
+							</p>
+							<ul class="pricing-features">
+								<li class="pricing-features-item">
+									Search by ingredient, calorie amount or dietary restrictions
+								</li>
+								<li class="pricing-features-item">
+									Get <strong>3</strong> ingredient cards
+								</li>
+								<li class="pricing-features-item">
+									Premium Trial for 3 days!
+								</li>
+							</ul>
+							<span class="pricing-price">Free</span>
+							<br />
+							<button class="button is-success is-rounded is-outlined">
+								<span>Start</span>
+							</button>
+						</article>
+					</div>
+
+					<div class="tile is-parent">
+						<article
+							class="tile is-child box has-text-centered"
+							style="padding: 5% 15%;"
+						>
+							<img
+								src="https://images.unsplash.com/photo-1546548970-71785318a17b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
+								alt=""
+								class="image--cover"
+							/>
+							<p class="title has-text-centered is-size-1" style="color:black;">
+								Premium
+							</p>
+							<ul class="pricing-features">
+								<li class="pricing-features-item">
+									<strong>Unlimited</strong> search ingredient, calorie amount
+									or dietary restrictions
+								</li>
+								<li class="pricing-features-item">
+									<strong>Unlimited</strong> recipe cards
+								</li>
+								<li class="pricing-features-item">
+									<strong>Coming soon!</strong> Calorie Tracker
+								</li>
+								<li class="pricing-features-item">
+									<strong>Unlimited</strong> Meal Plan
+								</li>
+							</ul>
+							<span class="pricing-price">$40.00 / year</span>
+							<br />
+							<a
+								href="/payment_page"
+								class="button is-success is-rounded is-outlined"
+							>
+								<span>Start</span>
+							</a>
+						</article>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer class="footer ">
+			<%- include('./parts/footer'); -%>
+		</footer>
+	</body>
+	<script type="text/javascript" src="/Src/burger.js"></script>
+</html>

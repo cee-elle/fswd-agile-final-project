@@ -1,73 +1,87 @@
 const express = require("express");
-const fetch = require("node-fetch");
 const router = express.Router();
 
-module.exports = users => {
-  // loads all user info from db for admin
-  router.get("/a", (req, res) => {
-    users.find().then(elem => {
-      res.render("admin", { elem });
-    });
-  });
+module.exports = (users) => {
+	// loads all user info from db for admin
+	router.get("/a", (req, res) => {
+		users.find().then((elm) => {
+			res.render("admin", { elm, elem: req.cookies.jwt.user });
+		});
+	});
 
-  // sheets best, no longer used
-  router.post("/a", (req, res) => {
-    const data = [req.body];
-    fetch(process.env.SHEET_BEST, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-      .then(r => r.json())
-      .then(data => {
-        res.send(data);
-      })
-      .catch(error => {
-        res.status(500).send(`${error.message}🤦🏻`);
-      });
-  });
+	router.get("/p", (req, res) => {
+		users.find({ role: "premium" }).then((elm) => {
+			res.render("admin", { elm, p: "p" });
+		});
+	});
 
-  // updates user info on db
-  router.post("/update", async (req, res) => {
-    const { id, role, name, email, dietary, prefer } = req.body;
-    await users.findOneAndUpdate(
-      { _id: id },
-      {
-        $set: {
-          role: role,
-          name: name,
-          email: email,
-          dietary: dietary,
-          prefer_food: prefer
-        }
-      },
-      { upsert: true },
-      function(err) {
-        if (err) return console.error(err);
-        res.status(200).send("Profile Update!");
-      }
-    );
-  });
+	router.get("/n", (req, res) => {
+		users.find({ role: "normal" }).then((elm) => {
+			res.render("admin", { elm, n: "n" });
+		});
+	});
 
-  // delete user from db
-  router.post("/delete", (req, res) => {
-    const { id } = req.body;
-    users.deleteOne({ _id: id }, err => {
-      if (err) return console.error(err);
-      res.status(200).send("User successfully removed from polls collection!");
-    });
-  });
+	// updates user info on db
+	router.post("/update", async (req, res) => {
+		const { id, role, name, email, dietary, prefer } = req.body;
+		await users.findOneAndUpdate(
+			{ _id: id },
+			{
+				$set: {
+					role: role,
+					name: name,
+					email: email,
+					dietary: dietary,
+					prefer_food: prefer,
+				},
+			},
+			{ upsert: true },
+			function(err) {
+				if (err) return console.error(err);
+				res.status(200).send("Profile Update!");
+			}
+		);
+	});
 
-  router.get("/normal", (req, res) => {
-    res.render("normal");
-  });
+	//update
+	router.post("/update", async (req, res) => {
+		const { id, role, name, email, dietary, prefer } = req.body;
+		console.log(id);
+		await users.findOneAndUpdate(
+			{ _id: id },
+			{
+				$set: {
+					role: role,
+					name: name,
+					email: email,
+					dietary: dietary,
+					prefer_food: prefer,
+				},
+			},
+			{ upsert: true },
 
-  router.get("/premium", (req, res) => {
-    res.render("premium");
-  });
+			function(err) {
+				//function(err, user) {
+				if (err) return console.error(err);
+				console.log("Profile Update!");
+				res.status(200).send("Profile Update!");
+			}
+		);
+	});
 
-  return router;
+	//delete
+	router.post("/delete", (req, res) => {
+		console.log("User successfully removed from polls collection!");
+		res.status(200).send("User successfully removed from polls collection!");
+	});
+
+	router.get("/premium", (req, res) => {
+		res.render("premium", { elem: req.cookies.jwt.user });
+	});
+
+	router.get("/normal", (req, res) => {
+		res.render("normal", { elem: req.cookies.jwt.user });
+	});
+
+	return router;
 };
