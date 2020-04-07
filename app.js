@@ -108,7 +108,7 @@ module.exports = (db, users) => {
 	});
 
 	app.get("/payment_page", (req, res) => {
-		res.send("this the payment page <a href='/'>click here to go back</a>");
+		res.render("payment");
 	});
 
 	app.get("/normal_hr", (req, res) => {
