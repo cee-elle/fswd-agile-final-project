@@ -116,13 +116,10 @@ module.exports = () => {
 	};
 
 	const spoonacular_request = (url, query) => {
-		return urirest
-			.get(url)
-			.query(query)
-			.headers({
-				"x-rapidapi-host": process.env.SPOONACULAR_HOST,
-				"x-rapidapi-key": process.env.SPOONACULAR_API,
-			});
+		return urirest.get(url).query(query).headers({
+			"x-rapidapi-host": process.env.SPOONACULAR_HOST,
+			"x-rapidapi-key": process.env.SPOONACULAR_API,
+		});
 	};
 
 	router
@@ -173,8 +170,8 @@ module.exports = () => {
 						results.push(data.body.results[Math.floor(Math.random() * length)]);
 					}
 					res.render("premium", {
-						id: req.cookies.jwt.user._id,
-						elem: req.cookies.jwt.user,
+						id: req.user._id,
+						elem: req.user,
 						msg: [...new Set(results)],
 					});
 				})
@@ -233,7 +230,7 @@ module.exports = () => {
 				.then((data) => {
 					// res.send({ info: data.body });
 					res.render("meal_plan", {
-						elem: req.cookies.jwt.user,
+						elem: req.user,
 						info: data.body,
 					});
 				})

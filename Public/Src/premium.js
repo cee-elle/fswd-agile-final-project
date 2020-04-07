@@ -7,7 +7,7 @@ summary.forEach((x) => {
 			type: "post",
 			url: "/api/spoonacular_summary",
 			data: $(x).serialize(),
-			success: function(response) {
+			success: function (response) {
 				id = response.info.id;
 				$(`#${id}space`).empty();
 				$(`#${id}space`).append(`
@@ -17,13 +17,15 @@ summary.forEach((x) => {
 					</div>
 				  </div>`);
 				$(`#${id}`).addClass("is-active");
+				$("html").css("overflow-y", "hidden");
 			},
 			error: (err) => {
 				alert(err);
 			},
 		});
-		$(`.${id}delete`).click(function() {
+		$(`.${id}delete`).click(function () {
 			$(`#${id}`).removeClass("is-active");
+			$("html").css("overflow-y", "scroll");
 		});
 	});
 });
@@ -37,7 +39,7 @@ frm.forEach((x) => {
 			type: "post",
 			url: "/api/spoonacular_instruction",
 			data: $(x).serialize(),
-			success: function(response) {
+			success: function (response) {
 				const step = response.info;
 				id = response._id;
 				$(`#${id}space`).empty();
@@ -63,7 +65,7 @@ frm.forEach((x) => {
 			},
 		});
 
-		$(`.${id}delete`).click(function() {
+		$(`.${id}delete`).click(function () {
 			$(`#${id}`).removeClass("is-active");
 		});
 	});
