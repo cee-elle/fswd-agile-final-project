@@ -1,11 +1,10 @@
-# fswd-agile-final-project
+# Health Bro
 
-Users can search for meal suggestions by searching the main ingredient.
+* Basic account users can search for meal suggestions by searching the main ingredient, calorie amount, or dietary restrictions.
+* Premium account user can search for any type of ingredient, calorie amount, dietary restrictions, cuisine type, and meal type. A bonus option of searching a for meal plan with target total calorie amount per day.
+* Filters to results can be applied through calorie per serving and specific diet restrictions.
 
-Filters to results can be applied through calorie per serving and specific diet restrictions.
-
-Registered user credentials are stored on our MongoDB with passwords appropriately hashed.
-
+## Installation 
 To run locally:
 
 1. install dependencies
@@ -14,7 +13,7 @@ To run locally:
 npm install
 ```
 
-1. run server
+2. run server
 
 ```bash
 npm start
@@ -26,9 +25,14 @@ _or_
 node server.js
 ```
 
----
+## Built Using:
+* Node.js
+* Express
+* MongoDB
 
-### Current active endpoints for users:
+
+
+## Current active endpoints for users:
 
 ```
 * home
@@ -58,7 +62,7 @@ http://localhost:8888/user/logout
 
 ---
 
-### Internal endpoints
+## Internal endpoints
 
 ```
 
@@ -96,3 +100,14 @@ http://localhost:8888/admin/normal
 http://localhost:8888/admin/premium
 
 ```
+## Not Yet Implemented
+* Calorie Tracker
+
+## Contributors
+* Homer Lee
+* Don Li
+* Skylar Zhao
+* Cindy Le
+* Jaime Deng
+
+## Licensing
