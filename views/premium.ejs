@@ -25,106 +25,106 @@
 		<main class="content_page">
 			<section>
 				<br />
-				<div class="container ">
+				<div class="container">
 					<form id="spoon" action="/api/spoonacular" method="POST">
-						<div class="field is-horizontal ">
-							<div class="field-label is-medium ">
-								<label class="label ">Ingredient: </label>
+						<div class="field is-horizontal">
+							<div class="field-label is-medium">
+								<label class="label">Ingredient: </label>
 							</div>
-							<div class="field-body ">
-								<div class="field ">
-									<div class="control is-expanded has-icons-left ">
+							<div class="field-body">
+								<div class="field">
+									<div class="control is-expanded has-icons-left">
 										<input
 											name="query"
-											class="input "
+											class="input"
 											type="text "
 											placeholder="Ex. chicken "
 											autocomplete="off"
 										/>
-										<p class="help "></p>
+										<p class="help"></p>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<div class="field is-horizontal ">
-							<div class="field-label is-medium ">
-								<label class="label ">Calorie: </label>
+						<div class="field is-horizontal">
+							<div class="field-label is-medium">
+								<label class="label">Calorie: </label>
 							</div>
-							<div class="field-body ">
-								<div class="field ">
-									<div class="control is-expanded has-icons-left ">
+							<div class="field-body">
+								<div class="field">
+									<div class="control is-expanded has-icons-left">
 										<input
 											name="calorie"
-											class="input "
+											class="input"
 											type="text "
 											placeholder="Ex. 400 "
 										/>
-										<p class="help "></p>
+										<p class="help"></p>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<div class="field is-horizontal ">
-							<div class="field-label is-medium ">
-								<label class="label ">Inclue Ingredient: </label>
+						<div class="field is-horizontal">
+							<div class="field-label is-medium">
+								<label class="label">Inclue Ingredient: </label>
 							</div>
-							<div class="field-body ">
-								<div class="field ">
-									<div class="control is-expanded has-icons-left ">
+							<div class="field-body">
+								<div class="field">
+									<div class="control is-expanded has-icons-left">
 										<input
 											name="include"
-											class="input "
+											class="input"
 											type="text "
 											placeholder="Ex. oninon "
 										/>
-										<p class="help "></p>
+										<p class="help"></p>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<div class="field is-horizontal ">
-							<div class="field-label is-medium ">
-								<label class="label ">Exclue Ingredient: </label>
+						<div class="field is-horizontal">
+							<div class="field-label is-medium">
+								<label class="label">Exclue Ingredient: </label>
 							</div>
-							<div class="field-body ">
-								<div class="field ">
-									<div class="control is-expanded has-icons-left ">
+							<div class="field-body">
+								<div class="field">
+									<div class="control is-expanded has-icons-left">
 										<input
 											name="exclude"
-											class="input "
+											class="input"
 											type="text "
 											placeholder="Ex. oninon "
 										/>
-										<p class="help "></p>
+										<p class="help"></p>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<div class="field is-horizontal ">
-							<div class="field-label is-medium ">
-								<label class="label ">Intolerances:</label>
+						<div class="field is-horizontal">
+							<div class="field-label is-medium">
+								<label class="label">Intolerances:</label>
 							</div>
 							<div class="field-body diet-checkbox">
 								<%- include('./parts/intolerances_option'); -%>
 							</div>
 						</div>
 
-						<div class="field is-horizontal ">
-							<div class="field-label is-medium ">
-								<label class="label ">Dietary Restriction:</label>
+						<div class="field is-horizontal">
+							<div class="field-label is-medium">
+								<label class="label">Dietary Restriction:</label>
 							</div>
 							<div class="field-body diet-checkbox">
 								<%- include('./parts/dietary_option'); -%>
 							</div>
 						</div>
 
-						<div class="field is-horizontal ">
-							<div class="field-label is-medium ">
-								<label class="label ">Dish type:</label>
+						<div class="field is-horizontal">
+							<div class="field-label is-medium">
+								<label class="label">Dish type:</label>
 							</div>
 							<div class="field-body diet-checkbox">
 								<%- include('./parts/dish_type'); -%>
@@ -133,11 +133,11 @@
 					</form>
 				</div>
 
-				<div class="buttons is-centered ">
+				<div class="buttons is-centered">
 					<button
 						type="submit"
-						class="button is-primary is-rounded "
-						style="text-align: center; "
+						class="button is-primary is-rounded"
+						style="text-align: center;"
 						form="spoon"
 					>
 						<span class="icon">
@@ -149,43 +149,43 @@
 				<br />
 			</section>
 
-			<section class="hero is-medium is-primary is-bold ">
-				<div class="container ">
-					<h1 class="title ">
+			<section class="hero is-medium is-primary is-bold">
+				<div class="container">
+					<h1 class="title">
 						Results
 					</h1>
 				</div>
-				<div class="container "></div>
+				<div class="container"></div>
 			</section>
 
-			<section class="section ">
+			<section class="section">
 				<div class="columns is-multiline" id="recipe_card">
 					<%if (locals.msg ) { %> <% msg.forEach( x => { %>
-					<div class="column is-4 ">
+					<div class="column is-4">
 						<%- include('./parts/recipe_model',{x:x}); -%>
 						<div class="card">
 							<div class="card-image">
-								<figure class="image is-4by3 ">
+								<figure class="image is-4by3">
 									<img src="<%=x.image%>" alt="Placeholder image " />
 								</figure>
 							</div>
-							<div class="card-content ">
-								<div class="media ">
-									<div class="media-content ">
-										<p class="title is-4 "><%=x.title%></p>
-										<p class="subtitle "></p>
+							<div class="card-content">
+								<div class="media">
+									<div class="media-content">
+										<p class="title is-4"><%=x.title%></p>
+										<p class="subtitle"></p>
 									</div>
 								</div>
-								<div class="tags ">
-									<span class="tag ">
-										<i class="fas fa-fire "></i><%=x.calories%>
+								<div class="tags">
+									<span class="tag">
+										<i class="fas fa-fire"></i><%=x.calories%>
 									</span>
-									<span class="tag ">
+									<span class="tag">
 										<i class="fas fa-utensils"></i><%=x.fat%>
 									</span>
 								</div>
-								<section class="card-body ">
-									<div class="content ">
+								<section class="card-body">
+									<div class="content">
 										<form class="recipe_summary">
 											<input
 												type="text"
@@ -195,8 +195,8 @@
 											/>
 											<button
 												type="submit"
-												class="button is-rounded "
-												style="text-align: center; "
+												class="button is-rounded"
+												style="text-align: center;"
 											>
 												View Recipe summary
 											</button>
@@ -207,14 +207,14 @@
 								Source from: <small> spoonacular </small>
 							</div>
 
-							<div class="buttons is-centered ">
+							<div class="buttons is-centered">
 								<form class="recipe_info">
 									<input type="text" name="food_id" value="<%=x.id%>" hidden />
 
 									<button
 										type="submit"
-										class="button is-primary is-rounded "
-										style="text-align: center; "
+										class="button is-primary is-rounded"
+										style="text-align: center;"
 										id="<%=x.id%>"
 									>
 										View Recipe
@@ -228,12 +228,11 @@
 				</div>
 			</section>
 		</main>
-
-		<footer class="footer ">
+		<footer class="footer">
 			<%- include('./parts/footer'); -%>
 		</footer>
+		<script type="text/javascript" src="/Src/premium.js"></script>
+		<script type="text/javascript" src="/Src/burger.js"></script>
 	</body>
 	<%- include('./parts/jq'); -%>
-	<script type="text/javascript" src="/Src/premium.js"></script>
-	<script type="text/javascript" src="/Src/burger.js"></script>
 </html>

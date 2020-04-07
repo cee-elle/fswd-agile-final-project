@@ -38,35 +38,22 @@ module.exports = (db, users) => {
 	app.use("/", index_route);
 
 	// admin middleware
-	app.use("/admin", (req, res, next) => {
-		const is_admin = req.cookies.jwt.user.role;
-		if (is_admin == "admin") {
-			req.is_admin = true;
-			next();
-		} else {
-			req.is_admin = false;
-			next();
-		}
-	});
 
-	app.use("/admin", (req, res, next) => {
-		try {
-			const is_admin = req.cookies.jwt.user.role;
-			if (is_admin == "admin") {
-				req.is_admin = true;
-				next();
-			} else {
-				req.is_admin = false;
-				next();
+	const is_login = (req, res, next) => {
+		passport.authenticate("jwt", { session: false }, (err, user, info) => {
+			if (err) res.render("error");
+			if (!user) {
+				console.log(info);
+				res.render("error");
 			}
-		} catch (err) {
-			req.is_admin = false;
+			req.user = user;
 			next();
-		}
-	});
+		})(req, res, next);
+	};
 
 	const is_admin = (req, res, next) => {
-		if (req.is_admin) {
+		console.log(req.user);
+		if (req.user.role == "admin") {
 			next();
 		} else {
 			req.flash("msg", "you are not an admin user");
@@ -76,7 +63,7 @@ module.exports = (db, users) => {
 
 	// admin page
 	const admin_route = require("./Routes/admin_route")(users);
-	app.use("/admin", is_admin, admin_route);
+	app.use("/admin", is_login, is_admin, admin_route);
 
 	// auth route
 	const auth_route = require("./Routes/auth_route")(users);
@@ -85,17 +72,6 @@ module.exports = (db, users) => {
 	// secure
 	const secure_route = require("./Routes/secure_route")(users);
 
-	const is_login = (req, res, next) => {
-		passport.authenticate("jwt", { session: false }, (err, user, info) => {
-			if (err) res.render("error");
-			if (!user) {
-				console.log(info);
-				res.render("error");
-			}
-			next();
-		})(req, res, next);
-	};
-
 	app.use("/secure", is_login, secure_route);
 
 	// edamam api route
@@ -103,13 +79,6 @@ module.exports = (db, users) => {
 	app.use("/api", is_login, api_route);
 
 	//temp endpoint
-	app.get("/pricing", (req, res) => {
-		res.render("pricing", { elem: req.cookies.jwt.user });
-	});
-
-	app.get("/payment_page", (req, res) => {
-		res.render("payment");
-	});
 
 	app.get("/normal_hr", (req, res) => {
 		res.render("normal_hr");

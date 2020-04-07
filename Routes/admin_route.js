@@ -5,7 +5,7 @@ module.exports = (users) => {
 	// loads all user info from db for admin
 	router.get("/a", (req, res) => {
 		users.find().then((elm) => {
-			res.render("admin", { elm, elem: req.cookies.jwt.user });
+			res.render("admin", { elm, elem: req.user });
 		});
 	});
 
@@ -36,7 +36,7 @@ module.exports = (users) => {
 				},
 			},
 			{ upsert: true },
-			function(err) {
+			function (err) {
 				if (err) return console.error(err);
 				res.status(200).send("Profile Update!");
 			}
@@ -60,7 +60,7 @@ module.exports = (users) => {
 			},
 			{ upsert: true },
 
-			function(err) {
+			function (err) {
 				//function(err, user) {
 				if (err) return console.error(err);
 				console.log("Profile Update!");
@@ -76,11 +76,11 @@ module.exports = (users) => {
 	});
 
 	router.get("/premium", (req, res) => {
-		res.render("premium", { elem: req.cookies.jwt.user });
+		res.render("premium", { elem: req.user });
 	});
 
 	router.get("/normal", (req, res) => {
-		res.render("normal", { elem: req.cookies.jwt.user });
+		res.render("normal", { elem: req.user });
 	});
 
 	return router;

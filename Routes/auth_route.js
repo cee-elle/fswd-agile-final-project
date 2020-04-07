@@ -38,9 +38,7 @@ module.exports = (users) => {
 							delete user.password; // del pw from token
 							const payload = JSON.stringify(user);
 							const token = authController.generateToken(payload);
-							res
-								.cookie("jwt", { user: user, token: token })
-								.redirect("/secure");
+							res.cookie("jwt", { token: token }).redirect("/secure");
 						});
 					}
 				)(req, res, next);
@@ -101,9 +99,7 @@ module.exports = (users) => {
 									const token = await authController.generateToken(
 										JSON.stringify(user)
 									);
-									res
-										.cookie("jwt", { user: user, token: token })
-										.redirect("/secure");
+									res.cookie("jwt", { token: token }).redirect("/secure");
 								});
 						} catch (error) {
 							console.log(error);

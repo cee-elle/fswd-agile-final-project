@@ -28,6 +28,7 @@ $footer-padding: 1rem 1.5rem;
 @import "../../../node_modules/bulma/sass/elements/button.sass";
 @import "../../../node_modules/bulma/sass/elements/container.sass";
 @import "../../../node_modules/bulma/sass/elements/title.sass";
+@import "../../../node_modules/bulma/sass/elements/image.sass";
 @import "../../../node_modules/bulma/sass/form/_all.sass";
 @import "../../../node_modules/bulma/sass/components/navbar.sass";
 @import "../../../node_modules/bulma/sass/layout/hero.sass";
@@ -43,7 +44,14 @@ $footer-padding: 1rem 1.5rem;
 	padding: 0;
 }
 
+html,
 body {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	height: 100%;
 	margin: 2%;
 	padding: auto;
 }
