@@ -3,7 +3,7 @@ const router = express.Router();
 
 module.exports = () => {
 	router.get("/", (req, res) => {
-		res.render("Dash", { msg: req.flash("msg") });
+		res.render("Dash");
 	});
 
 	router.get("/login_and_signup", (req, res) => {

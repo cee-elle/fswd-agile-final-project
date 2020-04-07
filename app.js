@@ -41,23 +41,24 @@ module.exports = (db, users) => {
 
 	const is_login = (req, res, next) => {
 		passport.authenticate("jwt", { session: false }, (err, user, info) => {
-			if (err) res.render("error");
 			if (!user) {
 				console.log(info);
-				res.render("error");
+				req.flash("msg", "you are not loned in");
+				res.render("error", { msg: req.flash("msg") });
+			} else {
+				req.user = user;
+				next();
 			}
-			req.user = user;
-			next();
 		})(req, res, next);
 	};
 
 	const is_admin = (req, res, next) => {
-		console.log(req.user);
 		if (req.user.role == "admin") {
 			next();
 		} else {
+			console.log("admin");
 			req.flash("msg", "you are not an admin user");
-			res.redirect("/");
+			res.render("error", { msg: req.flash("msg") });
 		}
 	};
 

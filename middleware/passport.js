@@ -42,11 +42,11 @@ const cookieExtractor = function (req) {
 	if (req && req.cookies) {
 		try {
 			token = req.cookies["jwt"]["token"];
+			return token;
 		} catch (err) {
-			console.log(err);
+			return token;
 		}
 	}
-	return token;
 };
 
 // jwt login strategy for passport

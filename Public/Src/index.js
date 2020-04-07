@@ -1,7 +1,7 @@
-$(function() {
+$(function () {
 	const frm = $("#searchForm");
 	// on searchForm submit, makes AJAX request to sever
-	frm.submit(function(e) {
+	frm.submit(function (e) {
 		e.preventDefault();
 		const url = "/api/getinfo_normal";
 		$("#recipe_card").html("");
@@ -14,7 +14,7 @@ $(function() {
 			url: url,
 			type: "POST",
 			data: str,
-			success: function(data) {
+			success: function (data) {
 				data.forEach((x) => {
 					// takes data from server and builds HTML for each returned item
 					$("#recipe_card").append(
@@ -85,8 +85,9 @@ $(function() {
 					);
 				});
 			},
-			error: function() {
-				console.log(`error`); // TODO error popup
+			error: function () {
+				// error popup
+				alert("error happened");
 			},
 		});
 	});

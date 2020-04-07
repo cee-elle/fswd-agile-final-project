@@ -15,7 +15,7 @@
 		/>
 	</head>
 
-	<body class="basic-body" style="height: 100vh;width: 100vw;">
+	<body class="basic-body" style="height: 100vh; width: 100vw;">
 		<%if (locals.info) { %><% info.meals.forEach( x => { %> <%-
 		include('./parts/recipe_model',{x:x}); -%> <% }) ; %> <% } %>
 		<header class="nav_header">
@@ -26,9 +26,9 @@
 			<section class="level">
 				<div class="container">
 					<br />
-					<h1 class="title" style="text-align: center; ">Meal Plan (daily)</h1>
+					<h1 class="title" style="text-align: center;">Meal Plan (daily)</h1>
 					<form action="/api/meal_planning" method="POST">
-						<div class="field has-addons  has-addons-centered">
+						<div class="field has-addons has-addons-centered">
 							<div class="control">
 								<input class="input" type="text" placeholder="Ex. 2000" />
 							</div>
@@ -43,18 +43,18 @@
 			</section>
 			<section class="level"></section>
 
-			<section class="hero is-fluid is-bold ">
-				<div class="hero-body container is-fluid " style="width:80%;">
-					<div class="container is-fluid ">
+			<section class="hero is-fluid is-bold">
+				<div class="hero-body container is-fluid" style="width: 80%;">
+					<div class="container is-fluid">
 						<!-- Nutrient Card -->
 
-						<div class="columns ">
+						<div class="columns">
 							<%if (locals.info) { %>
-							<div class="column ">
+							<div class="column">
 								<div class="container is-fluid bd-notification">
 									<div class="card">
 										<div class="card-content">
-											<h1 class="title ">Nutrients</h1>
+											<h1 class="title">Nutrients</h1>
 											<p>Total Calories : <%=info.nutrients.calories %></p>
 											<p>
 												Total Carbohydrates : <%=info.nutrients.carbohydrates %>
@@ -69,17 +69,17 @@
 
 							<!-- Meal cards -->
 							<%if (locals.info) { %><% info.meals.forEach( x => { %>
-							<div class="column meal-plan-cards ">
-								<div class="container is-fluid ">
-									<div class="container is-fluid ">
-										<div class="card-image ">
-											<figure class="image is-4by3 ">
+							<div class="column meal-plan-cards">
+								<div class="container is-fluid">
+									<div class="container is-fluid">
+										<div class="card-image">
+											<figure class="image is-4by3">
 												<img
 													src="https://spoonacular.com/recipeImages/<%=x.image %>"
 													alt="Placeholder image "
 												/>
 											</figure>
-											<h1 class="is-size-4 " style="text-align: center; ">
+											<h1 class="is-size-4" style="text-align: center;">
 												<%=x.title %>
 											</h1>
 										</div>
@@ -91,7 +91,7 @@
 									<p class="is-size-6 recipe-card">
 										Servings : <%=x.servings %> people
 									</p>
-									<div class="buttons is-centered ">
+									<div class="buttons is-centered">
 										<form class="recipe_info">
 											<input
 												type="text"
@@ -102,8 +102,8 @@
 
 											<button
 												type="submit"
-												class="button is-primary is-rounded "
-												style="text-align: center; "
+												class="button is-primary is-rounded"
+												style="text-align: center;"
 												id="<%=x.id%>"
 											>
 												View Recipe
@@ -120,7 +120,7 @@
 			</section>
 		</main>
 
-		<footer class="footer ">
+		<footer class="footer">
 			<%- include('./parts/footer'); -%>
 		</footer>
 	</body>
