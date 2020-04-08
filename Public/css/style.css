@@ -1,7 +1,12 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu");
 .form-row > .col,
 .form-row > [class*="col-"] {
 	padding-right: 1rem;
 	padding-left: 1rem;
+}
+
+* {
+	font-family: "Montserrat", sans-serif;
 }
 
 button {

@@ -1,72 +1,108 @@
 $(function () {
 	const frm = $("#searchForm");
+	// on searchForm submit, makes AJAX request to sever
 	frm.submit(function (e) {
 		e.preventDefault();
-		const url = "/api/getinfo";
+		const url = "/api/getinfo_normal";
 		$("#recipe_card").html("");
 		var str = $("#searchForm :input")
 			.filter((index, element) => {
 				return $(element).val() != "";
 			})
 			.serialize();
-		console.log(str);
 		$.ajax({
 			url: url,
 			type: "POST",
 			data: str,
 			success: function (data) {
 				data.forEach((x) => {
-					// console.log(x);
+					// takes data from server and builds HTML for each returned item
 					$("#recipe_card").append(
-						`<div class="col-sm-4">
-				  <div class="card">
-					  <img
-						  class="card-img"
-						  src="${x.recipe.image}"
-						  alt=""
-					  />
-					  <div class="card-body">
-						  <h4 class="card-title">${x.recipe.label}</h4>
-						  <small class="text-muted cat">
-							  <i class="far fa-clock text-info"></i> 30 minutes
-							  <i class="fas fa-users text-info"></i> 4 portions
-						  </small>
-						  <p class="card-text">Portion: ${x.recipe.yield}</p>
-						  <p class="card-text">Cal/Serving: ${Math.trunc(
-							x.recipe.calories / x.recipe.yield
-						)}</p>
-							<div class="hL">${get_all(x.recipe.healthLabels)}</div>
-					  </div>
-					  <a href="#" class="btn btn-info">Read Recipe</a>
-					  <div
-						  class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0"
-					  >
-						  <div class="views">Oct 20, 12:45PM</div>
-						  <div class="stats">
-							  <i class="far fa-eye"></i> 1347 <i class="far fa-comment"></i> 12
-						  </div>
-					  </div>
-				  </div>
-			  </div>
-			  `
+						`<div class="column is-4">
+							<div class="card">
+							<div class="card-image">
+								<figure class="image is-4by3 ">
+									<img
+										src="${x.recipe.image}"
+										alt="Food Image "
+									/>
+								</figure>
+							</div>
+							<div class="card-content ">
+								<div class="media ">
+									<div class="media-content ">
+										<p class="is-size-6" style="color:black;"><strong>${x.recipe.label}</strong></p>
+										
+									</div>
+								</div>
+								<div class="buttons ">
+                                                    <a class="button is-small is-light " style="margin:0 3px 3px 0; padding:2px 7px ">
+                                                        <span class="icon "><i class="far fa-clock "></i></span>
+                                                        <span>${
+																													x.recipe.totalTime
+																												} mins</span>
+                                                    </a>
+                                                    <a class="button is-small is-light " style="margin:0 3px 3px 0; padding:2px 7px ">
+                                                        <span class="icon "><i class="fas fa-utensils "></i></span>
+                                                        <span>${
+																													x.recipe.yield
+																												}</span>
+                                                    </a>
+                                                    <a class="button is-small is-light " style="margin:0 3px 3px 0; padding:2px 7px ">
+                                                        <span class="icon "><i class="fas fa-fire "></i></span>
+                                                        <span>${Math.trunc(
+																													x.recipe.calories /
+																														x.recipe.yield
+																												)} kcal</span>
+                                                    </a>
+
+
+
+                                                </div>
+								<section class="card-body ">
+									<div class="content ">
+										meta data
+									</div>
+								</section>
+								
+								<div class="buttons ">
+								${get_all(x.recipe.healthLabels)}
+								</div>
+								
+							</div>
+							<div class="buttons is-centered ">
+								<a
+									href="/secure/view_recipe"
+									class="button is-success is-rounded "
+									style="text-align: center; "
+								>
+									View Recipe
+								</a>
+							</div>
+							<br />
+						</div>
+						</div>`
 					);
 				});
 			},
 			error: function () {
-				console.log(`error`);
-			}
+				// error popup
+				alert("error happened");
+			},
 		});
 	});
 
+	// loops through each health label
 	function get_all(arr) {
 		let text = "";
 		arr.forEach((x) => {
-			text += `<p>${x}</p>`;
+			text += `
+			<a class="button is-small is-success is-inverted " style="margin:0; padding:5px ">
+                <span class="icon "><i class="far fa-check-square "></i></span>
+                <span>${x}</span>
+            </a>
+			`;
 		});
 		return text;
 	}
-
-	$(window).unload(function () {
-		$.cookies.del('jwt');
-	});
 });

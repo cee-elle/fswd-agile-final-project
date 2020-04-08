@@ -2,16 +2,17 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = () => {
-  router.get("/", (req, res) => {
-    res.render("Dash");
-  });
-  router.get("/login", (req, res) => {
-    res.render("login");
-  });
+	router.get("/", (req, res) => {
+		res.render("Dash");
+	});
 
-  router.get("/signup", (req, res) => {
-    res.render("signup");
-  });
+	router.get("/login_and_signup", (req, res) => {
+		if (req.cookies.jwt) {
+			res.redirect("/secure");
+		} else {
+			res.render("login_and_signup");
+		}
+	});
 
-  return router;
+	return router;
 };

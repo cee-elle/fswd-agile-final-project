@@ -1,19 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<%- include('./parts/head'); -%>
+		<title>Dashboard</title>
+	</head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-	<title>Document</title>
-</head>
+	<body>
+		<section class="hero is-primary is-fullheight is-bold is-medium">
+			<div class="hero-head">
+				<div class="navbar">
+					<div class="container">
+						<div class="navbar-brand">
+							<a class="navbar-item">
+								<img src="/images/logo.png" alt="Logo" />
+								<h1 class="title">HealthBro</h1>
+							</a>
+						</div>
+						<div id="navbarMenuHeroA" class="navbar-menu">
+							<div class="navbar-end">
+								<span class="navbar-item">
+									<a
+										href="/login_and_signup"
+										class="button is-primary is-inverted"
+									>
+										<span>Login here</span>
+									</a>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-<body class="container">
-	<h1>Dash</h1>
-	<a href="/login" class="btn btn-outline-primary">Go to login page</a>
-	<br />
-	<a href="/signup" class="btn btn-outline-primary">Go to signup page</a>
-</body>
+			<div class="hero-body">
+				<div class="container has-text-centered">
+					<h1 class="title">
+						Lettuce help find you recipes.
+					</h1>
+					<br />
+					<h2 class="subtitle">
+						HealthBro provides you with a simple way to find numerous different
+						recipes.
+						<br />
+						Browse through a variety of recipes based on your preferences.
+						<br />
+						Track your calories, without fear of your allergies.
+					</h2>
+					<a
+						href="/login_and_signup"
+						class="button is-primary is-inverted is-medium"
+					>
+						<span>Start searching!</span>
+					</a>
+				</div>
+			</div>
 
+			<div class="hero-foot has-text-centered">
+				<a href="https://spoonacular.com/food-api"
+					><img
+						src="https://spoonacular.com/images/spoonacular-logo-b.svg"
+						style="width: 150px;"
+				/></a>
+				<div id="edamam-badge" data-color="white"></div>
+			</div>
+		</section>
+	</body>
 </html>
