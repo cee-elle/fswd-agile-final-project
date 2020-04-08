@@ -104,11 +104,11 @@ http://localhost:8888/admin/premium
 * Calorie Tracker
 
 ## Contributors
-* Homer Lee
-* Don Li
-* Skylar Zhao
-* Cindy Le
-* Jaime Deng
+* Homer Li / emo8355 
+* Don Li / dl90
+* Skylar Zhao / SkylarZhao 6
+* Cindy Le / cee-elle
+* Jaime Deng / jaime-deng
 
 ## Licensing
 MIT License
