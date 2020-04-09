@@ -46,7 +46,9 @@ $(function () {
                             	    </a>
                             	    <a class="button is-small is-light " style="margin:0 3px 3px 0; padding:2px 7px ">
                             	        <span class="icon "><i class="fas fa-fire "></i></span>
-                            	        <span>${Math.trunc(x.recipe.calories / x.recipe.yield)} kcal</span>
+                            	        <span>${Math.trunc(
+																				x.recipe.calories / x.recipe.yield
+																			)} kcal</span>
                             	    </a>
 								</div>								
 								<div class="buttons " >
@@ -80,11 +82,11 @@ $(function () {
 	// loops through each health label
 	function get_all(arr) {
 		let text = "";
-		arr.forEach((x) => {
+		arr.forEach((tag) => {
 			text += `
 			<a class="button is-small is-success is-inverted " style="margin:0; padding:5px ">
                 <span class="icon "><i class="far fa-check-square "></i></span>
-                <span>${x}</span>
+                <span>${tag}</span>
             </a>
 			`;
 		});

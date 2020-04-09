@@ -142,6 +142,7 @@ module.exports = () => {
 			const dish = return_null(type);
 
 			//test whether the backend have the data
+
 			// console.log(req.body);
 			// console.log(query, calorie, include, exclude, allergy, diet, dish);
 
@@ -195,23 +196,6 @@ module.exports = () => {
 			});
 	});
 
-	router.post("/spoonacular_summary", (req, res) => {
-		const id = req.body.food_id;
-		const summary_url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/summary`;
-		urirest
-			.get(summary_url)
-			.headers({
-				"x-rapidapi-host": process.env.SPOONACULAR_HOST,
-				"x-rapidapi-key": process.env.SPOONACULAR_API,
-			})
-			.then((data) => {
-				res.send({ info: data.body });
-			})
-			.catch((err) => {
-				console.log(err.message);
-			});
-	});
-
 	router
 		.route("/meal_planning")
 		.get((req, res) => {
@@ -238,5 +222,21 @@ module.exports = () => {
 				});
 		});
 
+	router.post("/spoonacular_summary", (req, res) => {
+		const id = req.body.food_id;
+		const summary_url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/summary`;
+		urirest
+			.get(summary_url)
+			.headers({
+				"x-rapidapi-host": process.env.SPOONACULAR_HOST,
+				"x-rapidapi-key": process.env.SPOONACULAR_API,
+			})
+			.then((data) => {
+				res.send({ info: data.body });
+			})
+			.catch((err) => {
+				console.log(err.message);
+			});
+	});
 	return router;
 };
