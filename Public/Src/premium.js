@@ -31,30 +31,30 @@ summary.forEach((x) => {
 });
 
 const frm = document.querySelectorAll(".recipe_info");
-frm.forEach((x) => {
-	x.addEventListener("submit", (e) => {
+frm.forEach((recipe) => {
+	recipe.addEventListener("submit", (e) => {
 		let id = "";
 		e.preventDefault();
 		$.ajax({
 			type: "post",
 			url: "/api/spoonacular_instruction",
-			data: $(x).serialize(),
+			data: $(recipe).serialize(),
 			success: function (response) {
-				const step = response.info;
+				const steps = response.info;
 				id = response._id;
 				$(`#${id}space`).empty();
-				step.forEach((x) => {
+				steps.forEach((step) => {
 					$(`#${id}space`).append(`
 					<div class="card-content" style="border:1px solid black">
 					 <div class="media">
 						<h3>Equipment:</h3>
-							${get_all(x.equipment, "equipment")}
+							${get_all(step.equipment, "equipment")}
 						<h3>Ingredients</h3>	
-							${get_all(x.ingredients, "ingredient")}
+							${get_all(step.ingredients, "ingredient")}
 					</div>
 				
 					<div class="content">
-					  ${x.step}
+					  ${step.step}
 					</div>
 				  </div>`);
 				});

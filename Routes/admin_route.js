@@ -3,6 +3,7 @@ const router = express.Router();
 
 module.exports = (users) => {
 	// loads all user info from db for admin
+
 	router.get("/a", (req, res) => {
 		users.find().then((elm) => {
 			res.render("admin", { elm, elem: req.user });
@@ -36,34 +37,8 @@ module.exports = (users) => {
 				},
 			},
 			{ upsert: true },
-			function (err) {
+			(err) => {
 				if (err) return console.error(err);
-				res.status(200).send("Profile Update!");
-			}
-		);
-	});
-
-	//update
-	router.post("/update", async (req, res) => {
-		const { id, role, name, email, dietary, prefer } = req.body;
-		console.log(id);
-		await users.findOneAndUpdate(
-			{ _id: id },
-			{
-				$set: {
-					role: role,
-					name: name,
-					email: email,
-					dietary: dietary,
-					prefer_food: prefer,
-				},
-			},
-			{ upsert: true },
-
-			function (err) {
-				//function(err, user) {
-				if (err) return console.error(err);
-				console.log("Profile Update!");
 				res.status(200).send("Profile Update!");
 			}
 		);

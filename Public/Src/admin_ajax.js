@@ -8,29 +8,29 @@ const ajax_request = (url, data) => {
 		url: url,
 		type: "post",
 		data: data,
-		success: function(data) {
-			alert(`${data} Data Retreived.`);
+		success: function (data) {
+			alert(`${data} Data Retrieved.`);
 		},
-		error: function(data) {
+		error: function (data) {
 			console.log(data);
 		},
 	});
 };
 
 // adds an event listener for each user card
-const u_f = document.querySelectorAll(".user_info");
-u_f.forEach((x) => {
+const user_information_form = document.querySelectorAll(".user_info");
+user_information_form.forEach((user) => {
 	x.addEventListener("click", (e) => {
 		e.preventDefault();
 		const type = $(e.target).attr("name");
-		const data = $(x).serialize();
+		const data = $(user).serialize();
 		// sends AJAX request to appropriate endpoints
 		if (type == "update") {
 			ajax_request("/admin/update", data);
 		}
 		if (type == "delete") {
 			ajax_request("/admin/delete", data);
-			$(x).remove();
+			$(user).remove();
 		}
 	});
 });
