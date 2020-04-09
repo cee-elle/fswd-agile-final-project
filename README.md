@@ -30,6 +30,11 @@ node server.js
 * Express
 * MongoDB
 
+## API keys
+Please use your own API keys. The APIs used for this project includes:
+
+[Edamam](https://www.edamam.com/)
+[Spoonacular](https://spoonacular.com/)
 
 
 ## Current active endpoints for users:
