@@ -58,7 +58,7 @@ module.exports = (user) => {
 	router.get("/view_recipe", (req, res) => {
 		res.render("pricing", {
 			elem: req.user.role,
-			ero: "oops it seems like you are not a premium user",
+			error: "Oops! It seems like you are not a Premium user",
 		});
 	});
 
