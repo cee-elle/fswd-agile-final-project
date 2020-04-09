@@ -1,8 +1,20 @@
 # Health Bro
 
+## Heroku app: [go now](https://healthbro.herokuapp.com)
+
 * Basic account users can search for meal suggestions by searching the main ingredient, calorie amount, or dietary restrictions.
 * Premium account user can search for any type of ingredient, calorie amount, dietary restrictions, cuisine type, and meal type. A bonus option of searching a for meal plan with target total calorie amount per day.
 * Filters to results can be applied through calorie per serving and specific diet restrictions.
+
+## prepare
+1. go to [rapidapi](https://rapidapi.com)
+2. go to [Spoonacular](https://rapidapi.com/spoonacular/api/Recipe%20-%20Food%20-%20Nutrition)
+   1. get your X-RapidAPI-Key and X-RapidAPI-Host
+3. go to [Edamam](https://rapidapi.com/edamam/api/Recipe%20Search%20and%20Diet)
+   1. get your X-RapidAPI-Key and X-RapidAPI-Host
+4. Go to ".env" file and change the value as describe
+**Note:** If you have a **MongoDB** we suggest you use your **Own MongoDB URI**. In case you want to use your own **Mongo** [click here](https://www.mongodb.com)
+
 
 ## Installation 
 To run locally:
@@ -25,6 +37,12 @@ _or_
 node server.js
 ```
 
+_or_
+
+```bash
+npm run dev
+```
+
 ## Built Using:
 * Node.js
 * Express
@@ -33,9 +51,8 @@ node server.js
 ## API keys
 Please use your own API keys. The APIs used for this project includes:
 
-[Edamam](https://www.edamam.com/)
-[Spoonacular](https://spoonacular.com/)
-
+* [Edamam](https://www.edamam.com/)
+* [Spoonacular](https://spoonacular.com/)
 
 ## Current active endpoints for users:
 

@@ -25,19 +25,19 @@
 		<main class="content_page">
 			<section class="section">
 				<div class="container">
-					<h1 class="title">
-						Find Recipe
-					</h1>
+				<h1 class="is-size-2 has-text-centered has-text-success is-uppercase has-text-weight-semibold">
+                    Find Recipe
+                </h1>
 					<h2 class="subtitle"></h2>
 				</div>
 				<br />
-				<div class="container">
+				<div class="container ">
 					<%- include("./parts/normal_user_form"); -%>
 				</div>
 				<div class="buttons is-centered">
 					<button
 						form="searchForm"
-						class="button is-primary is-rounded"
+						class="button is-success is-rounded"
 						style="text-align: center;"
 					>
 						<span class="icon">
@@ -48,17 +48,10 @@
 				</div>
 			</section>
 
-			<section class="hero is-medium is-primary is-bold">
-				<div class="container">
-					<h1 class="title">
-						Results
-					</h1>
-				</div>
-				<div class="container"></div>
-			</section>
+		
 
-			<section class="section">
-				<div class="columns is-multiline" id="recipe_card"></div>
+			<section class="section container" style="width:80vw">
+				<div class="columns is-multiline is-centered" id="recipe_card"></div>
 			</section>
 		</main>
 

@@ -43,7 +43,7 @@ module.exports = (db, users) => {
 		passport.authenticate("jwt", { session: false }, (err, user, info) => {
 			if (!user) {
 				console.log(info);
-				req.flash("msg", "you are not loned in");
+				req.flash("msg", "Try to log in again.");
 				res.render("error", { msg: req.flash("msg") });
 			} else {
 				req.user = user;
@@ -57,7 +57,7 @@ module.exports = (db, users) => {
 			next();
 		} else {
 			console.log("admin");
-			req.flash("msg", "you are not an admin user");
+			req.flash("msg", "Not authorized");
 			res.render("error", { msg: req.flash("msg") });
 		}
 	};
