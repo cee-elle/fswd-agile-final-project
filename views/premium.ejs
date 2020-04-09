@@ -68,7 +68,7 @@
 
 						<div class="field is-horizontal">
 							<div class="field-label is-medium">
-								<label class="label">Inclue Ingredient: </label>
+								<label class="label">Include: </label>
 							</div>
 							<div class="field-body">
 								<div class="field">
@@ -77,7 +77,7 @@
 											name="include"
 											class="input"
 											type="text "
-											placeholder="Ex. oninon "
+											placeholder="Ex. onion "
 										/>
 										<p class="help"></p>
 									</div>
@@ -87,7 +87,7 @@
 
 						<div class="field is-horizontal">
 							<div class="field-label is-medium">
-								<label class="label">Exclue Ingredient: </label>
+								<label class="label">Exclude: </label>
 							</div>
 							<div class="field-body">
 								<div class="field">
@@ -96,7 +96,7 @@
 											name="exclude"
 											class="input"
 											type="text "
-											placeholder="Ex. oninon "
+											placeholder="Ex. onion "
 										/>
 										<p class="help"></p>
 									</div>
@@ -136,7 +136,7 @@
 				<div class="buttons is-centered">
 					<button
 						type="submit"
-						class="button is-primary is-rounded"
+						class="button is-success is-rounded"
 						style="text-align: center;"
 						form="spoon"
 					>
@@ -149,44 +149,45 @@
 				<br />
 			</section>
 
-			<section class="hero is-medium is-primary is-bold">
-				<div class="container">
-					<h1 class="title">
-						Results
-					</h1>
-				</div>
-				<div class="container"></div>
-			</section>
 
-			<section class="section">
-				<div class="columns is-multiline" id="recipe_card">
+
+			<section class="section container is-fluid" style="width:90vw">
+				<div class="columns is-multiline is-centered" id="recipe_card">
 					<%if (locals.msg ) { %> <% msg.forEach( x => { %>
-					<div class="column is-4">
+					<div class="column is-one-fifth" style="height:20%;">
 						<%- include('./parts/recipe_model',{x:x}); -%>
-						<div class="card">
+						<div class="card" >
 							<div class="card-image">
 								<figure class="image is-4by3">
 									<img src="<%=x.image%>" alt="Placeholder image " />
 								</figure>
 							</div>
-							<div class="card-content">
-								<div class="media">
-									<div class="media-content">
-										<p class="title is-4"><%=x.title%></p>
-										<p class="subtitle"></p>
-									</div>
+							<div class="card-content" style="height:10rem;">
+								<div class="media ">
+									<div class="media-content ">
+										<p class="is-size-6" style="color:black;"><strong><%=x.title%>
+										</strong></p>
+										<p class="subtitle">
+											<div class="buttons " >
+                            	    		<a class="button is-small is-light " style="margin:0 3px 3px 0; padding:2px 7px ">
+                            	       			<span class="icon "><i class="fas fa-utensils "></i></span>
+                            	        		<span><%=x.fat%>
+												</span>
+                            	    		</a>
+                            	   			 <a class="button is-small is-light " style="margin:0 3px 3px 0; padding:2px 7px ">
+                            	        		<span class="icon "><i class="fas fa-fire "></i></span>
+                            	        		<span><%=x.calories%>
+												kcal</span>
+                            	   			 </a>
+										</p>
+									</div>											
 								</div>
-								<div class="tags">
-									<span class="tag">
-										<i class="fas fa-fire"></i><%=x.calories%>
-									</span>
-									<span class="tag">
-										<i class="fas fa-utensils"></i><%=x.fat%>
-									</span>
-								</div>
-								<section class="card-body">
-									<div class="content">
-										<form class="recipe_summary">
+							</div>
+							
+							</div>
+
+							<div class="buttons is-centered">
+							<form class="recipe_summary">
 											<input
 												type="text"
 												name="food_id"
@@ -195,29 +196,22 @@
 											/>
 											<button
 												type="submit"
-												class="button is-rounded"
+												class="button is-danger is-rounded"
 												style="text-align: center;"
 											>
-												View Recipe summary
+												Summary
 											</button>
 										</form>
-									</div>
-								</section>
-
-								Source from: <small> spoonacular </small>
-							</div>
-
-							<div class="buttons is-centered">
 								<form class="recipe_info">
 									<input type="text" name="food_id" value="<%=x.id%>" hidden />
 
 									<button
 										type="submit"
-										class="button is-primary is-rounded"
+										class="button is-success is-rounded"
 										style="text-align: center;"
 										id="<%=x.id%>"
 									>
-										View Recipe
+										Recipe
 									</button>
 								</form>
 							</div>
