@@ -53,7 +53,7 @@
     - Explanation - From week 2 until now, I created the Trello cards for each task with contents of assigned member, description, due date and checklist after every weekly sprint planning meeting. 
     
 3. Task Name: Front-End Admin Page
-    - Explanation - Initially, I created the front-end admin panel with technologies of EJS, CSS and Bootstrap. Then, changed to using Bulma for styling.
+    - Explanation - Initially, I created the front-end admin panel with technologies of EJS, CSS and Bootstrap. Then, changed to Bulma from Bootstrap for styling.
     
 4. Task Name: Front-End Error Page
     - Explanation - Using EJS and Bulma to create 403 error page.
