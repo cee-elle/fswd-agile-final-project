@@ -27,15 +27,12 @@ module.exports = (users) => {
 								msg: info.message,
 								msgClass: "is-danger",
 							});
-							// return res.status(400).json({
-							// 	message: info.message ? info.message : "Login Failed",
-							// });
 						}
 						req.login(user, { session: false }, async (err) => {
 							if (err) {
 								res.send(err.message);
 							}
-							delete user.password; // del pw from token
+							delete user.password; // delete password from token
 							const payload = JSON.stringify(user);
 							const token = authController.generateToken(payload);
 							res.cookie("jwt", { token: token }).redirect("/secure");
@@ -117,8 +114,11 @@ module.exports = (users) => {
 			}
 		}
 	);
-
-	// logout
+	/**
+	 * logout function
+	 * @param  {Request} req - get token from cookie
+	 * @param  {Response} res -  response ok and redirect
+	 */
 	router.get("/logout", (req, res) => {
 		res.clearCookie("jwt");
 		res.status(204).redirect("/");

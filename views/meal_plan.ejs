@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Meal Plan</title>
+		<title>Basic Account</title>
 		<link rel="stylesheet" href="/css/mystyles.css" />
 		<script
 			defer
@@ -26,11 +26,16 @@
 			<section class="level">
 				<div class="container">
 					<br />
-					<h1 class="is-size-2 has-text-centered has-text-success is-uppercase has-text-weight-semibold">Meal Plan (daily)</h1>
+					<h1 class="title" style="text-align: center;">Meal Plan (daily)</h1>
 					<form action="/api/meal_planning" method="POST">
 						<div class="field has-addons has-addons-centered">
 							<div class="control">
-								<input class="input" type="text" placeholder="Ex. 2000" />
+								<input
+									class="input"
+									type="text"
+									name="amount"
+									placeholder="Ex. 2000"
+								/>
 							</div>
 							<div class="control">
 								<button class="button is-success">
@@ -102,7 +107,7 @@
 
 											<button
 												type="submit"
-												class="button is-success is-rounded"
+												class="button is-primary is-rounded"
 												style="text-align: center;"
 												id="<%=x.id%>"
 											>

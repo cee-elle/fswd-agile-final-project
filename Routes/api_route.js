@@ -218,14 +218,13 @@ module.exports = () => {
 			res.redirect("/secure/mealplan");
 		})
 		.post((req, res) => {
+			console.log(req.body.amount);
 			const url =
 				"https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate";
 
 			spoonacular_request(url, {
 				timeFrame: "day",
-				targetCalories: "2000",
-				diet: "vegetarian",
-				exclude: "shellfish%2C olives",
+				targetCalories: req.body.amount || "2000",
 			})
 				.then((data) => {
 					// res.send({ info: data.body });
