@@ -57,6 +57,25 @@
     
 4. Task Name: Front-End Error Page
     - Explanation - Using EJS and Bulma to create 403 error page.
+    
+## Name of Team Member: Cindy Le
+### Tasks Worked On:
 
-5. Task Name: Front-End User Setting Page
-    - Explanation - Using EJS and Bulma to create user setting page.
+1. Task Name: Trello Cards
+    - Explanation - Started the trello board and the cards
+
+2. Task Name: Project Manager
+    - Explanation - handled and hosted group meetings. Set tasks with team memebers
+    
+3. Task Name: Landing Page, Login Page, Plan Page, Basic User Page, Premimum User Page
+    - Explanation - created all pages with two versions of design. Recreated login page to be single sign on with registration including: ejs, bulma, css, html, and bit fo javascript
+
+4. Task Name: Readme Page
+    - Explanation - Edited and added to this page. 
+
+5. Task Name: Testing
+    - Tested code after integration to ensure project lined up with stakeholders and they were coherent with one another
+
+2. Task Name: Editing
+    - Explanation - Editing code and spelling mistakes, ensure syntax was clear and unneccesary files were or got removed.
+    
